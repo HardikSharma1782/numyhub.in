@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="description"
+        content="NumyHub creates premium templates, websites and video edits for creators and businesses." />
+
+    <title>NumyHub — Portfolio</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13LSHWLM3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-13LSHWLM3L');
+    </script>
+    <style>
+        :root {
+            --black: #0a0a0b;
+            --surface: #111113;
+            --surface-soft: #171719;
+            --white: #ffffff;
+            --muted: rgba(255, 255, 255, 0.62);
+            --subtle: rgba(255, 255, 255, 0.36);
+            --line: rgba(255, 255, 255, 0.1);
+            --orange: #ff4d00;
+            --orange-light: #ff8a4d;
+            --green: #9cff6b;
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: var(--black);
+            color: var(--white);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        ::selection {
+            background: var(--orange);
+            color: white;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .font-heading {
+            font-weight: 850;
+            letter-spacing: -0.065em;
+            line-height: 0.95;
+        }
+
+        .font-mono {
+            font-family: "SF Mono", "Fira Code", Consolas, monospace;
+        }
+
+        .container {
+            width: min(1200px, calc(100% - 48px));
+            margin: auto;
+        }
+
+        .blueprint-grid {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* =========================
+       TOP RIBBON
+    ========================= */
+
+        .top-ribbon {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 40px;
+            padding: 9px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(90deg,
+                    rgba(255, 77, 0, 0.2),
+                    rgba(255, 255, 255, 0.04),
+                    rgba(255, 77, 0, 0.13));
+            backdrop-filter: blur(16px);
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            text-align: center;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            flex: 0 0 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 16px var(--green);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.42;
+                transform: scale(0.72);
+            }
+        }
+
+        /* =========================
+       NAVIGATION
+    ========================= */
+
+        header {
+            position: fixed;
+            top: 40px;
+            left: 0;
+            right: 0;
+            z-index: 90;
+            padding: 18px 0;
+            transition: 0.4s var(--ease);
+        }
+
+        header.scrolled {
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(10, 10, 11, 0.84);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            color: var(--white);
+            font-size: 21px;
+            font-weight: 850;
+            letter-spacing: -0.06em;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 37px;
+            height: 37px;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--orange), #aa2700);
+            box-shadow: 0 0 28px rgba(255, 77, 0, 0.34);
+            font-size: 16px;
+        }
+
+        .brand .accent {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-links>a,
+        .pages-btn {
+            position: relative;
+            padding: 10px 13px;
+            border: 0;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.68);
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.25s ease;
+        }
+
+        .nav-links>a:hover,
+        .pages-btn:hover {
+            color: var(--white);
+        }
+
+        .nav-links>a::after,
+        .pages-btn::after {
+            position: absolute;
+            right: 13px;
+            bottom: 5px;
+            left: 13px;
+            height: 1px;
+            background: var(--orange);
+            content: "";
+            transform: scaleX(0);
+            transition: transform 0.25s var(--ease);
+        }
+
+        .nav-links>a:hover::after,
+        .pages-btn:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-cta {
+            margin-left: 7px;
+            padding: 10px 17px !important;
+            border: 1px solid rgba(255, 77, 0, 0.55) !important;
+            border-radius: 999px;
+            background: rgba(255, 77, 0, 0.08) !important;
+            color: var(--white) !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--orange) !important;
+        }
+
+        .pages-wrap {
+            position: relative;
+        }
+
+        .pages-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .pages-btn svg {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.25s ease;
+        }
+
+        .pages-dropdown {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(190px, 1fr));
+            gap: 5px;
+            width: min(620px, calc(100vw - 32px));
+            max-height: min(72vh, 540px);
+            padding: 11px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            border-radius: 18px;
+            background: rgba(15, 15, 17, 0.97);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.58);
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s var(--ease);
+        }
+
+        .pages-wrap:hover .pages-dropdown,
+        .pages-wrap:focus-within .pages-dropdown,
+        .pages-wrap.open .pages-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .pages-wrap:hover .pages-btn svg,
+        .pages-wrap:focus-within .pages-btn svg,
+        .pages-wrap.open .pages-btn svg {
+            transform: rotate(180deg);
+        }
+
+        .page-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 12px;
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            transition: 0.25s var(--ease);
+        }
+
+        .page-link:hover {
+            background: rgba(255, 77, 0, 0.11);
+            color: var(--white);
+            transform: translateX(3px);
+        }
+
+        .page-icon {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            flex: 0 0 38px;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 11px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--orange-light);
+            font-size: 17px;
+        }
+
+        .page-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .page-desc {
+            display: block;
+            margin-top: 2px;
+            color: rgba(255, 255, 255, 0.42);
+            font-size: 10px;
+            line-height: 1.35;
+        }
+
+        /* =========================
+       HERO
+    ========================= */
+
+        .portfolio-hero {
+            position: relative;
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            padding: 145px 0 100px;
+            overflow: hidden;
+        }
+
+        .portfolio-grid {
+            position: absolute;
+            inset: 0;
+            opacity: 0.34;
+            mask-image: linear-gradient(to bottom, black, transparent 90%);
+        }
+
+        .portfolio-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(130px);
+            pointer-events: none;
+        }
+
+        .orb-one {
+            top: 7%;
+            right: -150px;
+            width: 590px;
+            height: 590px;
+            background: rgba(255, 77, 0, 0.12);
+        }
+
+        .orb-two {
+            bottom: -260px;
+            left: -140px;
+            width: 500px;
+            height: 500px;
+            background: rgba(85, 115, 255, 0.08);
+        }
+
+        .portfolio-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 950px;
+        }
+
+        .portfolio-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 26px;
+            color: var(--orange-light);
+            font-size: 11px;
+            letter-spacing: 0.16em;
+        }
+
+        .kicker-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 14px var(--green);
+        }
+
+        .portfolio-main-title {
+            max-width: 900px;
+            font-size: clamp(56px, 9vw, 128px);
+        }
+
+        .portfolio-main-title span {
+            color: var(--orange);
+            text-shadow: 0 0 35px rgba(255, 77, 0, 0.25);
+        }
+
+        .portfolio-main-copy {
+            max-width: 600px;
+            margin-top: 30px;
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .portfolio-platform-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 37px;
+        }
+
+        .portfolio-platform-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            padding: 12px 15px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s var(--ease);
+        }
+
+        .portfolio-platform-links a:hover {
+            border-color: rgba(255, 77, 0, 0.6);
+            background: rgba(255, 77, 0, 0.1);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .portfolio-platform-links span {
+            color: var(--orange);
+        }
+
+        .portfolio-scroll {
+            position: absolute;
+            bottom: 27px;
+            left: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--subtle);
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            transform: translateX(-50%);
+        }
+
+        .portfolio-scroll i {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(var(--orange), transparent);
+        }
+
+        /* =========================
+       PLATFORM STRIP
+    ========================= */
+
+        .platform-strip {
+            padding: 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: #0d0d0f;
+        }
+
+        .platform-strip-inner {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .platform-strip-inner>a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            min-height: 115px;
+            padding: 22px 28px;
+            border-right: 1px solid var(--line);
+            color: var(--white);
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .platform-strip-inner>a:first-child {
+            border-left: 1px solid var(--line);
+        }
+
+        .platform-strip-inner>a:hover {
+            background: rgba(255, 77, 0, 0.08);
+        }
+
+        .platform-icon {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            place-items: center;
+            border: 1px solid rgba(255, 77, 0, 0.35);
+            border-radius: 12px;
+            background: rgba(255, 77, 0, 0.1);
+            color: var(--orange-light);
+            font-size: 18px;
+        }
+
+        .platform-strip-inner strong,
+        .platform-strip-inner small {
+            display: block;
+        }
+
+        .platform-strip-inner strong {
+            font-size: 15px;
+        }
+
+        .platform-strip-inner small {
+            margin-top: 2px;
+            color: var(--subtle);
+            font-size: 11px;
+        }
+
+        .platform-strip-inner b {
+            margin-left: auto;
+            color: var(--orange);
+            font-size: 20px;
+        }
+
+        /* =========================
+       SHARED PORTFOLIO SECTIONS
+    ========================= */
+
+        .portfolio-section {
+            padding: 120px 0;
+        }
+
+        .portfolio-dark-section {
+            background: #0d0d0f;
+        }
+
+        .section-label {
+            margin-bottom: 16px;
+            color: var(--orange);
+            font-size: 11px;
+            letter-spacing: 0.18em;
+        }
+
+        .section-title {
+            max-width: 820px;
+            font-size: clamp(38px, 5vw, 69px);
+        }
+
+        .section-title .faded {
+            color: rgba(255, 255, 255, 0.28);
+        }
+
+        .portfolio-section-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 35px;
+            margin-bottom: 54px;
+        }
+
+        .portfolio-section-head>p {
+            max-width: 380px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* =========================
+       AUTOMATIC YOUTUBE THUMBNAILS
+    ========================= */
+
+        .short-frame,
+        .video-frame {
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .short-frame {
+            aspect-ratio: 9 / 16;
+        }
+
+        .video-frame {
+            aspect-ratio: 16 / 9;
+        }
+
+        .youtube-preview {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            border: 0;
+            background: #0b0b0d;
+            color: white;
+            cursor: pointer;
+        }
+
+        .youtube-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.72;
+            transition: transform 0.65s var(--ease), opacity 0.35s ease;
+        }
+
+        .youtube-preview::after {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.56)),
+                radial-gradient(circle at center, rgba(255, 77, 0, 0.18), transparent 48%);
+            content: "";
+        }
+
+        .youtube-preview:hover img {
+            opacity: 0.9;
+            transform: scale(1.06);
+        }
+
+        .play-button {
+            position: absolute;
+            z-index: 2;
+            display: grid;
+            width: 65px;
+            height: 65px;
+            place-items: center;
+            padding-left: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 50%;
+            background: rgba(255, 77, 0, 0.94);
+            box-shadow: 0 15px 45px rgba(255, 77, 0, 0.42);
+            color: white;
+            font-size: 22px;
+            transition: transform 0.3s var(--ease), background 0.3s ease;
+        }
+
+        .youtube-preview:hover .play-button {
+            background: var(--orange-light);
+            transform: scale(1.1);
+        }
+
+        .short-frame iframe,
+        .video-frame iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .missing-video {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            background:
+                radial-gradient(circle at center, rgba(255, 77, 0, 0.12), transparent 45%),
+                #0b0b0d;
+            color: var(--subtle);
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-align: center;
+        }
+
+        /* =========================
+       SHORTS GRID
+    ========================= */
+
+        .portfolio-shorts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .portfolio-short-card,
+        .portfolio-video-card,
+        .portfolio-web-card {
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 19px;
+            background: rgba(255, 255, 255, 0.022);
+            transition: transform 0.4s var(--ease), border-color 0.4s ease;
+        }
+
+        .portfolio-short-card:hover,
+        .portfolio-video-card:hover,
+        .portfolio-web-card:hover {
+            border-color: rgba(255, 77, 0, 0.5);
+            transform: translateY(-8px);
+        }
+
+        .portfolio-work-meta {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 17px;
+        }
+
+        .portfolio-work-meta h3 {
+            margin-top: 5px;
+            font-size: 17px;
+            letter-spacing: -0.04em;
+        }
+
+        .portfolio-work-meta p {
+            margin-top: 4px;
+            color: var(--subtle);
+            font-size: 12px;
+        }
+
+        .work-type {
+            color: var(--orange);
+            font-size: 10px;
+            letter-spacing: 0.13em;
+        }
+
+        .work-arrow {
+            color: var(--orange);
+            font-size: 22px;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-short-card:hover .work-arrow,
+        .portfolio-video-card:hover .work-arrow,
+        .portfolio-web-card:hover .work-arrow {
+            transform: translate(3px, -3px);
+        }
+
+        .portfolio-more {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .portfolio-outline-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 14px 21px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s var(--ease);
+        }
+
+        .portfolio-outline-btn:hover {
+            border-color: var(--orange);
+            background: rgba(255, 77, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .portfolio-outline-btn span {
+            color: var(--orange);
+        }
+
+        /* =========================
+       LONG FORM
+    ========================= */
+
+        .portfolio-video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .large-meta {
+            padding: 19px;
+        }
+
+        /* =========================
+       WEBSITE WORK
+    ========================= */
+
+        .portfolio-web-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .portfolio-web-card {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .portfolio-web-image {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+        }
+
+        .portfolio-web-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s var(--ease), filter 0.7s var(--ease);
+        }
+
+        .portfolio-web-card:hover .portfolio-web-image img {
+            filter: brightness(1.08) contrast(1.04);
+            transform: scale(1.07);
+        }
+
+        .portfolio-web-image::after {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 48%, rgba(0, 0, 0, 0.65));
+            content: "";
+        }
+
+        .web-number {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            z-index: 1;
+            display: grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.4);
+            font-size: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* =========================
+       TEMPLATE BANNER
+    ========================= */
+
+        .portfolio-template-banner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: clamp(35px, 7vw, 90px);
+            min-height: 510px;
+            padding: clamp(30px, 6vw, 70px);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            background:
+                radial-gradient(circle at 90% 20%, rgba(255, 77, 0, 0.17), transparent 32%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
+        }
+
+        .portfolio-template-banner p {
+            max-width: 480px;
+            margin: 22px 0 28px;
+            color: var(--muted);
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 15px 24px;
+            border: 1px solid var(--orange);
+            border-radius: 999px;
+            background: var(--orange);
+            box-shadow: 0 13px 35px rgba(255, 77, 0, 0.27);
+            color: white;
+            font-size: 14px;
+            font-weight: 750;
+            text-decoration: none;
+            transition: 0.3s var(--ease);
+        }
+
+        .btn-primary:hover {
+            border-color: var(--orange-light);
+            background: var(--orange-light);
+            transform: translateY(-4px);
+            box-shadow: 0 19px 45px rgba(255, 77, 0, 0.37);
+        }
+
+        .template-banner-visual {
+            position: relative;
+            width: min(100%, 420px);
+            aspect-ratio: 1;
+            margin-left: auto;
+        }
+
+        .template-banner-window {
+            position: absolute;
+            inset: 0;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 23px;
+            background: rgba(255, 255, 255, 0.045);
+            box-shadow: 0 28px 75px rgba(0, 0, 0, 0.38);
+            transform: rotate(4deg);
+            transition: transform 0.6s var(--ease);
+        }
+
+        .template-banner-visual:hover .template-banner-window {
+            transform: rotate(0deg) translateY(-5px);
+        }
+
+        .template-window-top {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 28px;
+        }
+
+        .template-window-top span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .template-window-top span:last-child {
+            background: var(--orange);
+        }
+
+        .template-window-line {
+            height: 22px;
+            margin-bottom: 12px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.11);
+        }
+
+        .template-window-line.short {
+            width: 68%;
+        }
+
+        .template-window-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 11px;
+            margin-top: 24px;
+        }
+
+        .template-window-cards i {
+            aspect-ratio: 1;
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            border-radius: 9px;
+            background: linear-gradient(135deg, rgba(255, 77, 0, 0.25), rgba(255, 255, 255, 0.05));
+        }
+
+        .template-window-button {
+            width: 135px;
+            height: 39px;
+            margin-top: 24px;
+            border-radius: 999px;
+            background: var(--orange);
+        }
+
+        .template-floating-label {
+            position: absolute;
+            right: -28px;
+            bottom: 35px;
+            padding: 10px 13px;
+            border: 1px solid rgba(255, 77, 0, 0.34);
+            border-radius: 999px;
+            background: rgba(25, 14, 10, 0.88);
+            color: var(--orange-light);
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            backdrop-filter: blur(14px);
+        }
+
+        /* =========================
+       CONTACT
+    ========================= */
+
+        .portfolio-contact {
+            padding: 0 0 75px;
+        }
+
+        .portfolio-contact-box {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 55px;
+            padding: clamp(35px, 6vw, 72px);
+            overflow: hidden;
+            border-radius: 26px;
+            background:
+                radial-gradient(circle at 92% 15%, rgba(255, 220, 190, 0.36), transparent 24%),
+                linear-gradient(120deg, #ff4d00, #b82e00, #ff4d00);
+            box-shadow: 0 28px 75px rgba(255, 77, 0, 0.16);
+        }
+
+        .portfolio-contact-box h2 {
+            font-size: clamp(39px, 5vw, 69px);
+        }
+
+        .portfolio-contact-box h2 span {
+            color: rgba(255, 255, 255, 0.68);
+        }
+
+        .portfolio-contact-side {
+            align-self: end;
+        }
+
+        .portfolio-contact-side p {
+            color: rgba(255, 255, 255, 0.84);
+        }
+
+        .portfolio-light-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 25px;
+            padding: 14px 20px;
+            border-radius: 999px;
+            background: white;
+            color: #0a0a0b;
+            font-size: 13px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: 0.3s var(--ease);
+        }
+
+        .portfolio-light-btn:hover {
+            background: #0a0a0b;
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        /* =========================
+       FOOTER
+    ========================= */
+
+        footer {
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0 35px;
+            border-top: 1px solid var(--line);
+            background:
+                radial-gradient(circle at 50% 0%, rgba(255, 77, 0, 0.17), transparent 36%),
+                linear-gradient(to bottom, #0b0b0d, #120c0b);
+        }
+
+        footer::before {
+            position: absolute;
+            inset: 0;
+            opacity: 0.25;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            content: "";
+            mask-image: linear-gradient(to bottom, black, transparent 78%);
+            pointer-events: none;
+        }
+
+        .footer-brand {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 82px;
+            text-align: center;
+        }
+
+        .footer-brand h2 {
+            font-size: clamp(72px, 15vw, 205px);
+            font-weight: 900;
+            letter-spacing: -0.1em;
+            line-height: 0.78;
+            background: linear-gradient(110deg, #fff 0%, #fff 24%, #ffad8c 56%, #ff4d00 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-brand p {
+            margin-top: 27px;
+            color: rgba(255, 255, 255, 0.57);
+            font-size: 10px;
+            letter-spacing: 0.18em;
+        }
+
+        .footer-links {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.45fr 1fr 1fr 1fr;
+            gap: 38px;
+            padding: 42px 0 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 18px;
+            color: var(--orange-light);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.53);
+            font-size: 13px;
+            text-decoration: none;
+            transition: color 0.25s ease, transform 0.25s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.38);
+            font-size: 10px;
+            letter-spacing: 0.08em;
+        }
+
+        /* =========================
+       UTILITIES
+    ========================= */
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 120;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--orange), var(--orange-light));
+            box-shadow: 0 0 15px rgba(255, 77, 0, 0.8);
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 23px;
+            bottom: 22px;
+            z-index: 40;
+            display: grid;
+            width: 45px;
+            height: 45px;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 50%;
+            background: rgba(18, 18, 20, 0.82);
+            color: var(--white);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: 0.3s var(--ease);
+            backdrop-filter: blur(14px);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            border-color: var(--orange);
+            background: var(--orange);
+            transform: translateY(-4px);
+        }
+
+        .wa-float {
+            position: fixed;
+            right: 24px;
+            bottom: 78px;
+            z-index: 40;
+            display: grid;
+            width: 52px;
+            height: 52px;
+            place-items: center;
+            border-radius: 50%;
+            background: #25d366;
+            color: white;
+            box-shadow: 0 10px 28px rgba(37, 211, 102, 0.38);
+            font-size: 23px;
+            text-decoration: none;
+            transition: transform 0.3s var(--ease);
+        }
+
+        .wa-float:hover {
+            transform: scale(1.08);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease, transform 0.75s var(--ease);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+       RESPONSIVE
+    ========================= */
+
+        @media (max-width: 950px) {
+            .portfolio-shorts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .portfolio-template-banner,
+            .portfolio-contact-box {
+                grid-template-columns: 1fr;
+            }
+
+            .template-banner-visual {
+                margin: 0 auto;
+            }
+
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .top-ribbon {
+                font-size: 9px;
+            }
+
+            .container {
+                width: min(100% - 32px, 1200px);
+            }
+
+            .nav-links>a:not(.nav-cta) {
+                display: none;
+            }
+
+            .pages-dropdown {
+                position: fixed;
+                top: 95px;
+                right: 12px;
+                grid-template-columns: 1fr;
+                width: min(420px, calc(100vw - 24px));
+            }
+
+            .portfolio-hero {
+                min-height: auto;
+                padding: 145px 0 100px;
+            }
+
+            .portfolio-main-title {
+                font-size: clamp(51px, 16vw, 82px);
+            }
+
+            .portfolio-scroll {
+                display: none;
+            }
+
+            .platform-strip-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-strip-inner>a,
+            .platform-strip-inner>a:first-child {
+                min-height: 92px;
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+                border-left: 0;
+            }
+
+            .portfolio-section {
+                padding: 78px 0;
+            }
+
+            .portfolio-section-head {
+                display: block;
+                margin-bottom: 36px;
+            }
+
+            .portfolio-section-head>p {
+                margin-top: 18px;
+            }
+
+            .portfolio-shorts-grid,
+            .portfolio-video-grid,
+            .portfolio-web-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-short-card {
+                width: min(100%, 355px);
+                margin: auto;
+            }
+
+            .template-floating-label {
+                right: -8px;
+                bottom: 18px;
+            }
+
+            .footer-brand {
+                margin-bottom: 62px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+
+            .wa-float {
+                right: 18px;
+                bottom: 76px;
+            }
+
+            .back-to-top {
+                right: 18px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .footer-links {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div class="top-ribbon">
+        <span class="live-dot"></span>
+        <span class="font-mono">NUMYHUB IS BUILDING DIGITAL EXPERIENCES WITH GOOD VIBES</span>
+    </div>
+
+    <header id="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="brand" aria-label="NumyHub home">
+                <span><img src="The Numy Hub.png" alt="Numy Hub logo" class="brand-mark" /></span>
+                <span>Numy Hub<span class="accent"></span></span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#youtube-work">Edits</a>
+                <a href="#website-work">Web Work</a>
+
+                <div class="pages-wrap">
+                    <button class="pages-btn" type="button" aria-expanded="false">
+                        Pages
+                        <svg viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+
+                    <div class="pages-dropdown">
+                        <a class="page-link" href="#template-work">
+                            <span class="page-icon">✦</span>
+                            <span>
+                                <span class="page-label">Templates</span>
+                                <span class="page-desc">Ready-made digital foundations</span>
+                            </span>
+                        </a>
+
+                        <a class="page-link" href="#website-work">
+                            <span class="page-icon">▣</span>
+                            <span>
+                                <span class="page-label">Portfolio</span>
+                                <span class="page-desc">Selected projects and visual work</span>
+                            </span>
+                        </a>
+
+                        <a class="page-link" href="#youtube-work">
+                            <span class="page-icon">▶</span>
+                            <span>
+                                <span class="page-label">Editing Reel</span>
+                                <span class="page-desc">Shorts and long-form video work</span>
+                            </span>
+                        </a>
+
+                        <a class="page-link" href="#contact">
+                            <span class="page-icon">↗</span>
+                            <span>
+                                <span class="page-label">Contact</span>
+                                <span class="page-desc">Start a project or ask a question</span>
+                            </span>
+                        </a>
+
+                        <a class="page-link" href="blog.html">
+                            <span class="page-icon">✎</span>
+                            <span>
+                                <span class="page-label">Blog</span>
+                                <span class="page-desc">Ideas, guides and updates</span>
+                            </span>
+                        </a>
+
+                        <a class="page-link" href="privacy.html">
+                            <span class="page-icon">⌑</span>
+                            <span>
+                                <span class="page-label">Privacy Policy</span>
+                                <span class="page-desc">How information is handled</span>
+                            </span>
+                        </a>
+
+                        <a class="page-link" href="disclaimer.html">
+                            <span class="page-icon">ⓘ</span>
+                            <span>
+                                <span class="page-label">Disclaimer</span>
+                                <span class="page-desc">Important site information</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <a class="nav-cta" href="#contact">Let’s Talk</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="home">
+        <!-- PORTFOLIO HERO -->
+        <section class="portfolio-hero">
+            <div class="blueprint-grid portfolio-grid"></div>
+            <div class="portfolio-orb orb-one"></div>
+            <div class="portfolio-orb orb-two"></div>
+
+            <div class="container portfolio-hero-inner reveal">
+                <div class="portfolio-kicker font-mono">
+                    <span class="kicker-dot"></span>
+                    NUMYHUB / SELECTED WORK
+                </div>
+
+                <h1 class="portfolio-main-title font-heading">
+                    We make brands<br>
+                    look <span>hard to ignore.</span>
+                </h1>
+
+                <p class="portfolio-main-copy">
+                    A growing collection of video edits, digital templates and website
+                    experiences made for creators, businesses and ideas that deserve
+                    better presentation.
+                </p>
+
+                <div class="portfolio-platform-links">
+                    <a href="#youtube-work">YouTube Edits <span>↘</span></a>
+                    <a href="#website-work">Website Builds <span>↘</span></a>
+                    <a href="#template-work">Templates <span>↘</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-scroll font-mono">
+                <span>EXPLORE WORK</span>
+                <i></i>
+            </div>
+        </section>
+
+        <!-- PLATFORM STRIP -->
+        <section class="platform-strip">
+            <div class="container platform-strip-inner">
+                <a href="https://www.youtube.com/@NumyHub" target="_blank" rel="noopener noreferrer">
+                    <span class="platform-icon">▶</span>
+                    <span>
+                        <strong>YouTube</strong>
+                        <small>Video edits & creative work</small>
+                    </span>
+                    <b>↗</b>
+                </a>
+
+                <a href="#website-work">
+                    <span class="platform-icon">⌘</span>
+                    <span>
+                        <strong>Web</strong>
+                        <small>Templates & custom websites</small>
+                    </span>
+                    <b>↗</b>
+                </a>
+
+                <a href="#contact">
+                    <span class="platform-icon">✳</span>
+                    <span>
+                        <strong>NumyHub</strong>
+                        <small>Build something with us</small>
+                    </span>
+                    <b>↗</b>
+                </a>
+            </div>
+        </section>
+
+        <!-- YOUTUBE SHORTS -->
+        <section class="portfolio-section" id="youtube-work">
+            <div class="container">
+                <div class="portfolio-section-head reveal">
+                    <div>
+                        <div class="section-label font-mono">01 / VIDEO EDITING</div>
+                        <h2 class="section-title font-heading">
+                            Short-form edits<br>
+                            <span class="faded">built for attention.</span>
+                        </h2>
+                    </div>
+
+                    <p>
+                        Hooks, captions, motion, sound design and pacing—built to stop the
+                        scroll without losing the story.
+                    </p>
+                </div>
+
+                <div class="portfolio-shorts-grid">
+                    <!-- SHORT 1: Thumbnail appears automatically after you paste its link in the VIDEOS section -->
+                    <article class="portfolio-short-card reveal">
+                        <div class="short-frame youtube-video" data-video-key="short1"
+                            data-title="NumyHub Short Edit One">
+                        </div>
+
+                        <div class="portfolio-work-meta">
+                            <div>
+                                <span class="work-type font-mono">SHORT / 01</span>
+                                <h3>High-energy Short Edit</h3>
+                                <p>Hook · Captions · Motion</p>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </article>
+
+                    <!-- SHORT 2 -->
+                    <article class="portfolio-short-card reveal">
+                        <div class="short-frame youtube-video" data-video-key="short2"
+                            data-title="NumyHub Short Edit Two">
+                        </div>
+
+                        <div class="portfolio-work-meta">
+                            <div>
+                                <span class="work-type font-mono">SHORT / 02</span>
+                                <h3>Story-driven Short Edit</h3>
+                                <p>Rhythm · Retention · Finish</p>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </article>
+
+                    <!-- SHORT 3 -->
+                    <article class="portfolio-short-card reveal">
+                        <div class="short-frame youtube-video" data-video-key="short3"
+                            data-title="NumyHub Short Edit Three">
+                        </div>
+
+                        <div class="portfolio-work-meta">
+                            <div>
+                                <span class="work-type font-mono">SHORT / 03</span>
+                                <h3>Clean Caption Edit</h3>
+                                <p>Pacing · Cuts · Visual Flow</p>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="portfolio-more reveal">
+                    <a href="https://www.youtube.com/@NumyHub" target="_blank" rel="noopener noreferrer"
+                        class="portfolio-outline-btn">
+                        See more on YouTube <span>↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- LONG FORM VIDEOS -->
+        <section class="portfolio-section portfolio-dark-section" id="longform-work">
+            <div class="container">
+                <div class="portfolio-section-head reveal">
+                    <div>
+                        <div class="section-label font-mono">02 / LONG FORM</div>
+                        <h2 class="section-title font-heading">
+                            More than clips.<br>
+                            <span class="faded">Complete visual stories.</span>
+                        </h2>
+                    </div>
+
+                    <p>
+                        Long-form editing for projects that need structure, momentum and a
+                        stronger emotional finish.
+                    </p>
+                </div>
+
+                <div class="portfolio-video-grid">
+                    <!-- LONG VIDEO 1 -->
+                    <article class="portfolio-video-card reveal">
+                        <div class="video-frame youtube-video" data-video-key="long1"
+                            data-title="NumyHub Long-form Video One">
+                        </div>
+
+                        <div class="portfolio-work-meta large-meta">
+                            <div>
+                                <span class="work-type font-mono">LONG FORM / 01</span>
+                                <h3>Creative Video Project</h3>
+                                <p>Editing direction · Narrative flow · Sound design</p>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </article>
+
+                    <!-- LONG VIDEO 2 -->
+                    <article class="portfolio-video-card reveal">
+                        <div class="video-frame youtube-video" data-video-key="long2"
+                            data-title="NumyHub Long-form Video Two">
+                        </div>
+
+                        <div class="portfolio-work-meta large-meta">
+                            <div>
+                                <span class="work-type font-mono">LONG FORM / 02</span>
+                                <h3>Brand or Creator Edit</h3>
+                                <p>Structure · Pacing · Detail work</p>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEBSITE WORK -->
+        <section class="portfolio-section" id="website-work">
+            <div class="container">
+                <div class="portfolio-section-head reveal">
+                    <div>
+                        <div class="section-label font-mono">03 / DIGITAL EXPERIENCES</div>
+                        <h2 class="section-title font-heading">
+                            Websites that feel<br>
+                            <span class="faded">like real brands.</span>
+                        </h2>
+                    </div>
+
+                    <p>
+                        Web experiences and landing pages made to build trust, showcase value
+                        and turn visitors into conversations.
+                    </p>
+                </div>
+
+                <div class="portfolio-web-grid">
+                    <a class="portfolio-web-card reveal" href="templates.html">
+                        <div class="portfolio-web-image">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85"
+                                alt="Restaurant website design project">
+                            <span class="web-number font-mono">01</span>
+                        </div>
+
+                        <div class="portfolio-work-meta">
+                            <div>
+                                <span class="work-type font-mono">RESTAURANT WEBSITE</span>
+                                <h3>Bistro Noir</h3>
+                                <p>Premium dining · Menu showcase · Booking flow</p>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </a>
+
+                    <a class="portfolio-web-card reveal" href="templates.html">
+                        <div class="portfolio-web-image">
+                            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=85"
+                                alt="Clinic website design project">
+                            <span class="web-number font-mono">02</span>
+                        </div>
+
+                        <div class="portfolio-work-meta">
+                            <div>
+                                <span class="work-type font-mono">HEALTHCARE WEBSITE</span>
+                                <h3>MediCare</h3>
+                                <p>Trust-first layout · Services · Appointment CTA</p>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEMPLATE VAULT -->
+        <section class="portfolio-section portfolio-dark-section" id="template-work">
+            <div class="container">
+                <div class="portfolio-template-banner reveal">
+                    <div>
+                        <div class="section-label font-mono">04 / TEMPLATE VAULT</div>
+
+                        <h2 class="section-title font-heading">
+                            Built to launch fast.<br>
+                            <span class="faded">Made to feel custom.</span>
+                        </h2>
+
+                        <p>
+                            Premium templates for restaurants, clinics, boutiques, students and
+                            creators who need a polished start without starting from zero.
+                        </p>
+
+                        <a class="btn-primary" href="templates.html">
+                            Browse all templates <span>↗</span>
+                        </a>
+                    </div>
+
+                    <div class="template-banner-visual">
+                        <div class="template-banner-window">
+                            <div class="template-window-top">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <div class="template-window-line short"></div>
+                            <div class="template-window-line"></div>
+
+                            <div class="template-window-cards">
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                            </div>
+
+                            <div class="template-window-button"></div>
+                        </div>
+
+                        <div class="template-floating-label font-mono">
+                            FAST • EDITABLE • PREMIUM
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT CTA -->
+        <section class="portfolio-contact" id="contact">
+            <div class="container">
+                <div class="portfolio-contact-box reveal">
+                    <div>
+                        <div class="section-label font-mono">NEXT PROJECT?</div>
+                        <h2 class="font-heading">
+                            Want work that makes<br>
+                            people <span>stop scrolling?</span>
+                        </h2>
+                    </div>
+
+                    <div class="portfolio-contact-side">
+                        <p>
+                            Let’s build your website, edit your next video or create the visual
+                            direction your brand has been missing.
+                        </p>
+
+                        <a href="mailto:numypie1782@gmail.com?subject=NumyHub%20Portfolio%20Enquiry"
+                            class="portfolio-light-btn">
+                            Start a conversation <span>↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-brand">
+                <h2 class="font-heading">NUMYHUB</h2>
+                <p class="font-mono">TEMPLATES • WEBSITES • VIDEO EDITING</p>
+            </div>
+
+            <div class="footer-links">
+                <div>
+                    <h4 class="font-mono">EXPLORE</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#template-work">Templates</a></li>
+                        <li><a href="#website-work">Portfolio</a></li>
+                        <li><a href="#youtube-work">Editing Portfolio</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-mono">NUMYHUB</h4>
+                    <ul>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-mono">CONNECT</h4>
+                    <ul>
+                        <li><a href="mailto:numypie1782@gmail.com">Email</a></li>
+                        <li>
+                            <a href="https://www.youtube.com/@NumyHub" target="_blank" rel="noopener noreferrer">
+                                YouTube
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-mono">LEGAL</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="terms.html">Terms of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom font-mono">
+                <span>© 2026 NUMYHUB.XYZ · ALL RIGHTS RESERVED</span>
+                <span>BUILD_VER // 4.0.0</span>
+            </div>
+        </div>
+    </footer>
+
+
+    <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
+        ↑
+    </button>
+
+    <script>
+        /* ============================================================
+           PUT YOUR YOUTUBE VIDEO LINKS ONLY HERE
+           ============================================================
+    
+           Paste the full link between the quotes.
+    
+           Supported formats:
+           - https://www.youtube.com/shorts/VIDEO_ID
+           - https://www.youtube.com/watch?v=VIDEO_ID
+           - https://youtu.be/VIDEO_ID
+    
+           EXAMPLE:
+    
+           short1: "https://www.youtube.com/shorts/AbCdEfGh123",
+    
+           Do not remove commas after lines except for the final line.
+        */
+
+        const VIDEOS = {
+            short1: "https://youtube.com/shorts/d78sLv_W2Hs?si=K7s6V1Dkk5Ca7R98", // PASTE YOUR FIRST YOUTUBE SHORT LINK HERE
+            short2: "https://youtube.com/shorts/OnAz24CHvR4?si=dZGzVZpO7BYtdSCe", // PASTE YOUR SECOND YOUTUBE SHORT LINK HERE
+            short3: "https://youtube.com/shorts/M7_pkydBEvs?si=TYhFUJPj1tMfzXVn", // PASTE YOUR THIRD YOUTUBE SHORT LINK HERE
+
+            long1: "https://youtu.be/h893r7fMdeI?si=lNQyVKNfAf6kmwAq",  // PASTE YOUR FIRST NORMAL YOUTUBE VIDEO LINK HERE
+            long2: "https://youtu.be/SimAzB1IOSk?si=Kiru90EHkFw62k97"   // PASTE YOUR SECOND NORMAL YOUTUBE VIDEO LINK HERE
+        };
+
+        /* ============================================================
+           DO NOT EDIT BELOW UNLESS YOU UNDERSTAND THE CODE
+           ============================================================ */
+
+        const navbar = document.getElementById("navbar");
+        const progressBar = document.getElementById("scrollProgress");
+        const backToTop = document.getElementById("backToTop");
+        const pagesWrap = document.querySelector(".pages-wrap");
+        const pagesButton = document.querySelector(".pages-btn");
+
+        function updateScrollUI() {
+            const scrollTop = window.scrollY;
+            const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = pageHeight > 0 ? (scrollTop / pageHeight) * 100 : 0;
+
+            navbar.classList.toggle("scrolled", scrollTop > 20);
+            progressBar.style.width = `${progress}%`;
+            backToTop.classList.toggle("show", scrollTop > 500);
+        }
+
+        window.addEventListener("scroll", updateScrollUI, { passive: true });
+        updateScrollUI();
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        pagesButton.addEventListener("click", event => {
+            event.stopPropagation();
+
+            const isOpen = pagesWrap.classList.toggle("open");
+            pagesButton.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        document.addEventListener("click", event => {
+            if (!pagesWrap.contains(event.target)) {
+                pagesWrap.classList.remove("open");
+                pagesButton.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                pagesWrap.classList.remove("open");
+                pagesButton.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+            const revealObserver = new IntersectionObserver(
+                entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.12 }
+            );
+
+            revealElements.forEach(element => revealObserver.observe(element));
+        } else {
+            revealElements.forEach(element => element.classList.add("visible"));
+        }
+
+        /*
+          Extracts a YouTube video ID from:
+          - youtube.com/shorts/VIDEO_ID
+          - youtube.com/watch?v=VIDEO_ID
+          - youtu.be/VIDEO_ID
+          - youtube.com/embed/VIDEO_ID
+        */
+        function getYouTubeId(url) {
+            if (!url || typeof url !== "string") {
+                return "";
+            }
+
+            const cleanUrl = url.trim();
+
+            const patterns = [
+                /youtube\.com\/shorts\/([^?&#/]+)/i,
+                /youtube\.com\/watch\?v=([^?&#/]+)/i,
+                /youtu\.be\/([^?&#/]+)/i,
+                /youtube\.com\/embed\/([^?&#/]+)/i
+            ];
+
+            for (const pattern of patterns) {
+                const match = cleanUrl.match(pattern);
+
+                if (match && match[1]) {
+                    return match[1];
+                }
+            }
+
+            return "";
+        }
+
+        /*
+          Creates an automatic YouTube thumbnail.
+    
+          Thumbnail URL:
+          https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg
+    
+          If a high-resolution thumbnail does not exist, it falls back to:
+          https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg
+        */
+        function createYouTubePreview(container, youtubeUrl) {
+            const videoId = getYouTubeId(youtubeUrl);
+            const title = container.dataset.title || "YouTube video";
+
+            if (!videoId) {
+                container.innerHTML = `
+          <div class="missing-video font-mono">
+            PASTE A YOUTUBE LINK<br>
+            IN THE VIDEOS SECTION
+          </div>
+        `;
+                return;
+            }
+
+            const thumbnailMax = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+            const thumbnailFallback = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+            container.innerHTML = `
+        <button class="youtube-preview" type="button" aria-label="Play ${title}">
+          <img
+            src="${thumbnailMax}"
+            alt="${title} thumbnail"
+            loading="lazy"
+          >
+          <span class="play-button">▶</span>
+        </button>
+      `;
+
+            const thumbnail = container.querySelector("img");
+            const previewButton = container.querySelector(".youtube-preview");
+
+            thumbnail.addEventListener("error", () => {
+                thumbnail.src = thumbnailFallback;
+            });
+
+            previewButton.addEventListener("click", () => {
+                container.innerHTML = `
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1"
+            title="${title}"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        `;
+            });
+        }
+
+        /*
+          Connects your five video links to the page.
+        */
+        document.querySelectorAll(".youtube-video").forEach(videoSlot => {
+            const videoKey = videoSlot.dataset.videoKey;
+            createYouTubePreview(videoSlot, VIDEOS[videoKey]);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Numy Hub – General Store Templates</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Playfair+Display:wght@700;900&family=Pacifico&family=Bebas+Neue&family=Lobster&family=Fredoka:wght@500;700&family=Abril+Fatface&family=Righteous&display=swap">
+    <style>
+        :root {
+            --bg: #f4f6fb;
+            --ink: #101827;
+            --mut: #64708a;
+            --card: #fff;
+            --line: #e3e8f1;
+            --blue: #0b67d1;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media(prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0d121c;
+                --ink: #eef2fa;
+                --mut: #9aa6bd;
+                --card: #161d2b;
+                --line: #263044
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0d121c;
+            --ink: #eef2fa;
+            --mut: #9aa6bd;
+            --card: #161d2b;
+            --line: #263044
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px)
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: Poppins, Arial, sans-serif
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit
+        }
+
+        .top {
+            padding: clamp(24px, 6vw, 46px) 5vw 24px;
+            max-width: 1250px;
+            margin: auto
+        }
+
+        .top b {
+            font-size: 22px;
+            letter-spacing: 1px
+        }
+
+        .top b i {
+            color: var(--blue);
+            font-style: normal
+        }
+
+        .top h1 {
+            font-family: 'Abril Fatface', serif;
+            font-weight: 400;
+            font-size: clamp(38px, 6vw, 72px);
+            line-height: 1;
+            margin: 18px 0 12px
+        }
+
+        .top p {
+            color: var(--mut);
+            max-width: 620px;
+            line-height: 1.7;
+            margin: 0
+        }
+
+        .bar {
+            max-width: 1250px;
+            margin: auto;
+            padding: 0 5vw 16px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .f {
+            min-height: 44px;
+            border: 1px solid var(--line);
+            background: var(--card);
+            color: var(--ink);
+            border-radius: 99px;
+            padding: 9px 15px;
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        .f.on {
+            background: var(--ink);
+            color: var(--bg)
+        }
+
+        .grid {
+            max-width: 1250px;
+            margin: auto;
+            padding: 0 5vw 70px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+            gap: 18px
+        }
+
+        .c {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform .2s
+        }
+
+        @media(hover:hover) {
+            .c:hover {
+                transform: translateY(-5px)
+            }
+        }
+
+        .c:focus-visible,
+        .f:focus-visible,
+        .btn:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 2px
+        }
+
+        .th {
+            height: 190px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative
+        }
+
+        .th small {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            color: #111;
+            border-radius: 99px;
+            padding: 4px 10px;
+            font-weight: 800;
+            font-size: 11px
+        }
+
+        .th strong {
+            font-size: 24px;
+            line-height: 1
+        }
+
+        .th span {
+            font-size: 12px;
+            opacity: .8
+        }
+
+        .ci {
+            padding: 14px 16px
+        }
+
+        .ci h3 {
+            margin: 0 0 4px;
+            font-size: 16px
+        }
+
+        .ci p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--mut)
+        }
+
+        .ov {
+            position: fixed;
+            inset: 0;
+            height: 100dvh;
+            background: rgba(5, 8, 16, .8);
+            display: none;
+            z-index: 50;
+            overflow: hidden
+        }
+
+        .ov.on {
+            display: flex
+        }
+
+        .ed {
+            flex: 1;
+            display: grid;
+            grid-template-columns: clamp(260px, 28vw, 340px) minmax(0, 1fr);
+            background: var(--bg);
+            min-height: 0;
+            min-width: 0;
+            overflow: hidden;
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        .pn {
+            overflow: auto;
+            padding: 18px;
+            border-right: 1px solid var(--line);
+            background: var(--card)
+        }
+
+        .pn h4 {
+            margin: 14px 0 6px;
+            font-size: 12px;
+            color: var(--mut);
+            text-transform: uppercase
+        }
+
+        .pn input,
+        .pn select,
+        .pn textarea {
+            width: 100%;
+            min-height: 42px;
+            font-size: 16px;
+            padding: 9px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            background: var(--bg);
+            color: var(--ink);
+            margin-bottom: 6px
+        }
+
+        .pn textarea {
+            height: 62px;
+            resize: vertical
+        }
+
+        .pn input[type=color] {
+            height: 38px;
+            padding: 2px
+        }
+
+        .stage {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            min-height: 0
+        }
+
+        .tb {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--line);
+            align-items: center;
+            background: var(--card)
+        }
+
+        .tb b {
+            flex: 1
+        }
+
+        .btn {
+            border: 0;
+            border-radius: 10px;
+            padding: 9px 14px;
+            font-weight: 700;
+            cursor: pointer;
+            background: var(--blue);
+            color: #fff
+        }
+
+        .btn.g {
+            background: var(--line);
+            color: var(--ink)
+        }
+
+        .vw {
+            overflow: auto;
+            flex: 1;
+            padding: 16px;
+            -webkit-overflow-scrolling: touch
+        }
+
+        .pay {
+            margin: auto;
+            background: var(--card);
+            padding: clamp(20px, 5vw, 34px);
+            border-radius: 20px;
+            max-width: 380px;
+            text-align: center
+        }
+
+        .pay h2 {
+            margin: 0 0 8px
+        }
+
+        .pay p {
+            color: var(--mut);
+            line-height: 1.6
+        }
+
+        @media(max-width:800px) {
+            .ed {
+                grid-template-columns: 1fr;
+                grid-template-rows: minmax(0, 1fr) minmax(0, 1fr)
+            }
+
+            .stage {
+                order: -1
+            }
+
+            .pn {
+                border-right: 0;
+                border-top: 1px solid var(--line)
+            }
+
+            .vw {
+                padding: 8px
+            }
+
+            .btn {
+                min-height: 44px
+            }
+        }
+
+        .ov:has(.pay) {
+            overflow: auto
+        }
+
+        .ov>.ed:has(.pay) {
+            padding: 16px
+        }
+
+        /* ===== STORE PREVIEW ===== */
+        #pv {
+            container-type: inline-size;
+            background: var(--pb);
+            color: var(--pi);
+            font-family: Poppins, sans-serif;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            max-width: 1100px;
+            margin: auto
+        }
+
+        #pv .nm {
+            font-family: var(--fn), cursive;
+            font-size: 28px;
+            line-height: 1
+        }
+
+        #pv nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 6%;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        #pv nav span {
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            gap: 6px 16px;
+            flex-wrap: wrap
+        }
+
+        #pv .tk {
+            background: var(--pa);
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 9px 0;
+            font-weight: 700;
+            font-size: 13px
+        }
+
+        #pv .tk div {
+            display: inline-block;
+            animation: mq 22s linear infinite
+        }
+
+        @keyframes mq {
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            #pv .tk div {
+                animation: none
+            }
+        }
+
+        #pv .hero {
+            padding: 40px 6% 56px;
+            display: grid;
+            gap: 34px;
+            align-items: center
+        }
+
+        #pv h1 {
+            font-family: var(--fn), sans-serif;
+            font-weight: 400;
+            font-size: clamp(36px, 6vw, 72px);
+            line-height: 1;
+            margin: 0 0 16px
+        }
+
+        #pv .tg {
+            display: inline-block;
+            background: var(--pa);
+            color: #fff;
+            border-radius: 99px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 16px
+        }
+
+        #pv .sub {
+            font-size: 16px;
+            line-height: 1.7;
+            opacity: .8;
+            max-width: 520px
+        }
+
+        #pv .ob {
+            display: inline-block;
+            margin-top: 20px;
+            background: var(--pa);
+            color: #fff;
+            padding: 14px 22px;
+            border-radius: 12px;
+            font-weight: 800;
+            text-decoration: none
+        }
+
+        #pv img,
+        #pv .im {
+            max-width: 100%
+        }
+
+        #pv .im {
+            min-height: 320px;
+            border-radius: 26px;
+            background: var(--pa) center/cover;
+            display: grid;
+            place-items: center;
+            font-size: 90px;
+            overflow: hidden
+        }
+
+        .l0 .hero {
+            grid-template-columns: 1.1fr .9fr
+        }
+
+        .l1 .hero {
+            text-align: center;
+            justify-items: center;
+            grid-template-columns: 1fr;
+            position: relative;
+            min-height: 480px;
+            align-content: center;
+            color: #fff
+        }
+
+        .l1 .hero .im {
+            position: absolute;
+            inset: 0;
+            border-radius: 0;
+            z-index: 0;
+            filter: brightness(.45)
+        }
+
+        .l1 .hero>div {
+            position: relative;
+            z-index: 1
+        }
+
+        .l2 .hero {
+            grid-template-columns: .9fr 1.1fr
+        }
+
+        .l2 .hero .im {
+            order: -1;
+            border-radius: 200px 26px 200px 26px
+        }
+
+        .l3 .hero {
+            grid-template-columns: 1fr
+        }
+
+        .l3 .im {
+            min-height: 260px;
+            border-radius: 0 0 60px 60px;
+            order: -1;
+            margin: 0 -6.5%
+        }
+
+        .l3 h1 {
+            font-size: clamp(40px, 7vw, 86px)
+        }
+
+        .l4 .hero {
+            grid-template-columns: 1fr
+        }
+
+        .l4 h1 {
+            font-size: clamp(50px, 10vw, 120px);
+            text-transform: uppercase;
+            letter-spacing: -2px
+        }
+
+        .l4 .im {
+            min-height: 220px;
+            border-radius: 0;
+            transform: rotate(-2deg);
+            margin: 0 -4%
+        }
+
+        #pv .sec {
+            padding: 44px 6%
+        }
+
+        #pv h2 {
+            font-family: var(--fn), sans-serif;
+            font-weight: 400;
+            font-size: 34px;
+            margin: 0 0 20px
+        }
+
+        #pv .pg {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 14px
+        }
+
+        #pv .p {
+            background: rgba(255, 255, 255, .7);
+            color: #111;
+            border-radius: 18px;
+            padding: 12px;
+            font-weight: 700;
+            text-align: center
+        }
+
+        #pv .p i {
+            display: grid;
+            place-items: center;
+            height: 110px;
+            border-radius: 12px;
+            background: var(--pa) center/cover;
+            font-size: 44px;
+            font-style: normal;
+            margin-bottom: 10px
+        }
+
+        #pv .q {
+            padding: 50px 8%;
+            text-align: center;
+            background: var(--pa);
+            color: #fff
+        }
+
+        #pv .q p {
+            font-family: var(--fn), serif;
+            font-size: clamp(24px, 4vw, 40px);
+            margin: 0;
+            line-height: 1.25
+        }
+
+        #pv .of,
+        #pv .st {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px
+        }
+
+        #pv .of div {
+            background: #111;
+            color: #fff;
+            border-radius: 18px;
+            padding: 24px;
+            font-weight: 800;
+            font-size: 20px;
+            border-left: 6px solid var(--pa)
+        }
+
+        #pv .of small {
+            display: block;
+            font-weight: 400;
+            opacity: .7;
+            margin-top: 6px;
+            font-size: 13px
+        }
+
+        #pv .st div {
+            text-align: center;
+            font-size: 13px
+        }
+
+        #pv .st b {
+            display: block;
+            font-size: 38px;
+            color: var(--pa);
+            font-family: var(--fn)
+        }
+
+        #pv .tm {
+            background: rgba(255, 255, 255, .7);
+            color: #111;
+            border-radius: 20px;
+            padding: 26px;
+            font-size: 17px;
+            line-height: 1.6
+        }
+
+        #pv .ct {
+            padding: 40px 6%;
+            background: #111;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            line-height: 1.8;
+            font-size: 14px
+        }
+
+        #pv .hero>div {
+            min-width: 0
+        }
+
+        #pv h1,
+        #pv .nm,
+        #pv .ob {
+            overflow-wrap: anywhere
+        }
+
+        @container (max-width:760px) {
+
+            .l0 .hero,
+            .l2 .hero {
+                grid-template-columns: 1fr
+            }
+
+            .l2 .hero .im {
+                order: -1;
+                border-radius: 120px 22px 120px 22px
+            }
+
+            #pv .hero {
+                padding: 28px 6% 40px;
+                gap: 24px
+            }
+
+            #pv .im {
+                min-height: 220px;
+                font-size: 64px
+            }
+
+            .l1 .hero {
+                min-height: 380px
+            }
+
+            #pv .sec {
+                padding: 32px 6%
+            }
+
+            #pv h2 {
+                font-size: 28px
+            }
+
+            #pv .ct {
+                padding: 32px 6%
+            }
+        }
+
+        @container (max-width:480px) {
+            #pv nav {
+                padding: 16px 5%
+            }
+
+            #pv .nm {
+                font-size: 24px
+            }
+
+            #pv .pg {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+
+            #pv .of,
+            #pv .st {
+                grid-template-columns: 1fr
+            }
+
+            #pv .ob {
+                display: block;
+                text-align: center
+            }
+
+            #pv .tm {
+                padding: 20px;
+                font-size: 15px
+            }
+
+            .l4 h1 {
+                letter-spacing: -1px
+            }
+        }
+
+        #pv .wa {
+            position: sticky;
+            bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+            float: right;
+            margin: 0 14px 14px 0;
+            background: #25d366;
+            color: #fff;
+            border-radius: 99px;
+            padding: 12px 18px;
+            font-weight: 800;
+            text-decoration: none;
+            z-index: 3
+        }
+    </style>
+</head>
+
+<body>
+    <header class="top">
+        <b>NUMY<i>HUB</i></b>
+        <h1>Your kirana, built to be remembered.</h1>
+        <p>20 editable store websites. Change the name, font, colours, quotes and every photo in one panel, then
+            download the page. 10 free to start, 10 premium for ₹10 each with offers, ticker, testimonials and WhatsApp
+            ordering.</p>
+    </header>
+
+    <div class="bar">
+        <button class="f on" data-k="all">All 20</button>
+        <button class="f" data-k="free">Free</button>
+        <button class="f" data-k="prem">Premium ₹10</button>
+        <button class="f" id="thm" style="margin-left:auto">Light / Dark</button>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="ov" id="ov">
+        <div class="ed" id="ed"></div>
+    </div>
+
+    <script>
+        // name, premium, layout, bg, ink, accent, font, headline, quote, tagline
+        const T = [
+            ["FreshMart", 0, 0, "#eaf7ef", "#10281a", "#198754", "Fredoka", "Fresh picks, fair prices", "Freshness you can trust, every single day.", "Daily groceries"],
+            ["Urban Kirana", 0, 1, "#0f172a", "#ffffff", "#2f6bff", "Righteous", "The city's corner shop, upgraded", "Small shop. Big service.", "Open 7am to 11pm"],
+            ["DailyBasket", 0, 2, "#fff3df", "#3a2410", "#e67e22", "Lobster", "Fill your basket, not your bill", "Every day is a saving day.", "Everyday value"],
+            ["GreenCart", 0, 3, "#edf8e8", "#173318", "#3c8d40", "Playfair Display", "Naturally good, locally grown", "Eat well. Live well.", "Organic and natural"],
+            ["NeighbourHub", 0, 4, "#fff1eb", "#3b1409", "#d94b2b", "Bebas Neue", "Your neighbours shop here", "Where neighbours become friends.", "Local favourite"],
+            ["SmartSave", 0, 0, "#f2efff", "#22174d", "#6844d8", "Poppins", "Shop smart. Save more.", "A rupee saved is a rupee earned.", "Offer-led shopping"],
+            ["QuickBasket", 0, 1, "#06283d", "#ffffff", "#18b0ff", "Fredoka", "Groceries at your door in minutes", "Fast like your hunger.", "Express delivery"],
+            ["DailyNeeds", 0, 3, "#f6f6f1", "#222", "#333b45", "Abril Fatface", "Everything essential, nothing extra", "Simple living starts here.", "Minimal essentials"],
+            ["Royal Grocery", 0, 2, "#fbf4e6", "#3b2a08", "#9b6b16", "Playfair Display", "Quality fit for every kitchen", "Tradition in every pack.", "Since your grandparents' time"],
+            ["FamilyMart", 0, 4, "#fff0f6", "#45112a", "#c33c75", "Pacifico", "Everything for the whole family", "Family first. Always fresh.", "Family shopping"],
+            ["SuperSave", 1, 1, "#0b1220", "#ffffff", "#3ea7ff", "Righteous", "Mega savings. Every single aisle.", "Why pay more when you can SuperSave?", "Wholesale-style prices"],
+            ["MetroFresh", 1, 0, "#eaf0ff", "#101a4a", "#243fc4", "Abril Fatface", "Metro quality, neighbourhood price", "Fresh doesn't wait. Neither should you.", "Premium produce"],
+            ["PrimeBasket", 1, 2, "#111111", "#f5e9c8", "#f3c64e", "Playfair Display", "The finest shelves in town", "Luxury is in the little things.", "Gourmet and daily"],
+            ["KiranaX", 1, 4, "#0a1b18", "#d9fff4", "#2fe0b0", "Bebas Neue", "Kirana, but futuristic", "The future of local shopping is here.", "Order online, pick up fast"],
+            ["OfferZone", 1, 3, "#fff0f0", "#3d0d10", "#e33b43", "Lobster", "Deals that never sleep", "Great deals. Zero excuses.", "Daily mega offers"],
+            ["HarvestHub", 1, 0, "#eef6df", "#1f3010", "#567a25", "Fredoka", "Straight from the farm to your table", "Grown with care, delivered with love.", "Farm fresh"],
+            ["BlueBasket", 1, 1, "#082a45", "#ffffff", "#3fb0ff", "Poppins", "Trusted by thousands of homes", "Trust is our best product.", "Quality guaranteed"],
+            ["GoldLeaf", 1, 2, "#fbf5e6", "#33260a", "#a97915", "Abril Fatface", "Luxury for the everyday kitchen", "Because your home deserves gold.", "Premium general store"],
+            ["NextKirana", 1, 4, "#f1edff", "#241552", "#7047d8", "Righteous", "The next-gen neighbourhood store", "Old trust. New speed.", "Digital-first kirana"],
+            ["OneStop", 1, 3, "#edf2f7", "#111827", "#e8590c", "Bebas Neue", "One store. Everything you need.", "Why run around? Stop once.", "All-in-one shopping"]
+        ];
+
+        const FONTS = ["Fredoka", "Righteous", "Lobster", "Playfair Display", "Bebas Neue", "Pacifico", "Abril Fatface", "Poppins"];
+        const EM = ["🛒", "🍪", "🥤", "🏠"];
+        const RAZORPAY_LINK = "https://rzp.io/rzp/qtpVmxy";
+
+        const $ = id => document.getElementById(id);
+
+        const esc = s => String(s).replace(/[&<>"]/g, c => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;"
+        }[c]));
+
+        let cur = 0, S = {}, imgs = {};
+
+        function unlocked(i) {
+            try {
+                return localStorage.getItem("nh_" + i) === "1";
+            } catch (e) {
+                return false;
+            }
+        }
+
+        function grid(k = "all") {
+            $("grid").innerHTML = T.map((t, i) => {
+                if (k === "free" && t[1]) return "";
+                if (k === "prem" && !t[1]) return "";
+
+                return `
+                    <div class="c" data-i="${i}">
+                        <div class="th" style="background:${t[3]};color:${t[4]}">
+                            <small>${t[1] ? "Premium ₹10" : "Free"}</small>
+                            <strong style="font-family:'${t[6]}'">${t[0]}</strong>
+                            <span>${t[7]}</span>
+                        </div>
+                        <div class="ci">
+                            <h3>${i + 1}. ${t[0]}</h3>
+                            <p>${t[9]}</p>
+                        </div>
+                    </div>`;
+            }).join("");
+        }
+
+        grid();
+
+        $("grid").onclick = e => {
+            const c = e.target.closest(".c");
+            if (c) open_(+c.dataset.i);
+        };
+
+        document.querySelectorAll(".f[data-k]").forEach(b => {
+            b.onclick = () => {
+                document.querySelectorAll(".f[data-k]").forEach(x => x.classList.remove("on"));
+                b.classList.add("on");
+                grid(b.dataset.k);
+            };
+        });
+
+        $("thm").onclick = () => {
+            const r = document.documentElement;
+            r.dataset.theme = r.dataset.theme === "dark" ? "light" : "dark";
+        };
+
+        function open_(i) {
+            cur = i;
+            const t = T[i];
+
+            $("ov").classList.add("on");
+            document.body.style.overflow = "hidden";
+
+            if (t[1] && !unlocked(i)) {
+                $("ed").style.display = "flex";
+
+                $("ed").innerHTML = `
+                    <div class="pay">
+                        <h2>Unlock ${esc(t[0])}</h2>
+                        <p>
+                            Premium includes offers strip, ticker, stats, testimonial,
+                            WhatsApp order button and more. One-time ₹10.
+                        </p>
+
+                        <button class="btn" style="width:100%" id="pb">
+                            Pay ₹10 with Razorpay
+                        </button>
+
+                        <p style="font-size:12px;margin-top:12px">
+                            After successful payment, Razorpay will redirect you back to this page.
+                            If it does not unlock automatically, tap <b>I have paid</b>.
+                        </p>
+
+                        <button class="btn g" style="width:100%" id="manual">
+                            I have paid — unlock template
+                        </button>
+
+                        <button class="btn g" style="width:100%;margin-top:8px" id="cx">
+                            Cancel
+                        </button>
+                    </div>`;
+
+                $("pb").onclick = () => {
+                    try {
+                        localStorage.setItem("nh_pending", String(i));
+                    } catch (e) { }
+
+                    window.open(RAZORPAY_LINK, "_blank", "noopener");
+                };
+
+                $("manual").onclick = () => {
+                    try {
+                        localStorage.setItem("nh_" + i, "1");
+                        localStorage.removeItem("nh_pending");
+                    } catch (e) { }
+
+                    open_(i);
+                };
+
+                $("cx").onclick = close_;
+                return;
+            }
+
+            $("ed").style.display = "";
+
+            S = {
+                name: t[0],
+                font: t[6],
+                head: t[7],
+                quote: t[8],
+                tag: t[9],
+                offer: "Flat 20% off on your first order",
+                items: "Groceries, Snacks, Drinks, Home Care",
+                phone: "919999999999",
+                addr: "Main Market Road, Your City",
+                hours: "Mon–Sun, 7am – 11pm",
+                ac: t[5],
+                bg: t[3],
+                ink: t[4]
+            };
+
+            imgs = {};
+
+            const fld = (k, l, ta) => `<h4>${l}</h4>` + (ta
+                ? `<textarea data-k="${k}">${esc(S[k])}</textarea>`
+                : `<input data-k="${k}" value="${esc(S[k])}">`);
+
+            $("ed").innerHTML = `
+                <div class="pn">
+                    <button class="btn g" id="cl">✕ Close</button>
+
+                    ${fld("name", "Store name")}
+
+                    <h4>Store name font</h4>
+                    <select data-k="font">
+                        ${FONTS.map(f => `<option ${f === S.font ? "selected" : ""}>${f}</option>`).join("")}
+                    </select>
+
+                    ${fld("tag", "Tagline")}
+                    ${fld("head", "Headline", 1)}
+                    ${fld("quote", "Customer quote", 1)}
+                    ${fld("offer", "Offer text")}
+                    ${fld("items", "Products (comma separated)")}
+                    ${fld("phone", "WhatsApp number with country code")}
+                    ${fld("addr", "Address")}
+                    ${fld("hours", "Opening hours")}
+
+                    <h4>Colours</h4>
+                    <input type="color" data-k="ac" value="${S.ac}">
+                    <input type="color" data-k="bg" value="${S.bg}">
+                    <input type="color" data-k="ink" value="${S.ink}">
+
+                    <h4>Main photo</h4>
+                    <input type="file" accept="image/*" data-im="hero">
+
+                    ${[0, 1, 2, 3].map(n => `
+                        <h4>Product photo ${n + 1}</h4>
+                        <input type="file" accept="image/*" data-im="p${n}">
+                    `).join("")}
+                </div>
+
+                <div class="stage">
+                    <div class="tb">
+                        <b>${t[0]} ${t[1] ? "· Premium" : "· Free"}</b>
+                        <button class="btn g" id="sh">Share</button>
+                        <button class="btn" id="dl">Download</button>
+                    </div>
+
+                    <div class="vw">
+                        <div id="pv"></div>
+                    </div>
+                </div>`;
+
+            $("cl").onclick = close_;
+            $("dl").onclick = download;
+            $("sh").onclick = share;
+
+            $("ed").querySelectorAll("[data-k]").forEach(el => {
+                el.oninput = () => {
+                    S[el.dataset.k] = el.value;
+                    draw();
+                };
+            });
+
+            $("ed").querySelectorAll("[data-im]").forEach(el => {
+                el.onchange = () => {
+                    const f = el.files[0];
+                    if (!f) return;
+
+                    const r = new FileReader();
+
+                    r.onload = () => {
+                        imgs[el.dataset.im] = r.result;
+                        draw();
+                    };
+
+                    r.readAsDataURL(f);
+                };
+            });
+
+            draw();
+        }
+
+        function close_() {
+            $("ov").classList.remove("on");
+            document.body.style.overflow = "";
+        }
+
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") close_();
+        });
+
+        function draw() {
+            const t = T[cur], p = t[1];
+            const bgi = k => imgs[k] ? `style="background-image:url(${imgs[k]})"` : "";
+
+            const items = S.items.split(",").map(x => x.trim()).filter(Boolean).slice(0, 8);
+            const tick = Array(8).fill(`${esc(S.offer)} ★ ${esc(S.tag)} ★`).join(" ");
+            const pv = $("pv");
+
+            pv.className = "l" + t[2];
+            pv.style.cssText = `--pb:${S.bg};--pi:${S.ink};--pa:${S.ac};--fn:'${S.font}'`;
+
+            pv.innerHTML = `
+                ${p ? `<div class="tk"><div>${tick} ${tick}</div></div>` : ""}
+
+                <nav>
+                    <span class="nm">${esc(S.name)}</span>
+                    <span>
+                        <a>Home</a>
+                        <a>Products</a>
+                        <a>Offers</a>
+                        <a>Contact</a>
+                    </span>
+                </nav>
+
+                <div class="hero">
+                    <div>
+                        <div class="tg">${esc(S.tag)}</div>
+                        <h1>${esc(S.head)}</h1>
+                        <div class="sub">
+                            Groceries, snacks, drinks and daily essentials from your trusted neighbourhood store.
+                        </div>
+                        <a class="ob">${esc(S.offer)}</a>
+                    </div>
+
+                    <div class="im" ${bgi("hero")}>
+                        ${imgs.hero ? "" : EM[cur % 4]}
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <h2>Shop by category</h2>
+                    <div class="pg">
+                        ${items.map((x, j) => `
+                            <div class="p">
+                                <i ${bgi("p" + (j % 4))}>
+                                    ${imgs["p" + (j % 4)] ? "" : EM[j % 4]}
+                                </i>
+                                ${esc(x)}
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+
+                ${p ? `
+                    <div class="sec">
+                        <h2>This week's offers</h2>
+                        <div class="of">
+                            <div>
+                                ${esc(S.offer)}
+                                <small>Valid this week</small>
+                            </div>
+                            <div>
+                                Buy 2 Get 1 Free
+                                <small>On selected snacks</small>
+                            </div>
+                            <div>
+                                Free home delivery
+                                <small>Orders above ₹299</small>
+                            </div>
+                        </div>
+                    </div>
+                ` : ""}
+
+                <div class="q">
+                    <p>“${esc(S.quote)}”</p>
+                </div>
+
+                ${p ? `
+                    <div class="sec">
+                        <div class="st">
+                            <div><b>5000+</b>happy families</div>
+                            <div><b>100%</b>fresh stock</div>
+                            <div><b>30 min</b>home delivery</div>
+                            <div><b>7 days</b>open every week</div>
+                        </div>
+                    </div>
+
+                    <div class="sec">
+                        <div class="tm">
+                            “Quality is always good and delivery is quick. Our whole colony shops at ${esc(S.name)}.”
+                            <br>
+                            <b>– A happy customer</b>
+                        </div>
+                    </div>
+                ` : ""}
+
+                <div class="ct">
+                    <div>
+                        <b style="font-size:20px">${esc(S.name)}</b>
+                        <br>
+                        ${esc(S.addr)}
+                        <br>
+                        ${esc(S.hours)}
+                    </div>
+
+                    <div>
+                        WhatsApp: +${esc(S.phone)}
+                        <br>
+                        Free delivery nearby
+                    </div>
+                </div>
+
+                ${p ? `
+                    <a class="wa" href="https://wa.me/${esc(S.phone.replace(/\D/g, ""))}">
+                        Order on WhatsApp
+                    </a>
+                ` : ""}`;
+        }
+
+        const fname = () => (S.name.replace(/\W+/g, "-") || "store") + ".html";
+
+        function toast(m) {
+            let t = $("ts");
+
+            if (!t) {
+                t = document.createElement("div");
+                t.id = "ts";
+                t.setAttribute("role", "status");
+                t.style.cssText = "position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#111;color:#fff;padding:10px 18px;border-radius:99px;z-index:120;font-weight:600;font-size:14px;max-width:90vw;text-align:center";
+                document.body.appendChild(t);
+            }
+
+            t.textContent = m;
+            t.style.display = "block";
+
+            clearTimeout(t._h);
+            t._h = setTimeout(() => t.style.display = "none", 2600);
+        }
+
+        function download() {
+            const h = buildHTML();
+
+            try {
+                const u = URL.createObjectURL(new Blob([h], { type: "text/html" }));
+                const a = document.createElement("a");
+
+                a.href = u;
+                a.download = fname();
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+
+                setTimeout(() => URL.revokeObjectURL(u), 4000);
+                toast("Downloaded " + fname());
+            } catch (e) {
+                showCode(h);
+            }
+        }
+
+        function shareMsg() {
+            const n = S.phone.replace(/\D/g, "");
+
+            return `${S.name} – ${S.tag}\n${S.offer}\n${S.addr}, ${S.hours}` +
+                (n ? `\nOrder on WhatsApp: https://wa.me/${n}` : "");
+        }
+
+        async function share() {
+            const h = buildHTML(), text = shareMsg();
+
+            try {
+                const d = {
+                    files: [new File([h], fname(), { type: "text/html" })],
+                    title: S.name,
+                    text
+                };
+
+                if (navigator.canShare && navigator.canShare(d)) {
+                    await navigator.share(d);
+                    return;
+                }
+            } catch (e) {
+                if (e && e.name === "AbortError") return;
+            }
+
+            shareModal(h, text);
+        }
+
+        function shareModal(h, text) {
+            let m = $("sm");
+            if (m) m.remove();
+
+            m = document.createElement("div");
+            m.id = "sm";
+
+            m.style.cssText = "position:fixed;inset:0;z-index:99;background:rgba(5,8,16,.85);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto";
+
+            m.innerHTML = `
+                <div class="pay" style="max-width:420px;width:100%;text-align:left;max-height:100%;overflow:auto">
+                    <h2>Share ${esc(S.name)}</h2>
+                    <p>Send your store details to customers, or share the website file itself.</p>
+
+                    <div style="display:grid;gap:8px">
+                        <button class="btn" id="s1" style="background:#25d366">Share on WhatsApp</button>
+                        <button class="btn g" id="s2">Share by email</button>
+                        <button class="btn g" id="s3">Copy message</button>
+                        <button class="btn g" id="s4">Download website file</button>
+                        <button class="btn g" id="s5">View / copy code</button>
+                        <button class="btn g" id="s6">Close</button>
+                    </div>
+
+                    <p style="font-size:12px">
+                        Want a clickable link? Upload the downloaded file to a free host such as
+                        Netlify Drop or GitHub Pages, then share that link.
+                    </p>
+                </div>`;
+
+            document.body.appendChild(m);
+
+            $("s1").onclick = () => window.open(
+                "https://wa.me/?text=" + encodeURIComponent(text),
+                "_blank",
+                "noopener"
+            );
+
+            $("s2").onclick = () => {
+                location.href = "mailto:?subject=" + encodeURIComponent(S.name) +
+                    "&body=" + encodeURIComponent(text);
+            };
+
+            $("s3").onclick = () => {
+                (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
+                    .then(() => toast("Message copied"))
+                    .catch(() => toast("Copy failed, long-press to copy manually"));
+            };
+
+            $("s4").onclick = download;
+
+            $("s5").onclick = () => {
+                m.remove();
+                showCode(h);
+            };
+
+            $("s6").onclick = () => m.remove();
+        }
+
+        function showCode(h) {
+            let m = $("cm");
+            if (m) m.remove();
+
+            m = document.createElement("div");
+            m.id = "cm";
+
+            m.style.cssText = "position:fixed;inset:0;z-index:99;background:rgba(5,8,16,.85);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto";
+
+            m.innerHTML = `
+                <div class="pay" style="max-width:640px;width:100%;text-align:left;max-height:100%;overflow:auto">
+                    <h2>Your website code</h2>
+                    <p>
+                        If the file did not download, copy this code, paste it into Notepad,
+                        and save it as <b>${esc(S.name.replace(/\W+/g, "-"))}.html</b>.
+                        Open it in any browser.
+                    </p>
+
+                    <textarea id="cc" readonly style="width:100%;height:min(220px,35dvh);font-family:monospace;font-size:12px;border-radius:10px;padding:8px"></textarea>
+
+                    <div style="display:flex;gap:8px;margin-top:10px">
+                        <button class="btn" id="cb">Copy code</button>
+                        <button class="btn g" id="cz">Close</button>
+                    </div>
+                </div>`;
+
+            document.body.appendChild(m);
+            $("cc").value = h;
+
+            $("cz").onclick = () => m.remove();
+
+            $("cb").onclick = () => {
+                const c = $("cc");
+                c.select();
+
+                let ok = false;
+
+                try {
+                    ok = document.execCommand("copy");
+                } catch (e) { }
+
+                if (!ok && navigator.clipboard) {
+                    navigator.clipboard.writeText(h).then(() => {
+                        $("cb").textContent = "Copied";
+                    });
+                } else if (ok) {
+                    $("cb").textContent = "Copied";
+                }
+            };
+        }
+
+        function buildHTML() {
+            const css = [...document.querySelectorAll("style")].map(s => s.textContent).join("");
+
+            const h = `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>${esc(S.name)}</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Playfair+Display:wght@700;900&family=Pacifico&family=Bebas+Neue&family=Lobster&family=Fredoka:wght@500;700&family=Abril+Fatface&family=Righteous&display=swap"><style>${css}body{margin:0}</style></head><body><div id="pv" class="${$("pv").className}" style="${$("pv").style.cssText};border-radius:0;max-width:none">${$("pv").innerHTML}</div></body></html>`;
+
+            return h;
+        }
+
+        function checkRazorpayReturn() {
+            const params = new URLSearchParams(location.search);
+
+            if (params.get("paid") !== "1") return;
+
+            let pending = null;
+
+            try {
+                pending = localStorage.getItem("nh_pending");
+            } catch (e) { }
+
+            if (pending === null) return;
+
+            const i = +pending;
+
+            if (!T[i] || T[i][1] !== 1) return;
+
+            try {
+                localStorage.setItem("nh_" + i, "1");
+                localStorage.removeItem("nh_pending");
+            } catch (e) { }
+
+            history.replaceState({}, "", location.pathname);
+
+            setTimeout(() => {
+                open_(i);
+                toast("Payment successful! " + T[i][0] + " is unlocked.");
+            }, 300);
+        }
+
+        checkRazorpayReturn();
+    </script>
+</body>
+
+</html>

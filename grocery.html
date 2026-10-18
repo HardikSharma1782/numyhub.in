@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUMYHUB — Free Grocery Store Poster Templates</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13LSHWLM3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-13LSHWLM3L');
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #030303;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font-family: inherit
+        }
+
+        /* HEADER */
+        header {
+            height: 72px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10, 10, 10, .95);
+            border-bottom: 1px solid rgba(255, 215, 0, .25);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-decoration: none;
+            color: #fff
+        }
+
+        .logo span {
+            color: #ffd700
+        }
+
+        .collection {
+            border: 1px solid rgba(255, 215, 0, .55);
+            color: #ffd700;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: rgba(255, 215, 0, .06)
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 50px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, .08), transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+            pointer-events: none
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: .5
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: .8
+            }
+        }
+
+        .hero-label {
+            color: #ffd700;
+            letter-spacing: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 22px
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 8vw, 88px);
+            line-height: .9;
+            letter-spacing: -3px;
+            font-weight: 900;
+            position: relative;
+            z-index: 2
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #fff, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: block
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 26px auto 0;
+            color: #9a9a9a;
+            line-height: 1.8;
+            font-size: 15px;
+            position: relative;
+            z-index: 2
+        }
+
+        /* GALLERY */
+        .section-title {
+            width: 90%;
+            max-width: 1500px;
+            margin: 30px auto 22px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08)
+        }
+
+        .section-title h2 {
+            font-size: 26px;
+            font-weight: 800
+        }
+
+        .section-title p {
+            color: #777;
+            font-size: 12px;
+            margin-top: 4px
+        }
+
+        .gallery {
+            width: 90%;
+            max-width: 1500px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            padding-bottom: 70px
+        }
+
+        .card {
+            --a: #ffd700;
+            height: 440px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #0f0f0f;
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-bottom: 4px solid var(--a);
+            cursor: pointer;
+            transition: all .45s cubic-bezier(.4, 0, .2, 1);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, .5)
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--a);
+            box-shadow: 0 35px 90px rgba(0, 0, 0, .8), 0 0 40px rgba(255, 215, 0, .12)
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .7s
+        }
+
+        .card:hover img {
+            transform: scale(1.1)
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, .05), rgba(0, 0, 0, .15) 30%, rgba(0, 0, 0, .92))
+        }
+
+        .card:nth-child(2n) {
+            border-radius: 6px 22px 6px 22px
+        }
+
+        .card:nth-child(3n) {
+            border-radius: 22px 6px 22px 6px
+        }
+
+        .card:nth-child(5n) {
+            border-radius: 40px 10px 40px 10px
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            z-index: 6;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .5px;
+            background: rgba(0, 0, 0, .7);
+            border: 1px solid rgba(255, 255, 255, .35);
+            color: #ddd
+        }
+
+        .card-content {
+            position: absolute;
+            left: 22px;
+            right: 22px;
+            bottom: 22px;
+            z-index: 6
+        }
+
+        .card-number {
+            color: var(--a);
+            font-size: 10px;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            font-weight: 700
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 6px;
+            font-weight: 800;
+            line-height: 1.2
+        }
+
+        .card p {
+            color: #aaa;
+            font-size: 12px
+        }
+
+        /* EDITOR */
+        .editor {
+            position: fixed;
+            inset: 0;
+            display: none;
+            background: #020202;
+            z-index: 900;
+            overflow: auto
+        }
+
+        .editor-header {
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            background: #090909;
+            border-bottom: 1px solid #222;
+            position: sticky;
+            top: 0;
+            z-index: 10
+        }
+
+        .editor-logo {
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #ffd700;
+            font-size: 14px
+        }
+
+        .close-editor {
+            padding: 10px 18px;
+            color: #fff;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            cursor: pointer
+        }
+
+        .editor-body {
+            display: grid;
+            grid-template-columns: 300px 1fr 260px;
+            min-height: calc(100vh - 68px)
+        }
+
+        .controls,
+        .right-panel {
+            padding: 22px;
+            background: #090909;
+            overflow-y: auto
+        }
+
+        .controls {
+            border-right: 1px solid #222
+        }
+
+        .right-panel {
+            border-left: 1px solid #222
+        }
+
+        .controls h3,
+        .right-panel h3 {
+            margin-bottom: 18px;
+            font-size: 17px;
+            font-weight: 800
+        }
+
+        .controls h4 {
+            margin: 22px 0 14px;
+            color: #ffd700;
+            font-size: 11px;
+            letter-spacing: 2px
+        }
+
+        .control {
+            margin-bottom: 16px
+        }
+
+        .control label {
+            display: block;
+            color: #888;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+            font-weight: 700
+        }
+
+        .control input[type=text],
+        .control textarea,
+        .control select {
+            width: 100%;
+            background: #111;
+            border: 1px solid #2a2a2a;
+            color: #fff;
+            border-radius: 10px;
+            padding: 11px;
+            outline: none
+        }
+
+        .control textarea {
+            height: 70px;
+            resize: none
+        }
+
+        .control input:focus,
+        .control textarea:focus,
+        .control select:focus {
+            border-color: #ffd700
+        }
+
+        .control input[type=range] {
+            width: 100%;
+            accent-color: #ffd700
+        }
+
+        .control input[type=color] {
+            width: 100%;
+            height: 40px;
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 3px;
+            cursor: pointer
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        .upload {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border: 1px dashed #555;
+            border-radius: 12px;
+            text-align: center;
+            color: #bbb;
+            cursor: pointer;
+            font-size: 13px
+        }
+
+        .upload:hover {
+            border-color: #ffd700;
+            color: #ffd700
+        }
+
+        .upload input {
+            display: none
+        }
+
+        .canvas-area {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 36px 20px;
+            background: radial-gradient(circle at center, #1a1a1a, #030303 70%)
+        }
+
+        .tool {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 14px;
+            background: #111;
+            border: 1px solid #222;
+            cursor: pointer;
+            font-size: 13px
+        }
+
+        .tool:hover {
+            border-color: #ffd700
+        }
+
+        .tool.primary {
+            background: linear-gradient(100deg, #fff5c4, #ffd700, #b8860b);
+            color: #0a0a08;
+            font-weight: 900
+        }
+
+        .hint {
+            color: #777;
+            font-size: 11px;
+            line-height: 1.5;
+            margin: 6px 0 18px
+        }
+
+        .thumbs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px
+        }
+
+        .thumb {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            background: #222
+        }
+
+        .thumb:hover {
+            border-color: #ffd700
+        }
+
+        /* DESIGN CANVAS — everything is driven by CSS variables */
+        #designCanvas {
+            --a: #ffd700;
+            --ac: #111;
+            --fg: #fff;
+            --ff: 'Segoe UI', sans-serif;
+            --hs: 50px;
+            --ov: none;
+            --op: 1;
+            --bg: #111;
+            width: min(450px, 86vw);
+            aspect-ratio: 4/5;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #111;
+            box-shadow: 0 50px 120px #000;
+            isolation: isolate;
+            color: var(--fg);
+            font-family: var(--ff)
+        }
+
+        .design-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: 50% 50%
+        }
+
+        .design-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: var(--ov);
+            opacity: var(--op)
+        }
+
+        .design-content {
+            position: absolute;
+            inset: 0;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            z-index: 3
+        }
+
+        #designCanvas [contenteditable] {
+            outline: none;
+            cursor: text
+        }
+
+        #designCanvas [contenteditable]:hover {
+            box-shadow: 0 0 0 1px var(--a)
+        }
+
+        .design-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 14px
+        }
+
+        .company-name {
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            max-width: 65%;
+            line-height: 1.3;
+            word-break: break-word
+        }
+
+        .design-tag {
+            font-size: 8px;
+            letter-spacing: 2px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-weight: 700;
+            white-space: nowrap;
+            border: 1px solid var(--a);
+            color: var(--a)
+        }
+
+        .design-middle {
+            margin: auto 0
+        }
+
+        .eyebrow {
+            font-size: 9px;
+            letter-spacing: 5px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            color: var(--a)
+        }
+
+        .design-middle h1 {
+            font-size: var(--hs);
+            line-height: .95;
+            font-weight: 900;
+            letter-spacing: -2px;
+            word-break: break-word
+        }
+
+        .design-middle p {
+            margin-top: 16px;
+            max-width: 92%;
+            font-size: 12px;
+            line-height: 1.6;
+            opacity: .92
+        }
+
+        .offer {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 18px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: .5px;
+            background: var(--a);
+            color: var(--ac)
+        }
+
+        .design-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 14px
+        }
+
+        .location {
+            font-size: 8px;
+            letter-spacing: 1px;
+            opacity: .85
+        }
+
+        .cta {
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 9px;
+            font-weight: 900;
+            white-space: nowrap;
+            border: 1px solid var(--fg)
+        }
+
+        /* TEXT EFFECTS */
+        [data-fx=glow] h1 {
+            text-shadow: 0 0 22px var(--a), 0 0 3px var(--a)
+        }
+
+        [data-fx=shadow] h1 {
+            text-shadow: 4px 4px 0 var(--a)
+        }
+
+        /* 12 LAYOUTS */
+        [data-l=bottom] .design-middle {
+            margin-top: auto;
+            margin-bottom: 26px
+        }
+
+        [data-l=top] .design-middle {
+            margin-top: 30px;
+            margin-bottom: auto
+        }
+
+        [data-l=top] .design-top {
+            border-bottom: 1px solid var(--fg);
+            padding-bottom: 14px
+        }
+
+        [data-l=center] .design-content,
+        [data-l=frame] .design-content {
+            text-align: center;
+            align-items: center
+        }
+
+        [data-l=center] .design-top,
+        [data-l=center] .design-bottom,
+        [data-l=frame] .design-top,
+        [data-l=frame] .design-bottom {
+            width: 100%
+        }
+
+        [data-l=center] .design-middle p,
+        [data-l=frame] .design-middle p {
+            margin-inline: auto
+        }
+
+        [data-l=frame] .design-content {
+            inset: 16px;
+            border: 1px solid var(--a);
+            padding: 28px
+        }
+
+        [data-l=split] .design-content {
+            width: 68%;
+            background: var(--bg);
+            clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%);
+            padding-right: 60px
+        }
+
+        [data-l=badge] .design-middle {
+            margin-top: auto;
+            margin-bottom: 26px
+        }
+
+        [data-l=badge] .offer {
+            position: absolute;
+            right: 26px;
+            top: 34%;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            transform: rotate(12deg);
+            padding: 8px;
+            font-size: 12px;
+            line-height: 1.2;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .4)
+        }
+
+        [data-l=card] .design-middle {
+            margin-top: auto;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, .58);
+            border: 1px solid rgba(255, 255, 255, .28);
+            border-radius: 22px;
+            padding: 24px
+        }
+
+        [data-l=stripe] .design-middle {
+            margin: auto -70px;
+            padding: 26px 70px;
+            background: var(--a);
+            color: var(--ac);
+            transform: rotate(-6deg)
+        }
+
+        [data-l=stripe] .eyebrow {
+            color: var(--ac)
+        }
+
+        [data-l=stripe] .offer {
+            background: var(--ac);
+            color: var(--a)
+        }
+
+        [data-l=left] .design-content {
+            border-left: 12px solid var(--a);
+            padding-left: 30px
+        }
+
+        [data-l=left] .design-middle {
+            margin-top: auto;
+            margin-bottom: 24px
+        }
+
+        [data-l=mega] .design-middle {
+            margin-top: auto;
+            margin-bottom: 22px
+        }
+
+        [data-l=mega] .design-middle h1 {
+            font-size: calc(var(--hs)*1.3);
+            line-height: .82;
+            text-transform: uppercase;
+            letter-spacing: -3px
+        }
+
+        [data-l=circle] .design-content {
+            align-items: center;
+            text-align: center
+        }
+
+        [data-l=circle] .design-top,
+        [data-l=circle] .design-bottom {
+            width: 100%
+        }
+
+        [data-l=circle] .design-middle {
+            width: 84%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 3px solid var(--a);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 34px;
+            margin: auto
+        }
+
+        [data-l=circle] .design-middle h1 {
+            font-size: calc(var(--hs)*.72)
+        }
+
+        [data-l=circle] .design-middle p {
+            font-size: 11px;
+            max-width: 100%;
+            margin-top: 10px
+        }
+
+        [data-l=circle] .offer {
+            margin-top: 12px
+        }
+
+        [data-l=ticket] .design-middle {
+            background: var(--bg);
+            border: 2px dashed var(--a);
+            border-radius: 16px;
+            padding: 26px;
+            text-align: center;
+            margin: auto 0
+        }
+
+        [data-l=ticket] .design-middle p {
+            margin-inline: auto
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:1200px) {
+            .gallery {
+                grid-template-columns: repeat(3, 1fr)
+            }
+        }
+
+        @media(max-width:900px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px
+            }
+
+            .editor-body {
+                grid-template-columns: 1fr
+            }
+
+            .canvas-area {
+                order: -1;
+                padding: 22px 10px
+            }
+
+            .controls,
+            .right-panel {
+                border: 0;
+                border-top: 1px solid #222
+            }
+        }
+
+        @media(max-width:500px) {
+            .gallery {
+                grid-template-columns: 1fr
+            }
+
+            .card {
+                height: 500px
+            }
+
+            .hero h1 {
+                letter-spacing: -2px
+            }
+
+            .collection {
+                display: none
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            border-top: 1px solid rgba(255, 255, 255, .06)
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 10px
+        }
+
+        .footer-link {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 700
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="https://numyhub.xyz" class="logo">NUMY<span>HUB</span></a>
+        <div class="collection">✦ FREE GROCERY TEMPLATES</div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-label">POWERED BY NUMYHUB</div>
+        <h1>Grow your grocery store with<br><span>remarkable marketing.</span></h1>
+        <p>30 bold, ready-to-edit posters for kirana stores, grocery shops and small retailers — completely free. Pick a
+            design, change the text and photo, and download it in minutes.</p>
+    </section>
+
+    <div class="section-title">
+        <h2>All Templates</h2>
+        <p>30 unique designs — 100% free</p>
+    </div>
+    <div class="gallery" id="gallery"></div>
+
+    <!-- EDITOR -->
+    <div class="editor" id="editor">
+        <div class="editor-header">
+            <div class="editor-logo">NUMYHUB / GROCERY EDITOR</div>
+            <button class="close-editor" onclick="closeEditor()">✕ Close</button>
+        </div>
+
+        <div class="editor-body">
+
+            <!-- LEFT: TEXT + STYLE -->
+            <div class="controls">
+                <h3>Customize</h3>
+                <div class="control"><label>Store Name</label><input type="text" id="companyInput"
+                        oninput="updateDesign()"></div>
+                <div class="control"><label>Small Title</label><input type="text" id="eyebrowInput"
+                        oninput="updateDesign()"></div>
+                <div class="control"><label>Main Headline</label><input type="text" id="headlineInput"
+                        oninput="updateDesign()"></div>
+                <div class="control"><label>Description</label><textarea id="descriptionInput"
+                        oninput="updateDesign()"></textarea></div>
+                <div class="control"><label>Offer / Badge</label><input type="text" id="offerInput"
+                        oninput="updateDesign()"></div>
+                <div class="control"><label>City / Timing</label><input type="text" id="locationInput"
+                        oninput="updateDesign()"></div>
+
+                <h4>STYLE</h4>
+                <div class="control"><label>Layout</label>
+                    <select id="layoutSel" onchange="cv().dataset.l=this.value">
+                        <option value="bottom">Classic Bottom</option>
+                        <option value="top">Top Headline</option>
+                        <option value="center">Centered</option>
+                        <option value="frame">Gold Frame</option>
+                        <option value="split">Side Panel</option>
+                        <option value="badge">Round Badge</option>
+                        <option value="card">Glass Card</option>
+                        <option value="stripe">Diagonal Ribbon</option>
+                        <option value="left">Side Bar</option>
+                        <option value="mega">Giant Headline</option>
+                        <option value="circle">Circle Seal</option>
+                        <option value="ticket">Coupon Ticket</option>
+                    </select>
+                </div>
+                <div class="control"><label>Text Effect</label>
+                    <select id="fxSel" onchange="cv().dataset.fx=this.value">
+                        <option value="none">None</option>
+                        <option value="glow">Neon Glow</option>
+                        <option value="shadow">Hard Shadow</option>
+                    </select>
+                </div>
+                <div class="control"><label>Font</label>
+                    <select id="fontSel" onchange="setVar('--ff',FONTS[this.value])">
+                        <option value="s">Modern Sans</option>
+                        <option value="g">Elegant Serif</option>
+                        <option value="i">Bold Impact</option>
+                        <option value="c">Handwritten</option>
+                    </select>
+                </div>
+                <div class="control"><label>Headline Size</label><input type="range" id="sizeRange" min="24" max="90"
+                        oninput="setVar('--hs',this.value+'px')"></div>
+                <div class="row">
+                    <div class="control"><label>Text Colour</label><input type="color" id="textColor"
+                            oninput="setVar('--fg',this.value)"></div>
+                    <div class="control"><label>Accent Colour</label><input type="color" id="accentColor"
+                            oninput="setVar('--a',this.value)"></div>
+                </div>
+                <div class="control"><label>Image Darkness</label><input type="range" id="overlayRange" min="0"
+                        max="100" value="100" oninput="setVar('--op',this.value/100)"></div>
+                <div class="control"><label>Poster Size</label>
+                    <select id="ratioSel" onchange="cv().style.aspectRatio=this.value">
+                        <option value="4/5">Post (4:5)</option>
+                        <option value="1/1">Square (1:1)</option>
+                        <option value="9/16">Story / Status (9:16)</option>
+                    </select>
+                </div>
+
+                <h4>IMAGE</h4>
+                <div class="control"><label class="upload">📷 Upload Your Photo<input type="file" accept="image/*"
+                            onchange="changeImage(event)"></label></div>
+                <div class="control"><label>Zoom</label><input type="range" id="zoomRange" min="100" max="250"
+                        value="100" oninput="updateImage()"></div>
+                <div class="control"><label>Move Left / Right</label><input type="range" id="posX" min="0" max="100"
+                        value="50" oninput="updateImage()"></div>
+                <div class="control"><label>Move Up / Down</label><input type="range" id="posY" min="0" max="100"
+                        value="50" oninput="updateImage()"></div>
+            </div>
+
+            <!-- CENTER: CANVAS -->
+            <div class="canvas-area">
+                <div id="designCanvas" data-l="bottom" data-fx="none">
+                    <div class="design-bg" id="designImage"></div>
+                    <div class="design-overlay"></div>
+                    <div class="design-content">
+                        <div class="design-top">
+                            <div class="company-name" id="designCompany" contenteditable="true"></div>
+                            <div class="design-tag" id="designTag" contenteditable="true">SPECIAL</div>
+                        </div>
+                        <div class="design-middle">
+                            <div class="eyebrow" id="designEyebrow" contenteditable="true"></div>
+                            <h1 id="designHeadline" contenteditable="true"></h1>
+                            <p id="designDescription" contenteditable="true"></p>
+                            <div class="offer" id="designOffer" contenteditable="true"></div>
+                        </div>
+                        <div class="design-bottom">
+                            <div class="location" id="designLocation" contenteditable="true"></div>
+                            <div class="cta" contenteditable="true">VISIT NOW →</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: TOOLS + IMAGE LIBRARY -->
+            <div class="right-panel">
+                <h3>Tools</h3>
+                <div class="tool primary" onclick="downloadDesign()">⬇ Download Design</div>
+                <div class="tool" onclick="shareDesign()">↗ Share Design</div>
+                <div class="tool" onclick="resetDesign()">↻ Reset</div>
+                <p class="hint">Tip: click any text on the poster to edit it directly.</p>
+                <h3>Browse Images</h3>
+                <div class="thumbs" id="thumbs"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-text">Made with ❤️ by <a href="https://numyhub.xyz" class="footer-link">numyhub.xyz</a></div>
+        <div class="footer-text">Helping small grocery stores grow with beautiful marketing.</div>
+    </footer>
+
+    <script>
+        const $ = id => document.getElementById(id);
+        const cv = () => $("designCanvas");
+
+        /* ---------- IMAGE LIBRARY (swap any ID/URL if one fails to load) ---------- */
+        const IMG_IDS = [
+            "1542838132-92c53300491e", "1488459716781-31db52582fe9", "1610832958506-aa56368176cf", "1506617420156-8e4536971650",
+            "1534723452862-4c874018d66d", "1550989460-0adf9ea622e2", "1540420773420-3366772f4999", "1490474418585-ba9bad8fd0ea",
+            "1498837167922-ddd27525d352", "1578916171728-46686eac8d58", "1583258292688-d0213dc5a3a8", "1547592180-85f173990554",
+            "1604719312566-8912e9227c6a", "1573246123716-6b1782bfc499", "1512621776951-a57141f2eefd"
+        ];
+        const IMGS = IMG_IDS.map(id => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=85`);
+        const FONTS = {
+            s: "'Segoe UI',Arial,sans-serif",
+            g: "Georgia,serif",
+            i: "Impact,'Arial Black',sans-serif",
+            c: "'Brush Script MT','Segoe Script',cursive"
+        };
+
+        /* ---------- TEMPLATE FACTORY ----------
+           T(id, name, category, imgIndex, layout, accent, textOnAccent, overlayRGB, font, headlineSize,
+             headline, description, offer, eyebrow, {light, fx:'glow'|'shadow', k:'v'|'d'|'r'|'f'}) */
+        function T(id, name, category, img, layout, accent, ac, rgb, font, hs, headline, description, offer, eyebrow, o) {
+            o = o || {};
+            return {
+                id, name, category, image: IMGS[img], layout, accent, ac, rgb, font, hs,
+                company: "YOUR GROCERY STORE", headline, description, offer, eyebrow,
+                location: "YOUR CITY • OPEN DAILY", light: !!o.light, fx: o.fx || "none", k: o.k || "v"
+            };
+        }
+
+        /* ---------- 30 FREE TEMPLATES ---------- */
+        const templates = [
+            T(1, "Fresh Green Sale", "Weekly Discount", 0, "bottom", "#7fff7f", "#003300", "0,80,30", "s", 50, "FRESH GREEN SALE", "Organic vegetables at lowest prices.", "FLAT 30% OFF", "FRESH & AFFORDABLE"),
+            T(2, "Red Discount Blast", "Urgent Offer", 12, "split", "#ff3333", "#2a0505", "42,5,5", "i", 44, "RED DISCOUNT BLAST", "Last day! Grab before it's gone.", "TODAY ONLY", "HOT DEAL", { k: "d" }),
+            T(3, "Organic Market", "Organic Products", 6, "top", "#7fff7f", "#003300", "10,50,20", "g", 50, "ORGANIC MARKET", "100% natural, chemical-free products.", "SHOP NOW", "FARM TO TABLE"),
+            T(4, "Weekly Bazaar", "Weekly Special", 9, "stripe", "#ff8c00", "#2a1500", "120,60,0", "i", 46, "WEEKLY BAZAAR", "New arrivals every Monday!", "EVERY MONDAY", "THIS WEEK", { k: "d" }),
+            T(5, "Family Savings", "Family Pack", 10, "circle", "#ffb347", "#2a1500", "90,45,0", "g", 52, "FAMILY SAVINGS", "Buy more, save more for your family.", "FAMILY PACK", "FOR YOUR HOME", { k: "r" }),
+            T(6, "Clean White Market", "Daily Essentials", 5, "ticket", "#2e7d32", "#ffffff", "245,250,245", "s", 46, "CLEAN WHITE MARKET", "Daily essentials at best prices.", "OPEN DAILY", "EVERYDAY LOW PRICES", { light: true }),
+            T(7, "Flash Sale", "Flash Offer", 1, "badge", "#ff4500", "#ffffff", "120,25,0", "i", 58, "FLASH SALE", "2 hours only! Don't miss out.", "2 HOURS LEFT", "LIMITED TIME", { k: "d" }),
+            T(8, "Festive Bazaar", "Festival Special", 2, "center", "#e0a0ff", "#190021", "45,0,60", "g", 46, "FESTIVE BAZAAR", "Celebrate with special discounts.", "FESTIVE OFFER", "FESTIVAL SPECIAL", { k: "r" }),
+            T(9, "Premium Gold", "Premium Products", 11, "frame", "#ffd700", "#111111", "0,0,0", "g", 46, "GOLD SELECTION", "Handpicked goods for discerning families.", "EXCLUSIVE RANGE", "LUXURY GROCERY"),
+            T(10, "Mega Discount", "Big Sale", 4, "mega", "#ff2d55", "#ffffff", "110,5,30", "i", 56, "MEGA DISCOUNT", "Everything must go! Huge clearance.", "FLAT 60% OFF", "CLEARANCE", { k: "d" }),
+
+            T(11, "Neon Night Fresh", "Late Night Store", 13, "card", "#39ff14", "#001a00", "0,30,10", "i", 50, "OPEN LATE", "Groceries until midnight. Fresh at any hour.", "OPEN TILL 12 AM", "NIGHT MARKET", { fx: "glow" }),
+            T(12, "Cinematic Blue", "Big Deal", 13, "left", "#80d4ff", "#00121d", "0,40,80", "i", 54, "BIG BLUE DEAL", "Cool savings across every aisle.", "SAVE 40%", "MEGA SAVINGS"),
+            T(13, "Sunrise Farm", "Farm Fresh", 0, "bottom", "#ffcc33", "#2a1c00", "170,80,0", "g", 56, "FARM FRESH", "Picked this morning, on your table by noon.", "DAILY DELIVERY", "GOOD MORNING", { k: "d" }),
+            T(14, "Midnight VIP", "VIP Members", 3, "ticket", "#c77dff", "#14002a", "40,0,80", "i", 44, "VIP MEMBERS", "Exclusive prices for our loyal customers.", "JOIN FREE", "MEMBERS ONLY", { fx: "glow", k: "f" }),
+            T(15, "Emerald Luxe", "Organic Premium", 6, "frame", "#50ffb0", "#002a18", "0,70,45", "g", 50, "PURE ORGANIC", "Certified organic. Beautifully fresh.", "100% ORGANIC", "GREEN LUXE", { k: "r" }),
+            T(16, "Coral Summer Splash", "Summer Sale", 2, "circle", "#ff6f61", "#ffffff", "170,40,40", "i", 56, "SUMMER SPLASH", "Cool drinks, juicy fruits, hot prices!", "SAVE 25%", "SUMMER SALE", { k: "d" }),
+            T(17, "Black Friday Gold", "Mega Event", 11, "mega", "#ffd700", "#000000", "15,15,15", "i", 56, "BLACK SALE", "The biggest sale of the year.", "UP TO 70% OFF", "MEGA EVENT", { fx: "shadow", k: "f" }),
+            T(18, "Monsoon Mega Sale", "Seasonal Offer", 1, "stripe", "#4dd0e1", "#002a30", "0,60,80", "s", 46, "MONSOON SALE", "Stock up before the rains arrive.", "FREE DELIVERY", "RAINY DAY DEALS"),
+            T(19, "Diwali Sparkle", "Festival Special", 14, "center", "#ffb300", "#2a1000", "130,40,0", "g", 54, "HAPPY DIWALI", "Sweets, dry fruits and gifts at festive prices.", "FESTIVE HAMPERS", "FESTIVAL OF LIGHTS", { fx: "glow", k: "r" }),
+            T(20, "Ocean Fresh Seafood", "Fresh Catch", 4, "left", "#4fc3f7", "#00182a", "0,45,100", "s", 50, "FRESH CATCH", "Straight from the coast to your kitchen.", "FRESH DAILY", "FROM THE SEA", { k: "d" }),
+
+            T(21, "Pink Berry Bliss", "Fruits & Juices", 7, "card", "#ff80ab", "#2a0010", "140,10,70", "g", 52, "BERRY BLISS", "Sweet, juicy and delivered fresh.", "BUY 2 GET 1", "FRUIT FESTIVAL", { k: "d" }),
+            T(22, "Lime Juice Bar", "Fresh Juice", 8, "badge", "#c6ff00", "#1a2400", "40,70,0", "i", 56, "JUICE UP", "Cold-pressed goodness, every single day.", "₹49 ONLY", "FRESH SQUEEZE", { fx: "shadow" }),
+            T(23, "Spice Route", "Masala & Spices", 3, "split", "#ff6d00", "#ffffff", "90,20,0", "g", 44, "SPICE ROUTE", "Pure, aromatic spices straight from the source.", "FLAT 20% OFF", "MASALA SPECIAL", { k: "d" }),
+            T(24, "Dairy Delight", "Milk & Dairy", 5, "left", "#1976d2", "#ffffff", "240,246,255", "s", 46, "DAIRY DELIGHT", "Fresh milk, curd and paneer every morning.", "DOORSTEP DELIVERY", "PURE & FRESH", { light: true }),
+            T(25, "Bakery Morning", "Bakery", 9, "stripe", "#ffcc80", "#3a1f00", "110,60,20", "g", 44, "FRESH BAKED", "Warm bread and cakes, out of the oven at 7 AM.", "HOT & FRESH", "BAKERY CORNER", { k: "d" }),
+            T(26, "Healthy Greens", "Healthy Living", 8, "mega", "#76ff03", "#0d1a00", "20,70,10", "i", 52, "EAT GREEN", "Salads, sprouts and superfoods for a healthier you.", "SAVE 15%", "HEALTHY LIVING", { fx: "shadow" }),
+            T(27, "Midnight Snacks", "Snacks", 12, "card", "#b388ff", "#1a0033", "50,0,90", "i", 50, "SNACK ATTACK", "Chips, cookies and cravings — all in one place.", "COMBO ₹99", "MIDNIGHT MUNCH", { fx: "glow", k: "r" }),
+            T(28, "Dry Fruit Royale", "Dry Fruits", 11, "frame", "#ffd54f", "#2a1800", "70,35,0", "g", 46, "DRY FRUIT ROYALE", "Almonds, cashews and pistachios, premium grade.", "GIFT BOXES", "ROYAL RANGE", { k: "d" }),
+            T(29, "Value Pack Combo", "Combo Offer", 10, "badge", "#ffeb3b", "#222200", "160,90,0", "i", 54, "VALUE COMBO", "Monthly ration pack at the lowest price.", "SAVE ₹500", "MONTHLY PACK", { fx: "shadow" }),
+            T(30, "Sunday Big Basket", "Weekend Special", 14, "circle", "#4db6ac", "#ffffff", "0,70,70", "g", 52, "BIG BASKET", "Fill your weekend basket and save more.", "SUNDAY ONLY", "WEEKEND SPECIAL", { k: "r" })
+        ];
+
+        /* ---------- HELPERS ---------- */
+        function overlay(t) {
+            if (t.light) return `rgba(${t.rgb},.88)`;
+            if (t.k === "d") return `linear-gradient(135deg,rgba(${t.rgb},.7),rgba(0,0,0,.9))`;
+            if (t.k === "r") return `radial-gradient(circle at center,rgba(${t.rgb},.38),rgba(0,0,0,.94))`;
+            if (t.k === "f") return `rgba(${t.rgb},.62)`;
+            return `linear-gradient(180deg,rgba(${t.rgb},.22),rgba(0,0,0,.93))`;
+        }
+
+        let selectedTemplate = null;
+
+        /* ---------- GALLERY ---------- */
+        function createCard(t) {
+            const c = document.createElement("div");
+            c.className = "card";
+            c.style.setProperty("--a", t.accent);
+            c.style.background = `linear-gradient(135deg, rgb(${t.light ? "180,190,180" : t.rgb}), #000)`;
+            c.innerHTML = `
+    <img src="${t.image}" alt="" loading="lazy" crossorigin="anonymous" onerror="this.remove()">
+    <div class="card-badge">FREE</div>
+    <div class="card-content">
+      <div class="card-number">${String(t.id).padStart(2, "0")}</div>
+      <h3>${t.name}</h3><p>${t.category}</p>
+    </div>`;
+            c.onclick = () => openEditor(t);
+            return c;
+        }
+        templates.forEach(t => $("gallery").appendChild(createCard(t)));
+
+        /* ---------- EDITOR ---------- */
+        const MAP = [
+            ["companyInput", "designCompany"], ["eyebrowInput", "designEyebrow"], ["headlineInput", "designHeadline"],
+            ["descriptionInput", "designDescription"], ["offerInput", "designOffer"], ["locationInput", "designLocation"]
+        ];
+
+        function setVar(k, v) { cv().style.setProperty(k, v); }
+        function updateDesign() { MAP.forEach(([i, d]) => $(d).innerText = $(i).value); }
+
+        /* typing directly on the poster updates the side inputs */
+        cv().addEventListener("input", () => MAP.forEach(([i, d]) => $(i).value = $(d).innerText.trim()));
+
+        function setImage(url) { $("designImage").style.backgroundImage = `url("${url}")`; }
+
+        function updateImage() {
+            const b = $("designImage");
+            b.style.backgroundPosition = `${$("posX").value}% ${$("posY").value}%`;
+            b.style.transform = `scale(${$("zoomRange").value / 100})`;
+        }
+
+        function openEditor(t) {
+            selectedTemplate = t;
+            const c = cv();
+            c.style.cssText = "";
+            c.dataset.l = t.layout;
+            c.dataset.fx = t.fx;
+            setVar("--a", t.accent);
+            setVar("--ac", t.ac);
+            setVar("--fg", t.light ? "#171717" : "#ffffff");
+            setVar("--ff", FONTS[t.font]);
+            setVar("--hs", t.hs + "px");
+            setVar("--ov", overlay(t));
+            setVar("--bg", t.light ? "#f7f3e6" : `rgba(${t.rgb},.92)`);
+            setVar("--op", 1);
+
+            $("companyInput").value = t.company;
+            $("eyebrowInput").value = t.eyebrow;
+            $("headlineInput").value = t.headline;
+            $("descriptionInput").value = t.description;
+            $("offerInput").value = t.offer;
+            $("locationInput").value = t.location;
+            $("designTag").innerText = t.category.toUpperCase();
+
+            $("layoutSel").value = t.layout;
+            $("fxSel").value = t.fx;
+            $("fontSel").value = t.font;
+            $("sizeRange").value = t.hs;
+            $("textColor").value = t.light ? "#171717" : "#ffffff";
+            $("accentColor").value = t.accent;
+            $("overlayRange").value = 100;
+            $("ratioSel").value = "4/5";
+            $("zoomRange").value = 100; $("posX").value = 50; $("posY").value = 50;
+
+            setImage(t.image);
+            updateImage();
+            updateDesign();
+
+            $("editor").style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeEditor() {
+            $("editor").style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        function resetDesign() { if (selectedTemplate) openEditor(selectedTemplate); }
+
+        /* ---------- IMAGE UPLOAD + LIBRARY ---------- */
+        function changeImage(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const r = new FileReader();
+            r.onload = ev => setImage(ev.target.result);
+            r.readAsDataURL(file);
+        }
+
+        $("thumbs").innerHTML = IMGS.map(u =>
+            `<img class="thumb" src="${u}" alt="" loading="lazy" crossorigin="anonymous" onclick="setImage('${u}')" onerror="this.style.display='none'">`
+        ).join("");
+
+        /* ---------- DOWNLOAD / SHARE ---------- */
+        async function renderPoster(scale) {
+            if (document.activeElement) document.activeElement.blur();
+            return html2canvas(cv(), { scale, useCORS: true, backgroundColor: null });
+        }
+
+        async function downloadDesign() {
+            try {
+                const out = await renderPoster(3);
+                const a = document.createElement("a");
+                a.download = "NUMYHUB-Grocery-Design.png";
+                a.href = out.toDataURL("image/png");
+                a.click();
+            } catch (e) {
+                alert("Could not create the image. Try uploading your own photo and download again.");
+            }
+        }
+
+        async function shareDesign() {
+            try {
+                const out = await renderPoster(2);
+                out.toBlob(async blob => {
+                    const file = new File([blob], "NUMYHUB-Grocery-Design.png", { type: "image/png" });
+                    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                        await navigator.share({ title: "Grocery Store Design", text: "Created with NUMYHUB", files: [file] });
+                    } else {
+                        alert("Sharing is not supported on this device. Use Download instead.");
+                    }
+                });
+            } catch (e) {
+                alert("Could not create the image. Try uploading your own photo and share again.");
+            }
+        }
+    </script>
+</body>
+
+</html>

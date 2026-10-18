@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13LSHWLM3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-13LSHWLM3L');
+    </script>    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+                url('https://upload.wikimedia.org/wikipedia/commons/8/8a/Bhagat_Singh_in_jail%2C1927.jpg') no-repeat center/cover fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #f0f0f0;
+            line-height: 1.4;
+        }
+
+        .journal-container {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+                url('https://upload.wikimedia.org/wikipedia/commons/8/8a/Bhagat_Singh_in_jail%2C1927.jpg') center/cover no-repeat,
+                rgba(10, 15, 30, 0.6);
+            background-blend-mode: multiply;
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            padding: 30px 20px;
+            width: 95%;
+            max-width: 1000px;
+            min-height: 60vh;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .date {
+            text-align: center;
+            font-size: 1rem;
+            color: #eee;
+            margin-bottom: 20px;
+        }
+
+        #entries {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            padding-right: 10px;
+        }
+
+        .entry {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 3px solid #FFD700;
+        }
+
+        .entry strong {
+            color: #FFD700;
+            font-size: 0.95rem;
+        }
+
+        .entry p {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin-top: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid #FFD700;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            resize: none;
+            margin-bottom: 15px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex: 1;
+            min-width: 140px;
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 14px 16px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+        }
+
+        .clear-btn {
+            background: #ff4d4d;
+            color: #fff;
+        }
+
+        .clear-btn:hover {
+            box-shadow: 0 4px 12px rgba(255, 77, 77, 0.4);
+        }
+
+        .quotes-section {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px 16px;
+            border-radius: 16px;
+            margin-top: 20px;
+            text-align: center;
+            color: #FFD700;
+            max-width: 1000px;
+            width: 95%;
+            font-style: italic;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            font-size: 0.95rem;
+        }
+
+        .quotes-section p {
+            margin-bottom: 6px;
+        }
+
+        /* Small phones */
+        @media (max-width: 575px) {
+            .journal-container {
+                padding: 20px 16px;
+                border-radius: 18px;
+                height: 90vh;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .date {
+                font-size: 0.9rem;
+            }
+
+            textarea {
+                height: 100px;
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+
+            .button-group {
+                gap: 8px;
+            }
+
+            button {
+                padding: 12px 14px;
+                font-size: 0.95rem;
+            }
+
+            .quotes-section {
+                font-size: 0.85rem;
+                padding: 16px 12px;
+            }
+        }
+
+        /* Tablets & small desktops */
+        @media (min-width: 576px) and (max-width: 991px) {
+            .journal-container {
+                padding: 30px 24px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            textarea {
+                height: 130px;
+            }
+
+            .quotes-section {
+                font-size: 0.9rem;
+            }
+        }
+
+        .entry p {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin-top: 8px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="journal-container">
+        <h1>Daily Journal</h1>
+        <div class="date" id="currentDate"></div>
+        <div id="entries"></div>
+        <textarea id="journalInput" placeholder="Record your thoughts..."></textarea>
+        <div class="button-group">
+            <button onclick="saveEntry()">Save Entry</button>
+            <button class="clear-btn" onclick="clearAll()">Clear All</button>
+        </div>
+    </div>
+
+    <div class="quotes-section">
+        <p id="quoteText">"Bombs and pistols do not make revolution. The sword of revolution is sharpened on the
+            whetting stone of ideas."</p>
+        <p id="quoteAuthor" style="margin-top: 10px; opacity: 0.9; font-weight: 500;"></p>
+    </div>
+
+    <script>
+        const quotes = [
+            { text: "Bombs and pistols do not make revolution. The sword of revolution is sharpened on the whetting stone of ideas.", author: "Bhagat Singh" },
+            { text: "They may kill me, but they cannot kill my ideas.", author: "Bhagat Singh" },
+            { text: "Revolution is an inalienable right of mankind. Freedom is an imperishable birth right of all.", author: "Bhagat Singh" },
+            { text: "I am such a lunatic that I am free even in jail.", author: "Bhagat Singh" },
+            { text: "If the deaf are to hear, the sound has to be very loud.", author: "Bhagat Singh" },
+            { text: "Merciless criticism and independent thinking are two traits of revolutionary thinking.", author: "Bhagat Singh" },
+            { text: "The aim of life is not comfort but service.", author: "Bhagat Singh" },
+            { text: "Every tiny molecule of Ash is in motion with my heat.", author: "Bhagat Singh" }
+        ];
+
+        let currentQuoteIndex = 0;
+
+        function updateDate() {
+            document.getElementById('currentDate').textContent = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+        }
+
+        function saveEntry() {
+            const input = document.getElementById('journalInput');
+            if (!input.value.trim()) return;
+
+            const entries = JSON.parse(localStorage.getItem('entries') || '[]');
+            const now = new Date();
+
+            entries.push({
+                datetime: now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                text: input.value
+            });
+
+            localStorage.setItem('entries', JSON.stringify(entries));
+            input.value = '';
+
+            loadEntries();
+        }
+
+        
+    // ...your existing code above...
+
+            const journalInput = document.getElementById('journalInput');
+
+            journalInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+            saveEntry();
+        }
+    });
+
+        // ...your existing code below...
+    
+    function loadEntries() {
+    const entries = JSON.parse(localStorage.getItem('entries') || '[]');
+
+    document.getElementById('entries').innerHTML = entries.map(e =>
+    `<div class="entry">
+        <strong>📝 ${e.datetime}</strong>
+        <p>${e.text}</p>
+    </div>`
+    ).join('');
+
+    setTimeout(() => {
+    const entriesDiv = document.getElementById('entries');
+    entriesDiv.scrollTop = entriesDiv.scrollHeight;
+    }, 100);
+    }
+
+    function clearAll() {
+    if (confirm('Are you sure? This will delete ALL your journal entries!')) {
+    localStorage.removeItem('entries');
+    loadEntries();
+    }
+    }
+
+    function nextQuote() {
+    const quoteText = document.getElementById('quoteText');
+    const quoteAuthor = document.getElementById('quoteAuthor');
+    currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+    quoteText.style.opacity = '0.7';
+    setTimeout(() => {
+    quoteText.textContent = quotes[currentQuoteIndex].text;
+    quoteAuthor.textContent = `- ${quotes[currentQuoteIndex].author}`;
+    quoteText.style.transition = 'opacity 0.5s';
+    quoteText.style.opacity = '1';
+    }, 300);
+    }
+
+    // Initialize
+    updateDate();
+    loadEntries();
+    document.getElementById('quoteAuthor').textContent = '- Bhagat Singh';
+
+    setInterval(updateDate, 1000);
+    setInterval(nextQuote, 10000);
+    </script>
+</body>
+
+</html>

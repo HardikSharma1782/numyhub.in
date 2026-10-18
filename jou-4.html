@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tide — Ocean Journal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Noto+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13LSHWLM3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-13LSHWLM3L');
+    </script>    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(180deg, rgba(0, 18, 69, .75), rgba(4, 102, 200, .55)), url('https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1600') center/cover fixed;
+            min-height: 100vh;
+            color: #caf0f8;
+            padding: 24px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #waves {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            z-index: 0;
+            pointer-events: none
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0
+        }
+
+        .header h1 {
+            font-family: 'Noto Serif', serif;
+            font-size: 2.6rem;
+            font-weight: 400;
+            letter-spacing: 6px;
+            color: #90e0ef;
+            text-shadow: 0 0 30px rgba(144, 224, 239, .3)
+        }
+
+        .header .sub {
+            color: #48cae4;
+            font-size: .85rem;
+            letter-spacing: 2px;
+            margin-top: 6px
+        }
+
+        .tide-bar {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .tide {
+            background: rgba(0, 119, 182, .2);
+            border: 1px solid rgba(72, 202, 228, .3);
+            color: #90e0ef;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: .8rem;
+            transition: all .3s;
+            font-family: inherit
+        }
+
+        .tide:hover,
+        .tide.active {
+            background: rgba(72, 202, 228, .3);
+            border-color: #48cae4;
+            box-shadow: 0 0 20px rgba(72, 202, 228, .3)
+        }
+
+        .entries {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 350px;
+            overflow-y: auto;
+            padding-right: 8px
+        }
+
+        .entries::-webkit-scrollbar {
+            width: 4px
+        }
+
+        .entries::-webkit-scrollbar-thumb {
+            background: #48cae4;
+            border-radius: 4px
+        }
+
+        .bottle {
+            background: rgba(0, 30, 60, .5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(72, 202, 228, .2);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            gap: 14px;
+            animation: float .6s
+        }
+
+        @keyframes float {
+            from {
+                opacity: 0;
+                transform: translateY(12px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .bottle .icon {
+            font-size: 1.5rem;
+            opacity: .8
+        }
+
+        .bottle .content {
+            flex: 1
+        }
+
+        .bottle .meta {
+            color: #48cae4;
+            font-size: .75rem;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .del {
+            cursor: pointer;
+            opacity: .5;
+            margin-left: 8px
+        }
+
+        .del:hover {
+            opacity: 1
+        }
+
+        .bottle p {
+            color: #caf0f8;
+            white-space: pre-line;
+            font-size: .9rem
+        }
+
+        .breathing {
+            text-align: center;
+            padding: 12px;
+            background: rgba(0, 119, 182, .15);
+            border-radius: 16px;
+            border: 1px solid rgba(72, 202, 228, .2)
+        }
+
+        .breathing .circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #48cae4, #023e7d);
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #001233;
+            font-size: .75rem;
+            font-weight: 600;
+            animation: breathe 8s ease-in-out infinite
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: scale(.7);
+                box-shadow: 0 0 20px rgba(72, 202, 228, .2)
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 40px rgba(72, 202, 228, .5)
+            }
+        }
+
+        .composer {
+            background: rgba(0, 30, 60, .4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(72, 202, 228, .25);
+            border-radius: 20px;
+            padding: 20px
+        }
+
+        textarea {
+            width: 100%;
+            height: 110px;
+            background: rgba(0, 18, 51, .5);
+            border: 1px solid rgba(72, 202, 228, .2);
+            color: #caf0f8;
+            padding: 14px;
+            border-radius: 12px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: .95rem;
+            resize: none
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #48cae4;
+            box-shadow: 0 0 20px rgba(72, 202, 228, .2)
+        }
+
+        .word-count {
+            text-align: right;
+            font-size: .75rem;
+            color: #48cae4;
+            margin-top: 4px
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px
+        }
+
+        button {
+            flex: 1;
+            background: linear-gradient(135deg, #0077b6, #48cae4);
+            color: #001233;
+            border: none;
+            padding: 13px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: .9rem;
+            transition: all .3s;
+            font-family: inherit
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(72, 202, 228, .4)
+        }
+
+        .clear-btn {
+            background: rgba(220, 38, 38, .3);
+            color: #caf0f8
+        }
+
+        .clear-btn:hover {
+            box-shadow: 0 8px 24px rgba(220, 38, 38, .3)
+        }
+
+        @media(max-width:600px) {
+            .header h1 {
+                font-size: 1.8rem;
+                letter-spacing: 3px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="waves"></canvas>
+    <div class="container">
+        <div class="header">
+            <h1>TIDE</h1>
+            <div class="sub" id="date"></div>
+        </div>
+        <div class="tide-bar" id="tideBar"></div>
+        <div class="breathing">
+            <div class="circle" id="breathText">breathe</div>
+            <div style="font-size:.75rem;color:#48cae4">A moment to pause before you write</div>
+        </div>
+        <div class="entries" id="entries"></div>
+        <div class="composer">
+            <textarea id="input"
+                placeholder="Let your thoughts drift like waves... (Enter to save, Shift+Enter for new line)"
+                oninput="updateCount()"
+                onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();saveEntry()}"></textarea>
+            <div class="word-count"><span id="wc">0</span> words</div>
+            <div class="btn-row"><button onclick="saveEntry()">🌊 Cast Bottle</button><button class="clear-btn"
+                    onclick="clearAll()">Clear Shore</button></div>
+        </div>
+    </div>
+    <script>
+        const tides = [{ e: '🌊', n: 'Calm' }, { e: '🌀', n: 'Stormy' }, { e: '🐬', n: 'Playful' }, { e: '🌑', n: 'Deep' }, { e: '🌅', n: 'Hopeful' }];
+        let selectedTide = '🌊'; const tb = document.getElementById('tideBar');
+        tides.forEach(t => { const b = document.createElement('div'); b.className = 'tide' + (t.e === selectedTide ? ' active' : ''); b.textContent = t.e + ' ' + t.n; b.onclick = () => { selectedTide = t.e; document.querySelectorAll('.tide').forEach(p => p.classList.remove('active')); b.classList.add('active') }; tb.appendChild(b) });
+        function updateDate() { document.getElementById('date').textContent = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) }
+        setInterval(updateDate, 1000); updateDate();
+        const phases = ['breathe in', 'hold', 'breathe out', 'hold']; let pi = 0; setInterval(() => { pi = (pi + 1) % 4; document.getElementById('breathText').textContent = phases[pi] }, 2000);
+        function updateCount() { document.getElementById('wc').textContent = document.getElementById('input').value.trim().split(/\s+/).filter(Boolean).length }
+        function saveEntry() { const input = document.getElementById('input'); if (!input.value.trim()) return; const entries = JSON.parse(localStorage.getItem('tide_entries') || '[]'); entries.push({ datetime: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }), text: input.value, tide: selectedTide }); localStorage.setItem('tide_entries', JSON.stringify(entries)); input.value = ''; updateCount(); loadEntries() }
+        function loadEntries() {
+            const entries = JSON.parse(localStorage.getItem('tide_entries') || '[]');
+            document.getElementById('entries').innerHTML = entries.slice().reverse().map((e, idx) =>
+                `<div class="bottle"><div class="icon">${e.tide || '🌊'}</div><div class="content"><div class="meta"><span>${e.datetime}</span><span>${e.text.trim().split(/\s+/).length} words<span class="del" onclick="deleteEntry(${idx})" title="Delete">🗑️</span></span></div><p>${escapeHtml(e.text)}</p></div></div>`
+            ).join('')
+        }
+        function clearAll() { if (confirm('Wash away all entries?')) { localStorage.removeItem('tide_entries'); loadEntries() } }
+        function deleteEntry(i) { const e = JSON.parse(localStorage.getItem('tide_entries') || '[]'); e.splice(e.length - 1 - i, 1); localStorage.setItem('tide_entries', JSON.stringify(e)); loadEntries() }
+        function escapeHtml(s) { return s.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>') }
+        loadEntries();
+        const canvas = document.getElementById('waves'), ctx = canvas.getContext('2d');
+        function resize() { canvas.width = innerWidth; canvas.height = innerHeight * .4 }
+        resize(); window.addEventListener('resize', resize); let t = 0;
+        function drawWaves() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let layer = 0; layer < 3; layer++) { ctx.beginPath(); ctx.moveTo(0, canvas.height); for (let x = 0; x <= canvas.width; x += 5) { const y = canvas.height - 60 - layer * 30 + Math.sin((x * .008) + t + layer) * 25; ctx.lineTo(x, y) } ctx.lineTo(canvas.width, canvas.height); ctx.closePath(); ctx.fillStyle = ['rgba(72,202,228,.15)', 'rgba(0,119,182,.2)', 'rgba(0,56,100,.3)'][layer]; ctx.fill() } t += .02; requestAnimationFrame(drawWaves) }
+        drawWaves();
+    </script>
+</body>
+
+</html>

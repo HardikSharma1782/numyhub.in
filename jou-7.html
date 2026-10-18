@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prism — Glassmorphism Journal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13LSHWLM3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-13LSHWLM3L');
+    </script>    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0f0;
+            min-height: 100vh;
+            padding: 24px;
+            line-height: 1.6;
+        }
+
+        #mesh {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            height: calc(100vh - 48px);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            min-height: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            flex: 0 0 auto;
+        }
+
+        .header h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, #ff6ec7, #7873f5, #4ade80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .date {
+            font-size: .8rem;
+            color: rgba(224, 224, 240, .7);
+            text-align: right;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .top-panel {
+            flex: 0 0 auto;
+        }
+
+        .mood-orbs {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 16px;
+        }
+
+        .orb {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .orb:hover {
+            transform: scale(1.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .orb.active {
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 24px currentColor, inset 0 0 20px rgba(255, 255, 255, 0.2);
+            transform: scale(1.2);
+        }
+
+        .orb-label {
+            position: absolute;
+            bottom: -22px;
+            font-size: .65rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: rgba(224, 224, 240, 0.9);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .orb:hover .orb-label,
+        .orb.active .orb-label {
+            opacity: 1;
+        }
+
+        .voice-btn {
+            display: flex;
+            justify-content: center;
+            padding: 0 16px 16px;
+        }
+
+        .voice-btn button {
+            background: linear-gradient(135deg, rgba(255, 110, 199, 0.2), rgba(120, 115, 245, 0.2));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e0e0f0;
+            padding: 10px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: .85rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .voice-btn button:hover {
+            background: linear-gradient(135deg, rgba(255, 110, 199, 0.3), rgba(120, 115, 245, 0.3));
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .voice-btn button.recording {
+            background: linear-gradient(135deg, rgba(255, 80, 80, 0.4), rgba(255, 100, 100, 0.4));
+            border-color: rgba(255, 80, 80, 0.6);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 80, 80, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 12px rgba(255, 80, 80, 0);
+            }
+        }
+
+        .recording-indicator {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(255, 80, 80, 0.2), rgba(255, 100, 100, 0.2));
+            border-radius: 12px;
+            margin: 0 16px 16px;
+            font-size: 0.85rem;
+            color: rgba(255, 180, 180, 0.9);
+        }
+
+        .recording-indicator.active {
+            display: flex;
+            animation: pulse 1s infinite;
+        }
+
+        .recording-indicator .dot {
+            width: 8px;
+            height: 8px;
+            background: #ff4d4d;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .entries {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.06);
+        }
+
+        .entries::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .entries::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 999px;
+        }
+
+        .entries::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, rgba(255, 110, 199, 0.7), rgba(120, 115, 245, 0.7));
+            border-radius: 999px;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .entry {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 14px;
+            animation: slideIn 0.5s;
+            position: relative;
+            overflow: hidden;
+            flex: 0 0 auto;
+        }
+
+        .entry::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ff6ec7, #7873f5);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .entry .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: .75rem;
+            color: rgba(224, 224, 240, 0.6);
+            gap: 10px;
+        }
+
+        .entry .mood-display {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 0;
+        }
+
+        .entry .mood-orb {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            flex: 0 0 auto;
+        }
+
+        .entry .del {
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+            font-size: 1rem;
+            background: none;
+            border: none;
+            color: inherit;
+            padding: 0;
+            flex: 0 0 auto;
+        }
+
+        .entry .del:hover {
+            opacity: 1;
+        }
+
+        .entry p {
+            white-space: pre-line;
+            font-size: .9rem;
+            color: rgba(224, 224, 240, 0.95);
+            word-break: break-word;
+        }
+
+        .entry audio {
+            width: 100%;
+            margin-top: 8px;
+            border-radius: 8px;
+        }
+
+        .composer {
+            flex: 0 0 auto;
+            padding: 18px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 110px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #e0e0f0;
+            padding: 14px;
+            border-radius: 14px;
+            font-family: 'Sora', sans-serif;
+            font-size: .9rem;
+            resize: none;
+            transition: all 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: rgba(255, 110, 199, 0.5);
+            box-shadow: 0 0 20px rgba(255, 110, 199, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .btn-row button {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(255, 110, 199, 0.6), rgba(120, 115, 245, 0.6));
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: .85rem;
+            transition: all 0.3s;
+            font-family: inherit;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .btn-row button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(120, 115, 245, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .clear-btn {
+            background: linear-gradient(135deg, rgba(255, 80, 80, 0.3), rgba(255, 100, 100, 0.3)) !important;
+            border: 1px solid rgba(255, 80, 80, 0.4) !important;
+            color: rgba(255, 180, 180, 0.9) !important;
+        }
+
+        .clear-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 80, 80, 0.5), rgba(255, 100, 100, 0.5)) !important;
+            border-color: rgba(255, 80, 80, 0.6) !important;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, rgba(120, 115, 245, 0.9), rgba(255, 110, 199, 0.9));
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: .85rem;
+            z-index: 100;
+            opacity: 0;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @media(max-width:600px) {
+            body {
+                padding: 14px;
+            }
+
+            .container {
+                height: calc(100vh - 28px);
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .orb {
+                width: 46px;
+                height: 46px;
+                font-size: 1.3rem;
+            }
+
+            .orb-label {
+                font-size: .6rem;
+            }
+
+            .entry .mood-orb {
+                width: 24px;
+                height: 24px;
+                font-size: 1.1rem;
+            }
+
+            .entries {
+                padding: 12px;
+            }
+
+            textarea {
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="mesh" aria-hidden="true"></canvas>
+
+    <div class="container">
+        <div class="header">
+            <h1>Prism</h1>
+            <div class="date" id="date" aria-live="polite" aria-label="Current date and time"></div>
+        </div>
+
+        <div class="glass top-panel">
+            <div class="mood-orbs" id="moodOrbs" role="group" aria-label="Select mood"></div>
+            <div class="voice-btn">
+                <button id="voiceBtn" aria-label="Record audio entry">
+                    <span id="voiceBtnIcon" aria-hidden="true">🎤</span>
+                    <span id="voiceBtnText">Record Audio</span>
+                </button>
+            </div>
+            <div class="recording-indicator" id="recordingIndicator" role="status" aria-live="polite">
+                <span class="dot" aria-hidden="true"></span>
+                <span id="recordingTime">00:00</span>
+                <span>Recording...</span>
+            </div>
+        </div>
+
+        <div class="glass entries" id="entries" role="list" aria-label="Journal entries"></div>
+
+        <div class="glass composer">
+            <textarea id="input" placeholder="Type your thoughts… (Enter to save, Shift+Enter for new line)"
+                aria-label="Journal entry text"></textarea>
+            <div class="btn-row">
+                <button id="saveBtn">✨ Save Entry</button>
+                <button class="clear-btn" id="clearBtn">🗑️ Clear All</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+    <script>
+        const moods = [
+            { emoji: '😊', name: 'Joyful', color: '#ff6ec7' },
+            { emoji: '😌', name: 'Calm', color: '#4ade80' },
+            { emoji: '🤔', name: 'Pensive', color: '#7873f5' },
+            { emoji: '😤', name: 'Frustrated', color: '#f97316' },
+            { emoji: '😴', name: 'Tired', color: '#64748b' },
+            { emoji: '✨', name: 'Inspired', color: '#fbbf24' }
+        ];
+
+        let selectedMood = moods[0];
+        const moodOrbsEl = document.getElementById('moodOrbs');
+
+        moods.forEach(mood => {
+            const orb = document.createElement('div');
+            orb.className = 'orb' + (mood === selectedMood ? ' active' : '');
+            orb.style.color = mood.color;
+            orb.setAttribute('role', 'button');
+            orb.setAttribute('tabindex', '0');
+            orb.setAttribute('aria-label', mood.name);
+            orb.setAttribute('aria-pressed', mood === selectedMood ? 'true' : 'false');
+            orb.innerHTML = mood.emoji + '<span class="orb-label" aria-hidden="true">' + mood.name + '</span>';
+
+            const selectMood = () => {
+                selectedMood = mood;
+                document.querySelectorAll('.orb').forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-pressed', 'false');
+                });
+                orb.classList.add('active');
+                orb.setAttribute('aria-pressed', 'true');
+            };
+
+            orb.addEventListener('click', selectMood);
+            orb.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    selectMood();
+                }
+            });
+
+            moodOrbsEl.appendChild(orb);
+        });
+
+        function formatDateLocal(date) {
+            return date.toLocaleString(undefined, {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function updateDate() {
+            document.getElementById('date').textContent = formatDateLocal(new Date());
+        }
+
+        setInterval(updateDate, 1000);
+        updateDate();
+
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let isRecording = false;
+        let recordingStartTime = null;
+        let recordingTimer = null;
+        let suppressNextSave = false;
+
+        document.getElementById('voiceBtn').addEventListener('click', toggleRecording);
+
+        async function toggleRecording() {
+            if (isRecording) {
+                stopRecording();
+            } else {
+                await startRecording();
+            }
+        }
+
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+
+                mediaRecorder.addEventListener('dataavailable', event => {
+                    audioChunks.push(event.data);
+                });
+
+                mediaRecorder.addEventListener('stop', () => {
+                    if (suppressNextSave) {
+                        suppressNextSave = false;
+                        return;
+                    }
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    const reader = new FileReader();
+                    reader.readAsDataURL(audioBlob);
+                    reader.addEventListener('loadend', () => {
+                        saveAudioEntry(reader.result);
+                    });
+                });
+
+                mediaRecorder.start();
+                isRecording = true;
+                recordingStartTime = Date.now();
+
+                const voiceBtn = document.getElementById('voiceBtn');
+                voiceBtn.classList.add('recording');
+                voiceBtn.setAttribute('aria-label', 'Stop recording');
+                document.getElementById('voiceBtnIcon').textContent = '⏹️';
+                document.getElementById('voiceBtnText').textContent = 'Stop Recording';
+                document.getElementById('recordingIndicator').classList.add('active');
+
+                recordingTimer = setInterval(() => {
+                    const elapsed = Math.floor((Date.now() - recordingStartTime) / 1000);
+                    const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+                    const seconds = (elapsed % 60).toString().padStart(2, '0');
+                    document.getElementById('recordingTime').textContent = `${minutes}:${seconds}`;
+                }, 1000);
+
+                showToast('🎤 Recording started');
+            } catch (err) {
+                if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+                    showToast('❌ Microphone permission denied. Please enable in browser settings.');
+                } else if (err.name === 'NotFoundError') {
+                    showToast('❌ No microphone found on your device.');
+                } else {
+                    showToast('❌ Error: ' + err.message);
+                }
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && isRecording) {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(track => track.stop());
+                isRecording = false;
+
+                const voiceBtn = document.getElementById('voiceBtn');
+                voiceBtn.classList.remove('recording');
+                voiceBtn.setAttribute('aria-label', 'Record audio entry');
+                document.getElementById('voiceBtnIcon').textContent = '🎤';
+                document.getElementById('voiceBtnText').textContent = 'Record Audio';
+                document.getElementById('recordingIndicator').classList.remove('active');
+
+                if (recordingTimer) {
+                    clearInterval(recordingTimer);
+                    recordingTimer = null;
+                }
+
+                showToast('✅ Recording saved!');
+            }
+        }
+
+        function saveAudioEntry(audioBase64) {
+            const entries = loadStoredEntries();
+            entries.push({
+                id: crypto.randomUUID(),
+                datetime: formatDateLocal(new Date()),
+                type: 'audio',
+                audio: audioBase64,
+                mood: selectedMood.emoji,
+                moodName: selectedMood.name,
+                moodColor: selectedMood.color
+            });
+
+            try {
+                localStorage.setItem('prism_entries', JSON.stringify(entries));
+                renderEntries();
+            } catch (err) {
+                if (err.name === 'QuotaExceededError') {
+                    showToast('⚠️ Storage full! Audio too large.');
+                } else {
+                    showToast('⚠️ Error saving audio: ' + err.message);
+                }
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        document.getElementById('saveBtn').addEventListener('click', saveEntry);
+        document.getElementById('clearBtn').addEventListener('click', clearAll);
+
+        document.getElementById('input').addEventListener('keydown', e => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                saveEntry();
+            }
+        });
+
+        function saveEntry() {
+            const input = document.getElementById('input');
+            const text = input.value.trim();
+            if (!text) {
+                showToast('Please enter some text');
+                return;
+            }
+
+            const entries = loadStoredEntries();
+            entries.push({
+                id: crypto.randomUUID(),
+                datetime: formatDateLocal(new Date()),
+                type: 'text',
+                text,
+                mood: selectedMood.emoji,
+                moodName: selectedMood.name,
+                moodColor: selectedMood.color
+            });
+
+            try {
+                localStorage.setItem('prism_entries', JSON.stringify(entries));
+                input.value = '';
+                renderEntries();
+                showToast('✨ Entry saved!');
+            } catch (err) {
+                if (err.name === 'QuotaExceededError') {
+                    showToast('⚠️ Storage full! Delete some entries to make room.');
+                } else {
+                    showToast('⚠️ Error saving entry: ' + err.message);
+                }
+            }
+        }
+
+        function loadStoredEntries() {
+            try {
+                return JSON.parse(localStorage.getItem('prism_entries') || '[]');
+            } catch {
+                return [];
+            }
+        }
+
+        function renderEntries() {
+            const entries = loadStoredEntries();
+            const entriesDiv = document.getElementById('entries');
+
+            if (entries.length === 0) {
+                entriesDiv.innerHTML = '';
+                const empty = document.createElement('p');
+                empty.style.cssText = 'text-align:center;color:rgba(224,224,240,0.5);padding:20px;';
+                empty.textContent = 'No entries yet. Start journaling! ✨';
+                entriesDiv.appendChild(empty);
+                return;
+            }
+
+            entriesDiv.innerHTML = '';
+
+            [...entries].reverse().forEach(entry => {
+                const el = document.createElement('div');
+                el.className = 'entry';
+                el.setAttribute('role', 'listitem');
+
+                const meta = document.createElement('div');
+                meta.className = 'meta';
+
+                const moodDisplay = document.createElement('div');
+                moodDisplay.className = 'mood-display';
+
+                if (entry.mood) {
+                    const moodOrb = document.createElement('span');
+                    moodOrb.className = 'mood-orb';
+                    const safeColor = /^#[0-9a-fA-F]{3,8}$/.test(entry.moodColor || '') ? entry.moodColor : '#ff6ec7';
+                    moodOrb.style.background = safeColor;
+                    moodOrb.setAttribute('aria-label', entry.moodName || entry.mood);
+                    moodOrb.textContent = entry.mood;
+                    moodDisplay.appendChild(moodOrb);
+                }
+
+                const dateSpan = document.createElement('span');
+                dateSpan.textContent = entry.datetime;
+                moodDisplay.appendChild(dateSpan);
+
+                const delBtn = document.createElement('button');
+                delBtn.className = 'del';
+                delBtn.setAttribute('aria-label', 'Delete entry');
+                delBtn.title = 'Delete';
+                delBtn.textContent = '🗑️';
+                delBtn.addEventListener('click', () => deleteEntry(entry.id));
+
+                meta.appendChild(moodDisplay);
+                meta.appendChild(delBtn);
+                el.appendChild(meta);
+
+                if (entry.type === 'audio' && entry.audio) {
+                    const label = document.createElement('p');
+                    label.textContent = '🎤 Audio Recording';
+                    const audio = document.createElement('audio');
+                    audio.controls = true;
+                    audio.src = entry.audio;
+                    el.appendChild(label);
+                    el.appendChild(audio);
+                } else if (entry.type === 'text' && entry.text) {
+                    const p = document.createElement('p');
+                    p.textContent = entry.text;
+                    el.appendChild(p);
+                }
+
+                entriesDiv.appendChild(el);
+            });
+        }
+
+        function clearAll() {
+            const entries = loadStoredEntries();
+            if (entries.length === 0) {
+                showToast('No entries to clear');
+                return;
+            }
+            if (confirm('Clear all entries? This cannot be undone.')) {
+                localStorage.removeItem('prism_entries');
+                renderEntries();
+                showToast('🗑️ All entries cleared');
+            }
+        }
+
+        function deleteEntry(id) {
+            const entries = loadStoredEntries().filter(e => e.id !== id);
+            localStorage.setItem('prism_entries', JSON.stringify(entries));
+            renderEntries();
+            showToast('Entry deleted');
+        }
+
+        renderEntries();
+
+        const canvas = document.getElementById('mesh');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+        }
+
+        resize();
+        window.addEventListener('resize', resize);
+
+        const blobs = [
+            { x: 0.2, y: 0.3, r: 300, c: '#ff6ec7' },
+            { x: 0.8, y: 0.2, r: 250, c: '#7873f5' },
+            { x: 0.6, y: 0.8, r: 350, c: '#4ade80' },
+            { x: 0.1, y: 0.7, r: 200, c: '#fbbf24' }
+        ];
+
+        let t = 0;
+
+        function drawMesh() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            blobs.forEach((b, i) => {
+                const x = b.x * canvas.width + Math.sin(t + i) * 100;
+                const y = b.y * canvas.height + Math.cos(t + i * 0.8) * 80;
+                const grad = ctx.createRadialGradient(x, y, 0, x, y, b.r);
+                grad.addColorStop(0, b.c + '40');
+                grad.addColorStop(1, b.c + '00');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            });
+            t += 0.005;
+            requestAnimationFrame(drawMesh);
+        }
+
+        drawMesh();
+    </script>
+</body>
+
+</html>

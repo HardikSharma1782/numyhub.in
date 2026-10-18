@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEXUS//LOG — Cyber Journal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400&display=swap"
+        rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13LSHWLM3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-13LSHWLM3L');
+    </script>    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0a0014;
+            background-image:
+                radial-gradient(ellipse at 20% 0%, rgba(255, 0, 128, .15), transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(0, 200, 255, .15), transparent 50%),
+                linear-gradient(rgba(0, 0, 0, .6), rgba(10, 0, 20, .8)),
+                url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1600') center/cover fixed;
+            min-height: 100vh;
+            color: #00ffe1;
+            padding: 24px;
+            line-height: 1.5;
+        }
+
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 255, 225, .03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 225, .03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 225, .3);
+            padding-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #ff0080, #00ffe1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 0, 128, .5);
+            animation: glitch 4s infinite;
+        }
+
+        @keyframes glitch {
+
+            0%,
+            90% {
+                transform: translate(0);
+            }
+
+            92% {
+                transform: translate(-2px, 1px);
+            }
+
+            94% {
+                transform: translate(2px, -1px);
+            }
+
+            96% {
+                transform: translate(-1px, 0);
+            }
+        }
+
+        .status {
+            display: flex;
+            gap: 16px;
+            font-size: .7rem;
+            color: #ff0080;
+        }
+
+        .status span::before {
+            content: '▸ ';
+            color: #00ffe1;
+        }
+
+        .terminal {
+            background: rgba(10, 0, 20, .85);
+            border: 1px solid #ff0080;
+            box-shadow: 0 0 30px rgba(255, 0, 128, .2), inset 0 0 60px rgba(0, 255, 225, .05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: rgba(255, 0, 128, .1);
+            padding: 8px 14px;
+            font-size: .7rem;
+            color: #ff0080;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .entries {
+            padding: 16px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .entries::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .entries::-webkit-scrollbar-thumb {
+            background: #ff0080;
+        }
+
+        .entry {
+            border-left: 2px solid #00ffe1;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            background: rgba(0, 255, 225, .03);
+            font-size: .85rem;
+            animation: slideIn .3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .entry .ts {
+            color: #ff0080;
+            font-size: .7rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .entry .mood-bar {
+            display: inline-block;
+            height: 4px;
+            background: linear-gradient(90deg, #ff0080, #00ffe1);
+            border-radius: 2px;
+            vertical-align: middle;
+        }
+
+        .entry p {
+            color: #00ffe1;
+            white-space: pre-line;
+        }
+
+        .del {
+            cursor: pointer;
+            opacity: .6;
+            margin-left: auto;
+            transition: opacity .2s;
+        }
+
+        .del:hover {
+            opacity: 1;
+        }
+
+        .composer {
+            background: rgba(10, 0, 20, .85);
+            border: 1px solid #00ffe1;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 0 30px rgba(0, 255, 225, .15);
+        }
+
+        .composer label {
+            display: block;
+            font-size: .7rem;
+            color: #ff0080;
+            margin-bottom: 6px;
+        }
+
+        .mood-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 4px;
+            background: linear-gradient(90deg, #00ffe1, #ff0080);
+            border-radius: 2px;
+            outline: none;
+            margin-bottom: 14px;
+        }
+
+        .mood-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #ff0080;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff0080;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            background: rgba(0, 0, 0, .5);
+            border: 1px solid rgba(0, 255, 225, .3);
+            color: #00ffe1;
+            padding: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .85rem;
+            resize: none;
+            border-radius: 4px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #ff0080;
+            box-shadow: 0 0 15px rgba(255, 0, 128, .3);
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        button {
+            flex: 1;
+            background: transparent;
+            color: #00ffe1;
+            border: 1px solid #00ffe1;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: .75rem;
+            letter-spacing: 2px;
+            transition: all .3s;
+        }
+
+        button:hover {
+            background: #00ffe1;
+            color: #0a0014;
+            box-shadow: 0 0 20px #00ffe1;
+        }
+
+        .clear-btn {
+            color: #ff0080;
+            border-color: #ff0080;
+        }
+
+        .clear-btn:hover {
+            background: #ff0080;
+            color: #0a0014;
+            box-shadow: 0 0 20px #ff0080;
+        }
+
+        .export-btn {
+            color: #ffcc00;
+            border-color: #ffcc00;
+        }
+
+        .export-btn:hover {
+            background: #ffcc00;
+            color: #0a0014;
+        }
+
+        .timestamp {
+            font-size: .7rem;
+            color: rgba(0, 255, 225, .4);
+            text-align: center;
+        }
+
+        @media(max-width:600px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .btn-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-overlay"></div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">NEXUS//LOG</div>
+            <div class="status"><span id="clock">00:00:00</span><span>UPLINK ACTIVE</span></div>
+        </div>
+
+        <div class="terminal">
+            <div class="terminal-header">
+                <span>SYS://journal_entries.log</span>
+                <span id="count">0 RECORDS</span>
+            </div>
+            <div class="entries" id="entries"></div>
+        </div>
+
+        <div class="composer">
+            <label>MOOD_INTENSITY [0-100]: <span id="moodVal">50</span>%</label>
+            <input type="range" class="mood-slider" id="moodSlider" min="0" max="100" value="50">
+
+            <label>DATA_INPUT:</label>
+            <textarea id="input" placeholder="> Enter log data... (Enter to commit, Shift+Enter for new line)"
+                onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();saveEntry()}"></textarea>
+
+            <div class="btn-row">
+                <button onclick="saveEntry()">COMMIT LOG</button>
+                <button class="export-btn" onclick="exportData()">EXPORT.JSON</button>
+                <button class="clear-btn" onclick="clearAll()">PURGE ALL</button>
+            </div>
+        </div>
+
+        <div class="timestamp">// Encrypted locally — no cloud transmission //</div>
+    </div>
+
+    <script>
+        document.getElementById('moodSlider').oninput = e =>
+            document.getElementById('moodVal').textContent = e.target.value;
+
+        function tick() {
+            document.getElementById('clock').textContent =
+                new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' });
+        }
+        setInterval(tick, 1000);
+        tick();
+
+        function saveEntry() {
+            const input = document.getElementById('input');
+            if (!input.value.trim()) return;
+
+            const entries = JSON.parse(localStorage.getItem('nexus_log') || '[]');
+            entries.push({
+                ts: Date.now(),
+                datetime: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                text: input.value,
+                mood: document.getElementById('moodSlider').value
+            });
+
+            localStorage.setItem('nexus_log', JSON.stringify(entries));
+            input.value = '';
+            loadEntries();
+        }
+
+        function loadEntries() {
+            const entries = JSON.parse(localStorage.getItem('nexus_log') || '[]');
+            document.getElementById('entries').innerHTML = entries.map((e, idx) =>
+                `<div class="entry">
+                    <div class="ts">
+                        [${new Date(e.ts).toISOString().slice(0, 19).replace('T', ' ')}]
+                        MOOD:${e.mood || 50}%
+                        <div class="mood-bar" style="width:${(e.mood || 50) / 2}px"></div>
+                        <span class="del" onclick="deleteEntry(${idx})" title="Delete">🗑️</span>
+                    </div>
+                    <p>${escapeHtml(e.text)}</p>
+                </div>`
+            ).join('') || '<div style="color:rgba(0,255,225,.3);font-size:.8rem;text-align:center;padding:20px">> NO ENTRIES FOUND. AWAITING INPUT...</div>';
+
+            document.getElementById('count').textContent = `${entries.length} RECORDS`;
+        }
+
+        function clearAll() {
+            if (confirm('⚠ PURGE ALL LOG ENTRIES? This cannot be undone.')) {
+                localStorage.removeItem('nexus_log');
+                loadEntries();
+            }
+        }
+
+        function deleteEntry(i) {
+            const entries = JSON.parse(localStorage.getItem('nexus_log') || '[]');
+            entries.splice(i, 1);
+            localStorage.setItem('nexus_log', JSON.stringify(entries));
+            loadEntries();
+        }
+
+        function exportData() {
+            const entries = JSON.parse(localStorage.getItem('nexus_log') || '[]');
+            const blob = new Blob([JSON.stringify(entries, null, 2)], { type: 'application/json' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'nexus_log.json';
+            a.click();
+        }
+
+        function escapeHtml(s) {
+            return String(s)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        loadEntries();
+    </script>
+</body>
+
+</html>

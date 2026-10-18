@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>NUMYHUB — Restaurant Templates</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Poppins:wght@400;600;700;800&family=Pacifico&family=Abril+Fatface&display=swap">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        :root {
+            --g: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Poppins, system-ui, sans-serif;
+            background: #050505;
+            color: #fff;
+            min-height: 100vh;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        .hd {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: calc(12px + env(safe-area-inset-top, 0px)) 5% 12px;
+            background: rgba(5, 5, 5, .88);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid #ffffff14;
+        }
+
+        .logo {
+            font-weight: 800;
+            letter-spacing: 3px;
+            font-size: 20px;
+        }
+
+        .logo b {
+            color: var(--g);
+        }
+
+        .chip {
+            border: 1px solid #d4af3766;
+            color: var(--g);
+            padding: 8px 14px;
+            border-radius: 99px;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: clamp(40px, 9vw, 80px) 5% 30px;
+            background: radial-gradient(ellipse at 50% 0, #d4af3724, transparent 60%);
+        }
+
+        .hero h1 {
+            font: 400 clamp(34px, 8vw, 84px)/1.02 'Playfair Display', serif;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 i {
+            color: var(--g);
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: 20px auto 0;
+            color: #9a9a9a;
+            line-height: 1.7;
+            font-size: clamp(14px, 2.5vw, 16px);
+        }
+
+        .st {
+            width: 90%;
+            max-width: 1500px;
+            margin: 30px auto 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .st h2 {
+            font: 400 clamp(24px, 5vw, 34px) 'Playfair Display', serif;
+        }
+
+        .st p {
+            color: #888;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .cnt {
+            border: 1px solid #d4af3766;
+            color: var(--g);
+            padding: 7px 14px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .gal {
+            width: 90%;
+            max-width: 1500px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+            gap: 16px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            position: relative;
+            aspect-ratio: 4/5;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #111;
+            border: 1px solid #ffffff1a;
+            cursor: pointer;
+            padding: 0;
+            color: inherit;
+            text-align: left;
+            transition: .35s;
+        }
+
+        .card:focus-visible {
+            outline: 3px solid var(--g);
+        }
+
+        @media (hover:hover) {
+            .card:hover {
+                transform: translateY(-6px);
+                border-color: var(--g);
+                box-shadow: 0 24px 60px #000b, 0 0 30px #d4af3722;
+            }
+        }
+
+        #prem .card {
+            border-color: #d4af3766;
+        }
+
+        .mini {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 540px;
+            height: 675px;
+            transform: scale(var(--cs, .5));
+            transform-origin: 0 0;
+            pointer-events: none;
+        }
+
+        .cb {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 26px 12px 11px;
+            background: linear-gradient(transparent, #000d);
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 3;
+        }
+
+        .cb small {
+            display: block;
+            color: #bbb;
+            font-weight: 400;
+            font-size: 11px;
+        }
+
+        .bd {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 5;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 99px;
+            background: #000a;
+            border: 1px solid #fff4;
+        }
+
+        .bd.p {
+            border-color: var(--g);
+            color: var(--g);
+        }
+
+        .bd.own {
+            background: linear-gradient(100deg, #fff0a0, #d4af37);
+            color: #111;
+            border: 0;
+        }
+
+        .premium-lock {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #d4af3728, #080808 65%);
+        }
+
+        .premium-lock-icon {
+            width: 70px;
+            height: 70px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 16px;
+            border-radius: 50%;
+            color: #111;
+            background: linear-gradient(135deg, #fff0a0, #d4af37, #8e6817);
+            font-size: 30px;
+            box-shadow: 0 10px 35px #000, 0 0 30px #d4af3730;
+        }
+
+        .premium-lock strong {
+            font-size: 15px;
+            letter-spacing: .5px;
+        }
+
+        .premium-lock span {
+            margin-top: 6px;
+            color: #d4af37;
+            font-size: 12px;
+        }
+
+        @media(max-width:600px) {
+            .gal {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .chip {
+                display: none;
+            }
+        }
+
+        /* DESIGN CANVAS */
+
+        .cv {
+            width: 540px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            font-family: Poppins, sans-serif;
+            background: #111;
+        }
+
+        .r45 {
+            height: 675px;
+        }
+
+        .r11 {
+            height: 540px;
+        }
+
+        .r916 {
+            height: 960px;
+        }
+
+        .bg,
+        .ov,
+        .gl,
+        .gr,
+        .fr,
+        .in {
+            position: absolute;
+            inset: 0;
+        }
+
+        .gl {
+            background: radial-gradient(circle at 85% 12%, var(--ac), transparent 55%);
+            opacity: .32;
+        }
+
+        .gr {
+            opacity: .14;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .fr {
+            inset: 16px;
+            border: 1.5px solid var(--ac);
+        }
+
+        .fr::after {
+            content: "";
+            position: absolute;
+            inset: 6px;
+            border: 1px solid var(--ac);
+            opacity: .45;
+        }
+
+        .in {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tp {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .br {
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+        }
+
+        .sp {
+            color: var(--ac);
+            font-size: 18px;
+        }
+
+        .md {
+            margin-top: auto;
+            margin-bottom: 34px;
+            min-width: 0;
+        }
+
+        .ey {
+            color: var(--ac);
+            letter-spacing: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .cv h1 {
+            font-family: var(--fn);
+            line-height: .95;
+            text-shadow: 0 6px 30px rgba(0, 0, 0, .65);
+            overflow-wrap: anywhere;
+        }
+
+        .ln {
+            width: 70px;
+            height: 3px;
+            background: var(--ac);
+            margin: 22px 0;
+        }
+
+        .cv p {
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 390px;
+            opacity: .92;
+        }
+
+        .of {
+            display: inline-block;
+            margin-top: 26px;
+            background: var(--ac);
+            color: #111;
+            font-weight: 800;
+            padding: 14px 24px;
+            border-radius: 6px;
+            letter-spacing: 1px;
+            font-size: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
+        }
+
+        .bt {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .ct {
+            border: 1.5px solid #fff;
+            padding: 11px 18px;
+            border-radius: 99px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .L1 .in {
+            text-align: center;
+            align-items: center;
+        }
+
+        .L1 .md {
+            margin: auto 0;
+        }
+
+        .L1 .ln {
+            margin: 22px auto;
+        }
+
+        .L1 p {
+            margin: 0 auto;
+        }
+
+        .L1 .tp,
+        .L1 .bt {
+            width: 100%;
+        }
+
+        .L1 .tp {
+            justify-content: center;
+        }
+
+        .L2 .md {
+            margin: auto 0;
+            background: rgba(8, 8, 8, .72);
+            border-left: 4px solid var(--ac);
+            padding: 30px 30px 34px;
+            border-radius: 0 18px 18px 0;
+        }
+
+        .L3 h1 {
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: .88;
+        }
+
+        .L3 .ln {
+            display: none;
+        }
+
+        .L3 .of {
+            transform: rotate(-5deg);
+            border-radius: 99px;
+            margin-top: 30px;
+            font-size: 20px;
+        }
+
+        .L4 .tp {
+            border-bottom: 1px solid #fff9;
+            padding-bottom: 16px;
+        }
+
+        .L4 .md {
+            margin: 36px 0 auto;
+        }
+
+        .L4 h1 {
+            font-style: italic;
+            letter-spacing: -1px;
+        }
+
+        .L4 .of {
+            background: none;
+            color: var(--ac);
+            border: 1.5px solid var(--ac);
+            box-shadow: none;
+        }
+
+        /* PAYMENT MODAL */
+
+        .mo {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: #000d;
+            backdrop-filter: blur(14px);
+            z-index: 300;
+            padding: 16px;
+            overflow: auto;
+        }
+
+        .pb {
+            width: 100%;
+            max-width: 440px;
+            margin: auto;
+            padding: clamp(26px, 6vw, 40px);
+            text-align: center;
+            border: 1px solid #d4af37bb;
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at top right, #d4af3733, transparent 40%),
+                linear-gradient(145deg, #211b0b, #090909 60%);
+            box-shadow: 0 40px 100px #000;
+        }
+
+        .pb small {
+            color: var(--g);
+            letter-spacing: 4px;
+            font-size: 10px;
+        }
+
+        .pi {
+            width: 76px;
+            height: 76px;
+            margin: 18px auto;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            font-size: 30px;
+            color: #080808;
+            background: linear-gradient(135deg, #fff0a0, #d4af37, #8e6817);
+        }
+
+        .pb h2 {
+            font: 400 30px 'Playfair Display', serif;
+            margin-bottom: 10px;
+        }
+
+        .pb p {
+            color: #b5aa8d;
+            line-height: 1.7;
+        }
+
+        .pb .pn {
+            margin-top: 14px;
+            font-size: 12px;
+            color: #8d845f;
+        }
+
+        .pay {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 24px;
+            min-height: 50px;
+            border: 0;
+            border-radius: 8px;
+            background: linear-gradient(100deg, #fff0a0, #d4af37, #9c751d);
+            color: #090909;
+            font-weight: 800;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .cx {
+            background: none;
+            border: 0;
+            color: #999;
+            margin-top: 10px;
+            min-height: 44px;
+            cursor: pointer;
+        }
+
+        /* EDITOR */
+
+        .ed {
+            position: fixed;
+            inset: 0;
+            height: 100dvh;
+            display: none;
+            flex-direction: column;
+            background: #050505;
+            z-index: 200;
+        }
+
+        .eh {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: calc(8px + env(safe-area-inset-top, 0px)) 12px 8px;
+            border-bottom: 1px solid #222;
+            background: #0a0a0a;
+        }
+
+        .eh .logo {
+            font-size: 14px;
+            margin-right: auto;
+        }
+
+        .b {
+            border: 1px solid #333;
+            background: #141414;
+            color: #fff;
+            border-radius: 10px;
+            padding: 0 14px;
+            min-height: 42px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .b.pr {
+            background: linear-gradient(100deg, #f3d477, #d4af37, #9c751d);
+            color: #111;
+            border: 0;
+            font-weight: 800;
+        }
+
+        .eb {
+            flex: 1;
+            min-height: 0;
+            display: grid;
+            grid-template-columns: min(340px, 38vw) minmax(0, 1fr);
+        }
+
+        .cp {
+            overflow: auto;
+            padding: 16px;
+            background: #0a0a0a;
+            border-right: 1px solid #222;
+            padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        }
+
+        .cp h4 {
+            color: var(--g);
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin: 6px 0 12px;
+        }
+
+        .sw {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            min-width: 0;
+            min-height: 0;
+            overflow: auto;
+            background: radial-gradient(circle, #1a1a1a, #030303 70%);
+        }
+
+        #box {
+            position: relative;
+            flex: none;
+            box-shadow: 0 30px 80px #000;
+        }
+
+        #host {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 540px;
+            transform-origin: 0 0;
+        }
+
+        .f {
+            margin-bottom: 14px;
+        }
+
+        .f>label {
+            display: block;
+            font-size: 11px;
+            color: #8a8a8a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .f input[type=text],
+        .f textarea,
+        .f select {
+            width: 100%;
+            background: #131313;
+            border: 1px solid #2a2a2a;
+            color: #fff;
+            border-radius: 10px;
+            padding: 11px;
+            font-size: 16px;
+            min-height: 44px;
+            outline: none;
+        }
+
+        .f input:focus,
+        .f textarea:focus,
+        .f select:focus {
+            border-color: var(--g);
+        }
+
+        .f textarea {
+            height: 76px;
+            resize: none;
+        }
+
+        .f input[type=range] {
+            width: 100%;
+            accent-color: #d4af37;
+            height: 30px;
+        }
+
+        .f input[type=color] {
+            width: 100%;
+            height: 44px;
+            border: 0;
+            background: none;
+            padding: 0;
+        }
+
+        .sg {
+            display: flex;
+            gap: 8px;
+        }
+
+        .sg button {
+            flex: 1;
+            min-height: 42px;
+            border: 1px solid #2a2a2a;
+            background: #131313;
+            color: #ccc;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .sg button.on {
+            border-color: var(--g);
+            color: var(--g);
+        }
+
+        .tgl {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 40px;
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .tgl input {
+            width: 20px;
+            height: 20px;
+            accent-color: #d4af37;
+        }
+
+        .up {
+            display: block;
+            padding: 14px;
+            border: 1px dashed #444;
+            border-radius: 10px;
+            text-align: center;
+            color: #bbb;
+            cursor: pointer;
+        }
+
+        .up input {
+            display: none;
+        }
+
+        #ts {
+            position: fixed;
+            left: 50%;
+            bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+            transform: translateX(-50%);
+            background: #fff;
+            color: #000;
+            padding: 10px 18px;
+            border-radius: 99px;
+            z-index: 600;
+            font-weight: 600;
+            font-size: 14px;
+            max-width: 90vw;
+            text-align: center;
+            display: none;
+        }
+
+        @media(max-width:860px) {
+            .eb {
+                grid-template-columns: 1fr;
+                grid-template-rows: minmax(0, 44%) minmax(0, 1fr);
+            }
+
+            .sw {
+                order: -1;
+                padding: 10px;
+            }
+
+            .cp {
+                border-right: 0;
+                border-top: 1px solid #222;
+            }
+        }
+
+        @media(max-width:420px) {
+            .eh .logo {
+                display: none;
+            }
+
+            .eh {
+                justify-content: space-between;
+            }
+
+            .b {
+                padding: 0 11px;
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hd">
+        <div class="logo">NUMY<b>HUB</b></div>
+        <div class="chip">✦ CREATIVE COLLECTION</div>
+    </header>
+
+    <section class="hero">
+        <h1>Make your restaurant <i>impossible to ignore.</i></h1>
+        <p>
+            30 glamorous, ready-to-edit templates for Instagram posts,
+            stories and WhatsApp offers. Change the text, colours,
+            fonts and photo, then download or share in one tap.
+        </p>
+    </section>
+
+    <div class="st">
+        <div>
+            <h2>Free Collection</h2>
+            <p>20 templates, completely free</p>
+        </div>
+    </div>
+    <div class="gal" id="free"></div>
+
+    
+
+    <!-- EDITOR -->
+    <div class="ed" id="ed">
+        <div class="eh">
+            <div class="logo">NUMYHUB / EDITOR</div>
+            <button class="b pr" id="bs">⬇ Save</button>
+            <button class="b" id="bh">↗ Share</button>
+            <button class="b" id="br">↻ Reset</button>
+            <button class="b" id="bx">✕</button>
+        </div>
+
+        <div class="eb">
+            <div class="cp">
+                <h4>TEXT</h4>
+                <div class="f"><label>Restaurant name</label><input type="text" data-k="name"></div>
+                <div class="f"><label>Headline</label><input type="text" data-k="head"></div>
+                <div class="f"><label>Description</label><textarea data-k="desc"></textarea></div>
+                <div class="f"><label>Offer</label><input type="text" data-k="offer"></div>
+                <div class="f"><label>Button text</label><input type="text" data-k="cta"></div>
+                <div class="f"><label>City / timing</label><input type="text" data-k="loc"></div>
+
+                <h4>STYLE</h4>
+
+                <div class="f">
+                    <label>Size</label>
+                    <div class="sg" id="rt">
+                        <button type="button" data-v="45">Post 4:5</button>
+                        <button type="button" data-v="11">Square</button>
+                        <button type="button" data-v="916">Story</button>
+                    </div>
+                </div>
+
+                <div class="f">
+                    <label>Layout</label>
+                    <select data-k="lay">
+                        <option value="0">Classic</option>
+                        <option value="1">Centered</option>
+                        <option value="2">Glass card</option>
+                        <option value="3">Poster</option>
+                        <option value="4">Editorial</option>
+                    </select>
+                </div>
+
+                <div class="f">
+                    <label>Headline font</label>
+                    <select data-k="font">
+                        <option value="s">Playfair Display (elegant)</option>
+                        <option value="d">Bebas Neue (bold)</option>
+                        <option value="m">Poppins (modern)</option>
+                        <option value="c">Pacifico (script)</option>
+                        <option value="a">Abril Fatface (statement)</option>
+                    </select>
+                </div>
+
+                <div class="f"><label>Accent colour</label><input type="color" data-k="ac"></div>
+
+                <div class="f">
+                    <label class="tgl"><input type="checkbox" data-k="frame">Gold double frame</label>
+                    <label class="tgl"><input type="checkbox" data-k="glow">Colour glow</label>
+                    <label class="tgl"><input type="checkbox" data-k="grain">Film grain</label>
+                </div>
+
+                <h4>PHOTO</h4>
+
+                <div class="f">
+                    <label class="up">📷 Choose your photo<input type="file" accept="image/*" id="fi"></label>
+                </div>
+
+                <div class="f">
+                    <label>Shade</label>
+                    <input type="range" data-k="dark" min=".3" max=".95" step=".01">
+                </div>
+                <div class="f">
+                    <label>Zoom</label>
+                    <input type="range" data-k="zoom" min="1" max="2" step=".01">
+                </div>
+                <div class="f">
+                    <label>Position</label>
+                    <input type="range" data-k="pos" min="0" max="100">
+                </div>
+            </div>
+
+            <div class="sw" id="sw">
+                <div id="box">
+                    <div id="host"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ts" role="status"></div>
+
+    <script>
+        /*
+         * PAYMENT LINKS — paste your 10 separate Razorpay links below.
+         *
+         * Match the number to the premium template:
+         * 0 Grand Opening
+         * 1 Midnight Empire
+         * 2 Signature Creation
+         * 3 The Family Table
+         * 4 Table For Two
+         * 5 Lunch Society
+         * 6 Limited Drop
+         * 7 The Great Food Festival
+         * 8 The Dining Experience
+         * 9 Ultimate Feast
+         *
+         * Example format: "https://rzp.io/rzp/your-link-id"
+         */
+        
+
+        /*
+         * Important:
+         * This static HTML version cannot verify whether a payment succeeded.
+         * It never unlocks a template just because the payment page was opened
+         * or because someone clicked a button. Verify payment in Razorpay first,
+         * then use the manual admin unlock instructions below.
+         */
+
+        const STORE_KEY = "numyhub_manual_unlocked_v3";
+
+        const $ = id => document.getElementById(id);
+
+        const esc = s => String(s).replace(/[&<>"']/g, c => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[c]));
+
+        const U = (id, w) =>
+            `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=85`;
+
+        const IM = {
+            a: "1517248135467-4c7edcad34c4",
+            b: "1568901346375-23c9450c58cd",
+            c: "1547592180-85f173990554",
+            d: "1515003197210-e0cd71810b5f",
+            e: "1414235077428-338989a2e8c0",
+            f: "1579684947550-22e945225d9a",
+            g: "1512621776951-a57141f2eefd",
+            h: "1574071318508-1cdbab80d002",
+            i: "1540420773420-3366772f4999",
+            j: "1552566626-52f8b828add9",
+            k: "1555396273-367ea4eb4db5",
+            l: "1551024506-0bccd828d307",
+            m: "1513104890138-7c749659a591"
+        };
+
+        const FN = {
+            s: "Playfair Display",
+            d: "Bebas Neue",
+            m: "Poppins",
+            c: "Pacifico",
+            a: "Abril Fatface"
+        };
+
+        const H = { "45": 675, "11": 540, "916": 960 };
+
+        const FREE = [
+            ["Weekend Special", "Weekend Promotion", 0, "#ffc107", "d", "a", "WEEKEND SPECIAL", "Make your weekend delicious.", "20% OFF"],
+            ["Midnight Cravings", "Late Night Offer", 2, "#65c7ff", "d", "b", "MIDNIGHT CRAVINGS", "Your cravings don't follow a clock.", "OPEN TILL 2 AM"],
+            ["Chef Special", "Signature Dish", 4, "#f2e6c9", "s", "c", "CHEF'S SPECIAL", "Created specially by our chef.", "TRY TODAY"],
+            ["Family Feast", "Family Promotion", 3, "#ff5a36", "d", "d", "FAMILY FEAST", "More food. More smiles. More memories.", "25% OFF"],
+            ["Date Night", "Couple Promotion", 1, "#ff4d8d", "s", "e", "DATE NIGHT", "Make tonight a little more special.", "SPECIAL MENU"],
+            ["Lunch Rush", "Lunch Campaign", 0, "#ffb347", "m", "c", "LUNCH RUSH", "Quick bites. Great taste.", "30% OFF"],
+            ["Flash Deal", "Flash Promotion", 3, "#ff2d00", "d", "f", "FLASH DEAL", "This offer won't stay around forever.", "GRAB NOW"],
+            ["Food Festival", "Festival Campaign", 1, "#e1a2ff", "c", "g", "FOOD FESTIVAL", "A celebration of incredible flavors.", "UP TO 40% OFF"],
+            ["Premium Evening", "Evening Promotion", 4, "#e1b95e", "s", "d", "PREMIUM EVENING", "Exceptional food. Beautiful moments.", "BOOK NOW"],
+            ["Mega Deal", "Big Offer", 3, "#e90035", "d", "h", "MEGA DEAL", "Your favorites at amazing prices.", "FLAT 50% OFF"],
+            ["Fresh & Healthy", "Healthy Food", 2, "#00e6b0", "m", "i", "FRESH & HEALTHY", "Fresh ingredients. Better choices.", "ORDER NOW"],
+            ["Happy Hours", "Happy Hour Campaign", 0, "#ff9f1c", "c", "j", "HAPPY HOURS", "Good food. Great prices. Perfect timing.", "1+1 TODAY"],
+            ["New Menu", "Menu Launch", 4, "#ffffff", "s", "k", "NEW MENU", "Something delicious has arrived.", "EXPLORE NOW"],
+            ["Birthday Treat", "Birthday Offer", 1, "#ffc107", "c", "l", "BIRTHDAY TREAT", "Celebrate your special day with us.", "FREE DESSERT"],
+            ["Dessert Drop", "Dessert Campaign", 2, "#c477ff", "s", "l", "DESSERT DROP", "Save room for something unforgettable.", "BUY 1 GET 1"],
+            ["Free Delivery", "Delivery Campaign", 0, "#70a7ff", "m", "m", "FREE DELIVERY", "Your favorite food comes to you.", "ORDER NOW"],
+            ["Burger Night", "Burger Campaign", 3, "#ff3030", "d", "b", "BURGER NIGHT", "Big flavor. Bigger cravings.", "₹199 ONLY"],
+            ["Fresh Catch", "Seafood Promotion", 2, "#00e0ff", "s", "c", "FRESH CATCH", "Freshly prepared. Perfectly served.", "TRY TODAY"],
+            ["Fine Dining", "Luxury Campaign", 4, "#f4c46b", "s", "e", "FINE DINING", "An experience beyond the plate.", "RESERVE"],
+            ["Love & Food", "Special Campaign", 1, "#ff1680", "c", "a", "LOVE & FOOD", "Some moments deserve great food.", "SPECIAL OFFER"]
+        ];
+
+        const FREE_TEMPLATES = FREE.map(r => ({
+            name: r[0], cat: r[1], lay: r[2], ac: r[3], font: r[4],
+            im: r[5], head: r[6], desc: r[7], offer: r[8], prem: 0
+        }));
+
+        const PREM = [
+            ["Grand Opening", "Luxury Restaurant Launch", 1, "#d4af37", "s", "a", "GRAND OPENING", "A new chapter of deliciousness begins here.", "20% OFF"],
+            ["Midnight Empire", "Late Night Campaign", 0, "#70caff", "d", "b", "MIDNIGHT EMPIRE", "When the city sleeps, the cravings begin.", "OPEN TILL 2 AM"],
+            ["Signature Creation", "Chef Signature Campaign", 4, "#f0d9a0", "s", "c", "SIGNATURE CREATION", "A dish crafted with passion and served with pride.", "TRY NOW"],
+            ["The Family Table", "Premium Family Campaign", 2, "#ff8a00", "s", "d", "THE FAMILY TABLE", "Bring everyone together around something delicious.", "25% OFF"],
+            ["Table For Two", "Premium Date Night", 1, "#ff6b9a", "c", "e", "TABLE FOR TWO", "A special menu for your special moments.", "₹999 COUPLE MENU"],
+            ["Lunch Society", "Premium Lunch Campaign", 4, "#e08a1e", "s", "c", "LUNCH SOCIETY", "Turn an ordinary lunch into your favorite part of the day.", "FLAT 30% OFF"],
+            ["Limited Drop", "High Urgency Campaign", 3, "#ff2700", "d", "f", "LIMITED DROP", "Once this offer disappears, it disappears.", "GRAB NOW"],
+            ["The Great Food Festival", "Major Restaurant Campaign", 1, "#e0a0ff", "s", "g", "THE GREAT FOOD FESTIVAL", "Global flavors. Local love. One unforgettable celebration.", "UP TO 40% OFF"],
+            ["The Dining Experience", "Luxury Positioning", 1, "#d4af37", "s", "e", "THE DINING EXPERIENCE", "Exceptional food. Elegant ambience. Unforgettable moments.", "RESERVE NOW"],
+            ["Ultimate Feast", "High Conversion Campaign", 3, "#e90035", "d", "h", "ULTIMATE FEAST", "Your favorite dishes at unbelievable prices.", "FLAT 50% OFF"]
+        ].map((r, i) => ({
+            id: i, name: r[0], cat: r[1], lay: r[2], ac: r[3], font: r[4],
+            im: r[5], head: r[6], desc: r[7], offer: r[8], prem: 1
+        }));
+
+        function readUnlocked() {
+            try {
+                const value = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+                return value && typeof value === "object" ? value : {};
+            } catch {
+                return {};
+            }
+        }
+
+        function isUnlocked(id) {
+            return Object.prototype.hasOwnProperty.call(readUnlocked(), String(id));
+        }
+
+        function base(t) {
+            return {
+                lay: t.lay,
+                ac: t.ac,
+                font: t.font,
+                name: "YOUR RESTAURANT",
+                head: t.head,
+                desc: t.desc,
+                offer: t.offer,
+                cta: "ORDER NOW",
+                loc: "YOUR CITY • TODAY",
+                cat: t.cat,
+                img: U(IM[t.im], 700),
+                ratio: "45",
+                dark: t.prem ? .78 : .7,
+                zoom: 1,
+                pos: 50,
+                frame: t.prem ? 1 : 0,
+                glow: 1,
+                grain: t.prem ? 1 : 0
+            };
+        }
+
+        function cvHTML(s) {
+            const k = { d: 1.3, s: .9, m: .85, c: .72, a: .9 }[s.font];
+            const length = s.head.length;
+            const opacity = +s.dark;
+
+            const fontSize = Math.round(
+                Math.min(
+                    120,
+                    (s.lay == 3 ? 80 : 72) * k * (length > 22 ? .62 : length > 14 ? .78 : 1)
+                )
+            );
+
+            return `
+<div class="cv L${s.lay} r${s.ratio}" style="--ac:${s.ac};--fn:'${FN[s.font]}',serif">
+    <div class="bg" style="background-image:url('${s.img}');background-size:cover;background-position:${s.pos}% 50%;transform:scale(${s.zoom})"></div>
+    <div class="ov" style="background:linear-gradient(180deg,rgba(0,0,0,${(opacity * .35).toFixed(2)}),rgba(0,0,0,${opacity}))"></div>
+    ${s.glow ? '<div class="gl"></div>' : ''}
+    ${s.grain ? '<div class="gr"></div>' : ''}
+    ${s.frame ? '<div class="fr"></div>' : ''}
+    <div class="in">
+        <div class="tp">
+            <span class="br">${esc(s.name)}</span>
+            <span class="sp">✦</span>
+        </div>
+        <div class="md">
+            <div class="ey">${esc(s.cat)}</div>
+            <h1 style="font-size:${fontSize}px;font-weight:${s.font == "m" ? 700 : 400}">${esc(s.head)}</h1>
+            <div class="ln"></div>
+            <p>${esc(s.desc)}</p>
+            <div class="of">${esc(s.offer)}</div>
+        </div>
+        <div class="bt">
+            <span>${esc(s.loc)}</span>
+            <span class="ct">${esc(s.cta)} →</span>
+        </div>
+    </div>
+</div>`;
+        }
+
+        let cur = null;
+        let S = {};
+
+        function freeCard(t, i) {
+            const button = document.createElement("button");
+            button.className = "card";
+            button.setAttribute("aria-label", t.name + " free template");
+            button.innerHTML = `
+                <div class="mini">${cvHTML(base(t))}</div>
+                <span class="bd">FREE</span>
+                <div class="cb">${esc(t.name)}<small>${esc(t.cat)}</small></div>`;
+
+            button.onclick = () => {
+                cur = { t, i };
+                openEd(t);
+            };
+
+            return button;
+        }
+
+        function lockedCard(p) {
+            const button = document.createElement("button");
+            button.className = "card";
+            button.setAttribute("aria-label", p.name + " premium template, locked");
+            button.innerHTML = `
+                <div class="premium-lock">
+                    <div class="premium-lock-icon">♛</div>
+                    <strong>Premium Template</strong>
+                    <span>₹10 to unlock</span>
+                </div>
+                <span class="bd p">♛ ₹10</span>
+                <div class="cb">${esc(p.name)}<small>${esc(p.cat)}</small></div>`;
+
+            button.onclick = () => openPay(p);
+            return button;
+        }
+
+        function ownedCard(p) {
+            const button = document.createElement("button");
+            button.className = "card";
+            button.setAttribute("aria-label", p.name + " premium template, unlocked");
+            button.innerHTML = `
+                <div class="mini">${cvHTML(base(p))}</div>
+                <span class="bd own">✓ UNLOCKED</span>
+                <div class="cb">${esc(p.name)}<small>${esc(p.cat)}</small></div>`;
+
+            button.onclick = () => {
+                cur = { t: p, i: p.id };
+                openEd(p);
+            };
+
+            return button;
+        }
+
+        function renderPrem() {
+            const wrapper = $("prem");
+            const fragment = document.createDocumentFragment();
+            let unlockedCount = 0;
+
+            PREM.forEach(p => {
+                if (isUnlocked(p.id)) {
+                    unlockedCount++;
+                    fragment.appendChild(ownedCard(p));
+                } else {
+                    fragment.appendChild(lockedCard(p));
+                }
+            });
+
+            wrapper.innerHTML = "";
+            wrapper.appendChild(fragment);
+            $("cnt").textContent = unlockedCount + " of " + PREM.length + " unlocked";
+            setCS();
+        }
+
+        FREE_TEMPLATES.forEach((t, i) => $("free").appendChild(freeCard(t, i)));
+
+        function setCS() {
+            const card = document.querySelector(".card");
+            if (card) {
+                document.documentElement.style.setProperty("--cs", card.clientWidth / 540);
+            }
+        }
+
+        function openPay(p) {
+            cur = { t: p, i: p.id };
+            $("pn").textContent = p.name;
+            $("pt").textContent = "Pay ₹10 for this template. After payment, access is granted after NumyHub verifies the payment.";
+
+            const link = PAYMENT_LINKS[p.id];
+            const button = $("paymentLinkButton");
+
+            if (link && link.startsWith("https://")) {
+                button.href = link;
+                button.style.display = "inline-flex";
+                button.textContent = "OPEN PAYMENT PAGE — ₹10";
+            } else {
+                button.removeAttribute("href");
+                button.style.display = "none";
+                $("pt").textContent = "Payment link not set yet. Please contact NumyHub.";
+            }
+
+            $("pm").style.display = "flex";
+        }
+
+        $("pc").onclick = () => {
+            $("pm").style.display = "none";
+        };
+
+        $("pm").addEventListener("click", event => {
+            if (event.target === $("pm")) {
+                $("pm").style.display = "none";
+            }
+        });
+
+        /*
+         * MANUAL ADMIN UNLOCK:
+         * After confirming the payment in Razorpay, open the browser console
+         * on your website and run this command, replacing 0 with the paid
+         * template's ID (0–9). Then refresh the page.
+         *
+         * Example:
+         * localStorage.setItem("numyhub_manual_unlocked_v3",
+         *   JSON.stringify({ "0": true }));
+         *
+         * Note: this is a temporary manual workflow, not secure production
+         * access control. A real site needs server-side payment verification.
+         */
+
+        function toast(message) {
+            const el = $("ts");
+            el.textContent = message;
+            el.style.display = "block";
+            clearTimeout(el._hide);
+            el._hide = setTimeout(() => {
+                el.style.display = "none";
+            }, 3200);
+        }
+
+        function sync() {
+            document.querySelectorAll("[data-k]").forEach(el => {
+                const value = S[el.dataset.k];
+
+                if (el.type === "checkbox") {
+                    el.checked = !!value;
+                } else {
+                    el.value = value;
+                }
+            });
+
+            document.querySelectorAll("#rt button").forEach(button => {
+                button.classList.toggle("on", button.dataset.v === S.ratio);
+            });
+        }
+
+        function openEd(t) {
+            S = base(t);
+            S.img = U(IM[t.im], 1000);
+            sync();
+
+            $("ed").style.display = "flex";
+            document.body.style.overflow = "hidden";
+            requestAnimationFrame(draw);
+        }
+
+        function draw() {
+            $("host").innerHTML = cvHTML(S);
+            fit();
+        }
+
+        function fit() {
+            if ($("ed").style.display !== "flex") return;
+
+            const workspace = $("sw");
+            const height = H[S.ratio];
+
+            const scale = Math.max(
+                .1,
+                Math.min(
+                    (workspace.clientWidth - 24) / 540,
+                    (workspace.clientHeight - 24) / height,
+                    1.4
+                )
+            );
+
+            $("box").style.cssText = `width:${540 * scale}px;height:${height * scale}px`;
+            $("host").style.transform = `scale(${scale})`;
+        }
+
+        document.querySelectorAll("[data-k]").forEach(el => {
+            el.addEventListener("input", () => {
+                const key = el.dataset.k;
+
+                S[key] = el.type === "checkbox"
+                    ? (el.checked ? 1 : 0)
+                    : el.type === "range"
+                        ? +el.value
+                        : el.value;
+
+                draw();
+            });
+        });
+
+        document.querySelectorAll("#rt button").forEach(button => {
+            button.onclick = () => {
+                S.ratio = button.dataset.v;
+                sync();
+                draw();
+            };
+        });
+
+        $("fi").onchange = event => {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                S.img = reader.result;
+                draw();
+            };
+            reader.readAsDataURL(file);
+        };
+
+        $("br").onclick = () => {
+            if (cur) openEd(cur.t);
+        };
+
+        function closeEd() {
+            $("ed").style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        $("bx").onclick = closeEd;
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                $("pm").style.display = "none";
+                closeEd();
+            }
+        });
+
+        addEventListener("resize", () => {
+            setCS();
+            fit();
+        });
+
+        addEventListener("orientationchange", () => {
+            setTimeout(() => {
+                setCS();
+                fit();
+            }, 300);
+        });
+
+        async function blobOf(scale) {
+            if (document.fonts) {
+                await document.fonts.ready;
+            }
+
+            const canvas = await html2canvas($("host").firstElementChild, {
+                scale,
+                useCORS: true,
+                backgroundColor: null,
+                onclone: doc => {
+                    doc.getElementById("host").style.transform = "none";
+                    doc.getElementById("box").style.cssText = "";
+                }
+            });
+
+            return new Promise(resolve => canvas.toBlob(resolve, "image/png"));
+        }
+
+        const filename = () =>
+            "NUMYHUB-" +
+            (S.head.replace(/\W+/g, "-").slice(0, 30) || "design") +
+            ".png";
+
+        async function save() {
+            toast("Preparing your design…");
+
+            try {
+                const blob = await blobOf(2);
+                if (!blob) throw new Error("Could not create image.");
+
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = filename();
+
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+
+                setTimeout(() => URL.revokeObjectURL(link.href), 4000);
+                toast("Design saved");
+            } catch (error) {
+                console.error(error);
+                toast("Could not export. Check your internet connection and try again.");
+            }
+        }
+
+        async function share() {
+            toast("Preparing your design…");
+
+            try {
+                const blob = await blobOf(2);
+                if (!blob) throw new Error("Could not create image.");
+
+                const file = new File([blob], filename(), { type: "image/png" });
+
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        files: [file],
+                        title: S.head,
+                        text: S.name + " – " + S.offer
+                    });
+                    $("ts").style.display = "none";
+                } else {
+                    await save();
+                    toast("Sharing isn't supported here, so the image was downloaded instead.");
+                }
+            } catch (error) {
+                if (error && error.name === "AbortError") {
+                    $("ts").style.display = "none";
+                    return;
+                }
+
+                console.error(error);
+                toast("Could not share. Try Save instead.");
+            }
+        }
+
+        $("bs").onclick = save;
+        $("bh").onclick = share;
+
+        renderPrem();
+    </script>
+
+</body>
+
+</html>

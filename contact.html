@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact — NumyHub</title>
+
+    <meta name="description"
+        content="Contact NumyHub for websites, video editing, creative projects, and digital experiences.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13LSHWLM3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-13LSHWLM3L');
+    </script>    
+
+    <style>
+        :root {
+            --black: #060608;
+            --black-soft: #0e0e12;
+            --white: #fff;
+            --orange: #ff5a1f;
+            --orange-light: #ffab86;
+            --green: #9cff6b;
+
+            --muted: rgba(255, 255, 255, .65);
+            --subtle: rgba(255, 255, 255, .42);
+            --line: rgba(255, 255, 255, .14);
+            --card: rgba(255, 255, 255, .06);
+
+            --ease: cubic-bezier(.22, 1, .36, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at 85% 5%, rgba(255, 77, 0, .12), transparent 30%),
+                radial-gradient(circle at 10% 90%, rgba(95, 68, 255, .08), transparent 35%),
+                var(--black);
+            color: var(--white);
+            font-family: "Manrope", sans-serif;
+            line-height: 1.6;
+        }
+
+        ::selection {
+            background: var(--orange);
+            color: white;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .mono {
+            font-family: "DM Mono", monospace;
+        }
+
+        .container {
+            width: min(1200px, calc(100% - 48px));
+            margin: auto;
+        }
+
+        /* Background */
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        .cursor-glow {
+            position: fixed;
+            z-index: -1;
+            width: 460px;
+            height: 460px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(255, 77, 0, .16), transparent 70%);
+            transform: translate(-50%, -50%);
+            filter: blur(20px);
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 22px 0;
+            transition:
+                padding .35s ease,
+                background-color .35s ease,
+                border-color .35s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 12px 0;
+            background: rgba(6, 6, 8, .78);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(22px);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -.06em;
+        }
+
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--orange), #ff7a42);
+            color: white;
+            font-size: 16px;
+            box-shadow: 0 0 28px rgba(255, 77, 0, .45);
+            overflow: hidden;
+        }
+
+        .brand-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .brand span:last-child {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a {
+            padding: 10px 14px;
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 13px;
+            transition:
+                color .25s ease,
+                background-color .25s ease,
+                transform .25s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .nav-contact {
+            border: 1px solid rgba(255, 90, 31, .6);
+            color: white !important;
+            background: linear-gradient(135deg, rgba(255, 90, 31, .18), rgba(255, 90, 31, .06));
+        }
+
+        .nav-contact:hover {
+            background: var(--orange) !important;
+            border-color: var(--orange);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(255, 77, 0, .25);
+        }
+
+        .menu-button {
+            display: none;
+            padding: 8px;
+            border: 0;
+            background: transparent;
+            color: white;
+        }
+
+        .menu-button svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        /* Hero */
+
+        .contact-hero {
+            position: relative;
+            min-height: 66vh;
+            display: flex;
+            align-items: center;
+            padding: 165px 0 110px;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: "";
+            position: absolute;
+            top: -180px;
+            right: -200px;
+            width: 640px;
+            height: 640px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 77, 0, .14), transparent 65%);
+            filter: blur(140px);
+            pointer-events: none;
+        }
+
+        .contact-hero::after {
+            content: "";
+            position: absolute;
+            bottom: -320px;
+            left: -200px;
+            width: 580px;
+            height: 580px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(95, 68, 255, .1), transparent 65%);
+            filter: blur(130px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: end;
+            gap: 80px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            color: var(--orange-light);
+            font-size: 11px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 16px var(--green);
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .45;
+                transform: scale(.75);
+            }
+        }
+
+        .hero-title {
+            max-width: 820px;
+            font-size: clamp(56px, 9.5vw, 118px);
+            font-weight: 800;
+            letter-spacing: -.09em;
+            line-height: .92;
+            background: linear-gradient(180deg, #ffffff, #cfcfcf);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .orange {
+            color: var(--orange);
+            -webkit-text-fill-color: var(--orange);
+            text-shadow: 0 0 36px rgba(255, 77, 0, .28);
+        }
+
+        .hero-description {
+            max-width: 520px;
+            margin-top: 28px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.85;
+        }
+
+        .hero-code {
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            background:
+                linear-gradient(145deg,
+                    rgba(255, 255, 255, .06),
+                    rgba(255, 255, 255, .03));
+            color: var(--subtle);
+            font-size: 12px;
+            line-height: 2.05;
+            box-shadow: 0 28px 80px rgba(0, 0, 0, .35);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-code .code-orange {
+            color: var(--orange-light);
+        }
+
+        .hero-code .code-green {
+            color: var(--green);
+        }
+
+        /* Contact section */
+
+        .contact-section {
+            position: relative;
+            padding: 40px 0 130px;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .section-label {
+            margin-bottom: 16px;
+            color: var(--orange);
+            font-size: 11px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            max-width: 560px;
+            font-size: clamp(40px, 5.5vw, 68px);
+            font-weight: 800;
+            letter-spacing: -.075em;
+            line-height: .98;
+            background: linear-gradient(180deg, #ffffff, #dcdcdc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .faded {
+            color: rgba(255, 255, 255, .26);
+            -webkit-text-fill-color: rgba(255, 255, 255, .26);
+        }
+
+        .contact-copy {
+            margin-top: 25px;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.85;
+        }
+
+        .contact-details {
+            display: grid;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .detail-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: linear-gradient(145deg,
+                    rgba(255, 255, 255, .05),
+                    rgba(255, 255, 255, .025));
+            transition:
+                transform .35s var(--ease),
+                border-color .35s ease,
+                background-color .35s ease,
+                box-shadow .35s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateX(6px);
+            border-color: rgba(255, 100, 55, .6);
+            background: rgba(255, 77, 0, .08);
+            box-shadow: 0 18px 45px rgba(255, 77, 0, .12);
+        }
+
+        .detail-icon {
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            flex: 0 0 40px;
+            border-radius: 12px;
+            background: rgba(255, 90, 31, .16);
+            color: var(--orange);
+            font-size: 18px;
+        }
+
+        .detail-label {
+            color: var(--subtle);
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .detail-value {
+            display: block;
+            margin-top: 3px;
+            color: white;
+            font-size: 13px;
+            word-break: break-word;
+        }
+
+        /* Form */
+
+        .contact-form {
+            padding: 32px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background:
+                linear-gradient(145deg,
+                    rgba(255, 255, 255, .1),
+                    rgba(255, 255, 255, .04));
+            box-shadow: 0 28px 80px rgba(0, 0, 0, .35);
+            backdrop-filter: blur(14px);
+        }
+
+        .form-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 26px;
+        }
+
+        .form-heading {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -.04em;
+        }
+
+        .form-status {
+            color: var(--green);
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .field {
+            margin-bottom: 17px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--subtle);
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, .16);
+            border-radius: 12px;
+            outline: none;
+            background: rgba(0, 0, 0, .26);
+            color: white;
+            font-size: 14px;
+            transition:
+                border-color .25s ease,
+                background-color .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .field input,
+        .field select {
+            height: 50px;
+            padding: 0 14px;
+        }
+
+        .field textarea {
+            min-height: 150px;
+            padding: 14px;
+            resize: vertical;
+        }
+
+        .field select {
+            appearance: none;
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: rgba(255, 255, 255, .32);
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            border-color: var(--orange);
+            background: rgba(255, 77, 0, .06);
+            box-shadow: 0 0 0 3px rgba(255, 77, 0, .12);
+        }
+
+        .submit-button {
+            width: 100%;
+            border: 0;
+            color: white;
+            background: linear-gradient(135deg, var(--orange), #ff7242);
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-weight: 700;
+            letter-spacing: .02em;
+            box-shadow: 0 14px 32px rgba(255, 77, 0, .25);
+            transition:
+                transform .3s var(--ease),
+                box-shadow .3s ease,
+                filter .3s ease;
+        }
+
+        .submit-button:hover {
+            filter: brightness(1.06);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(255, 77, 0, .35);
+        }
+
+        .form-note {
+            margin-top: 14px;
+            color: var(--subtle);
+            font-size: 11px;
+            text-align: center;
+        }
+
+        /* Bottom cards */
+
+        .availability {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            background: var(--black-soft);
+            box-shadow: 0 22px 60px rgba(0, 0, 0, .3);
+        }
+
+        .availability-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 25px;
+        }
+
+        .availability-card {
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: linear-gradient(145deg,
+                    rgba(255, 255, 255, .05),
+                    rgba(255, 255, 255, .025));
+            transition:
+                transform .35s var(--ease),
+                border-color .35s ease,
+                box-shadow .35s ease;
+        }
+
+        .availability-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 100, 55, .6);
+            box-shadow: 0 18px 45px rgba(255, 77, 0, .14);
+        }
+
+        .availability-card span {
+            color: var(--orange);
+            font-size: 24px;
+        }
+
+        .availability-card h3 {
+            margin-top: 18px;
+            font-size: 16px;
+        }
+
+        .availability-card p {
+            margin-top: 6px;
+            color: var(--subtle);
+            font-size: 12px;
+        }
+
+        /* Footer */
+
+        footer {
+            padding: 45px 0 25px;
+            border-top: 1px solid var(--line);
+            background:
+                radial-gradient(circle at 50% 0%,
+                    rgba(255, 77, 0, .12),
+                    transparent 45%),
+                var(--black);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-copy {
+            color: var(--subtle);
+            font-size: 11px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 18px;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            font-size: 12px;
+            transition: color .25s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            width: min(1200px, calc(100% - 48px));
+            margin: 30px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+            color: var(--subtle);
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+        }
+
+        .wa-float {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 20;
+            display: grid;
+            place-items: center;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25d366, #1ebc59);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, .35);
+            transition: transform .3s ease;
+        }
+
+        .wa-float:hover {
+            transform: translateY(-5px) scale(1.04);
+        }
+
+        .wa-float svg {
+            width: 27px;
+            height: 27px;
+            fill: white;
+        }
+
+        /* Reveal */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition:
+                opacity .7s ease,
+                transform .7s var(--ease);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+   NUMYHUB SIGNATURE FOOTER
+========================= */
+
+        /* Page footer wrapper (if you want to reuse this on other pages too) */
+        .page-footer {
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+            padding: 120px 0 35px;
+            background:
+                radial-gradient(circle at 50% 0%,
+                    rgba(255, 77, 0, .14),
+                    transparent 40%),
+                linear-gradient(to bottom,
+                    #08080a 0%,
+                    #0d0b0c 55%,
+                    #160b09 100%);
+            border-top: 1px solid rgba(255, 255, 255, .12);
+        }
+
+        /* Orange glow behind the footer */
+        .page-footer::before {
+            content: "";
+            position: absolute;
+            top: -180px;
+            left: 50%;
+            width: 680px;
+            height: 420px;
+            border-radius: 50%;
+            background: rgba(255, 77, 0, .14);
+            filter: blur(120px);
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        /* Subtle grid overlay */
+        .page-footer::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: .22;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: linear-gradient(to bottom, black, transparent 75%);
+        }
+
+        /* Keep footer content above background effects */
+        .footer-sig,
+        .sitemap,
+        .footer-bottom {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =========================
+   Large footer logo
+========================= */
+
+        .footer-sig {
+            margin: 0 auto 105px;
+            text-align: center;
+        }
+
+        .footer-sig h2 {
+            font-size: clamp(75px, 16vw, 220px);
+            font-weight: 800;
+            letter-spacing: -.1em;
+            line-height: .78;
+            user-select: none;
+
+            background:
+                linear-gradient(110deg,
+                    #ffffff 0%,
+                    #ffffff 25%,
+                    #ffad8c 55%,
+                    #ff4d00 100%);
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            text-shadow:
+                0 0 35px rgba(255, 77, 0, .13),
+                0 0 80px rgba(255, 77, 0, .08);
+        }
+
+        .footer-sig h2 .dim {
+            color: rgba(255, 255, 255, .25);
+            -webkit-text-fill-color: rgba(255, 255, 255, .25);
+        }
+
+        .footer-sig p {
+            margin-top: 28px;
+            color: rgba(255, 255, 255, .58);
+            font-size: 11px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+   Sitemap
+========================= */
+
+        .sitemap {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            width: min(1180px, 100%);
+            margin: auto;
+            padding: 48px 0 55px;
+            border-top: 1px solid rgba(255, 255, 255, .14);
+        }
+
+        .sitemap h4 {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ff8a5c;
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .sitemap h4::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 22px;
+            height: 1px;
+            background: #ff5a1f;
+            transition: width .3s ease;
+        }
+
+        .sitemap>div:hover h4::after {
+            width: 42px;
+        }
+
+        .sitemap ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .sitemap li {
+            margin-bottom: 11px;
+        }
+
+        .sitemap a {
+            position: relative;
+            display: inline-block;
+            color: rgba(255, 255, 255, .5);
+            font-size: 13px;
+            transition:
+                color .3s ease,
+                transform .3s ease;
+        }
+
+        .sitemap a::before {
+            content: "↗";
+            position: absolute;
+            left: -18px;
+            color: #ff5a1f;
+            font-size: 11px;
+            opacity: 0;
+            transform: translateX(-5px);
+            transition:
+                opacity .3s ease,
+                transform .3s ease;
+        }
+
+        .sitemap a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .sitemap a:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* =========================
+   Footer bottom
+========================= */
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            width: min(1180px, 100%);
+            margin: auto;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, .12);
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, .38);
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            letter-spacing: .08em;
+        }
+
+        /* Optional extra text if you add it later */
+        .footer-bottom p:last-child {
+            color: rgba(255, 255, 255, .25);
+        }
+
+        /* =========================
+   Responsive footer
+========================= */
+
+        @media (max-width: 950px) {
+            .sitemap {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px 25px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .page-footer {
+                margin-top: 60px;
+                padding: 80px 0 25px;
+            }
+
+            .footer-sig {
+                margin-bottom: 65px;
+            }
+
+            .footer-sig h2 {
+                font-size: 23vw;
+            }
+
+            .footer-sig p {
+                margin-top: 20px;
+                font-size: 9px;
+                letter-spacing: .13em;
+            }
+
+            .sitemap {
+                grid-template-columns: 1fr 1fr;
+                gap: 35px 18px;
+                padding: 35px 0 40px;
+            }
+
+            .sitemap h4 {
+                font-size: 10px;
+            }
+
+            .sitemap a {
+                font-size: 12px;
+            }
+
+            .footer-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-bottom p {
+                font-size: 9px;
+                line-height: 1.6;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .sitemap a,
+            .sitemap h4::after {
+                transition: none;
+            }
+        }
+
+        /* Responsive */
+
+        @media (max-width: 950px) {
+
+            .hero-content,
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                gap: 55px;
+            }
+
+            .contact-layout {
+                gap: 45px;
+            }
+
+            .availability-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                width: min(100% - 32px, 1200px);
+            }
+
+            .navbar {
+                padding: 16px 0;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 68px;
+                left: 16px;
+                right: 16px;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+                padding: 10px;
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: rgba(12, 12, 15, .96);
+                backdrop-filter: blur(20px);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 14px;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .contact-hero {
+                min-height: auto;
+                padding: 145px 0 75px;
+            }
+
+            .hero-title {
+                font-size: clamp(50px, 14vw, 80px);
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .contact-section {
+                padding: 20px 0 85px;
+            }
+
+            .contact-form {
+                padding: 22px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .footer-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .wa-float {
+                right: 16px;
+                bottom: 16px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-inner">
+
+            <a href="home.html" class="brand">
+                <span class="brand-mark">
+                    <img class="logo-mark" src="The Numy Hub.png" alt="The Numy Hub Logo" />
+                </span>
+                numyhub.xyz<span></span>
+            </a>
+
+            <button class="menu-button" id="menuButton" aria-label="Open menu">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html#about">About</a>
+                <a href="index.html#skills">What I Do</a>
+                <a href="index.html#journey">Journey</a>
+                <a href="index.html#facts">Facts</a>
+                <a href="#contact" class="nav-contact">Let's Talk ↗</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero -->
+        <section class="contact-hero grid-bg">
+            <div class="container hero-content">
+
+                <div class="reveal">
+
+                    <div class="eyebrow mono">
+                        <span class="status-dot"></span>
+                        LET'S BUILD SOMETHING
+                    </div>
+
+                    <h1 class="hero-title">
+                        Have an idea<br>
+                        worth <span class="orange">creating?</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Whether you need a website, a video edit, or a complete digital
+                        experience, send me a message and let's turn your idea into
+                        something real.
+                    </p>
+
+                </div>
+
+                <div class="hero-code mono reveal">
+                    <div>
+                        <span class="code-orange">const</span>
+                        project = {
+                    </div>
+
+                    <div>
+                        &nbsp;&nbsp;type:
+                        <span class="code-green">"your idea"</span>,
+                    </div>
+
+                    <div>
+                        &nbsp;&nbsp;status:
+                        <span class="code-green">"ready to build"</span>,
+                    </div>
+
+                    <div>
+                        &nbsp;&nbsp;creator:
+                        <span class="code-green">"NumyHub"</span>
+                    </div>
+
+                    <div>};</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact content -->
+        <section class="contact-section" id="contact">
+            <div class="container contact-layout">
+
+                <div class="reveal">
+
+                    <div class="section-label mono">
+                        01 — GET IN TOUCH
+                    </div>
+
+                    <h2 class="section-title">
+                        Tell me about<br>
+                        <span class="faded">your project.</span>
+                    </h2>
+
+                    <p class="contact-copy">
+                        Have a question, collaboration idea, or project in mind?
+                        I am always open to interesting creative and technical work.
+                    </p>
+
+                    <div class="contact-details">
+
+                        <a class="detail-card" href="mailto:numypie1782@gmail.com">
+
+                            <div class="detail-icon">✉</div>
+
+                            <div>
+                                <span class="detail-label">EMAIL</span>
+                                <span class="detail-value">
+                                    numypie1782@gmail.com
+                                </span>
+                            </div>
+
+                        </a>
+
+                        <a class="detail-card" href="https://www.youtube.com/@NumyHub" target="_blank"
+                            rel="noopener noreferrer">
+
+                            <div class="detail-icon">▶</div>
+
+                            <div>
+                                <span class="detail-label">YOUTUBE</span>
+                                <span class="detail-value">
+                                    @NumyHub
+                                </span>
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- Contact form -->
+                <form class="contact-form reveal" id="contactForm">
+
+                    <div class="form-header">
+                        <h3 class="form-heading">Send a message</h3>
+                        <span class="form-status">● ONLINE</span>
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="field">
+                            <label for="name">YOUR NAME</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="email">YOUR EMAIL</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                        </div>
+
+                    </div>
+
+                    <div class="field">
+                        <label for="project">PROJECT TYPE</label>
+
+                        <select id="project" name="project" required>
+                            <option value="">Choose a project type</option>
+                            <option value="Website Development">
+                                Website Development
+                            </option>
+                            <option value="Video Editing">
+                                Video Editing
+                            </option>
+                            <option value="Creative Direction">
+                                Creative Direction
+                            </option>
+                            <option value="Other">
+                                Something else
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="message">YOUR MESSAGE</label>
+
+                        <textarea id="message" name="message" placeholder="Tell me a little about your idea..."
+                            required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        Send message ↗
+                    </button>
+
+                    <p class="form-note">
+                        This will open your email app with your message prepared.
+                    </p>
+
+                </form>
+
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="container availability reveal">
+            <div class="section-label mono">
+                02 — WHAT I CAN HELP WITH
+            </div>
+
+            <h2 class="section-title">
+                Different ideas.<br>
+                <span class="faded">Same creative energy.</span>
+            </h2>
+
+            <div class="availability-grid">
+
+                <article class="availability-card">
+                    <span>⌘</span>
+                    <h3>Websites</h3>
+                    <p>
+                        Landing pages, portfolios, dashboards, and interactive websites.
+                    </p>
+                </article>
+
+                <article class="availability-card">
+                    <span>▶</span>
+                    <h3>Video Editing</h3>
+                    <p>
+                        Reels, short-form videos, cinematic edits, and visual storytelling.
+                    </p>
+                </article>
+
+                <article class="availability-card">
+                    <span>✦</span>
+                    <h3>Creative Ideas</h3>
+                    <p>
+                        Concepts, visual direction, branding, and digital experiences.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="footer-sig">
+                <h2 class="font-heading"><span class="dim">NUMY</span>HUB</h2>
+                <p class="font-mono">DESIGN WITH GOOD VIBES</p>
+            </div>
+
+            <div class="sitemap">
+                <div>
+                    <h4>QUICK LINKS</h4>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="templates.html">Templates</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>CONNECT</h4>
+                    <ul>
+                        <li>
+                            <a href="mailto:numypie1782@gmail.com">
+                                Email
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/@NumyHub" target="_blank" rel="noopener noreferrer">
+                                YouTube
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>LEGAL</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 NUMYHUB.XYZ · ALL RIGHTS RESERVED</p>
+                <p>BUILD_VER // 3.0.0</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById("navbar");
+        const menuButton = document.getElementById("menuButton");
+        const navLinks = document.getElementById("navLinks");
+        const cursorGlow = document.querySelector(".cursor-glow");
+        const contactForm = document.getElementById("contactForm");
+
+        /* Navbar */
+        window.addEventListener("scroll", () => {
+            navbar.classList.toggle("scrolled", window.scrollY > 25);
+        });
+
+        /* Mobile menu */
+        menuButton.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuButton.setAttribute(
+                "aria-label",
+                isOpen ? "Close menu" : "Open menu"
+            );
+        });
+
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("open");
+                menuButton.setAttribute("aria-label", "Open menu");
+            });
+        });
+
+        /* Smooth cursor glow */
+        let glowX = window.innerWidth / 2;
+        let glowY = window.innerHeight / 2;
+
+        let targetX = glowX;
+        let targetY = glowY;
+
+        window.addEventListener("mousemove", (event) => {
+            targetX = event.clientX;
+            targetY = event.clientY;
+        });
+
+        function animateGlow() {
+            glowX += (targetX - glowX) * .08;
+            glowY += (targetY - glowY) * .08;
+
+            cursorGlow.style.left = `${glowX}px`;
+            cursorGlow.style.top = `${glowY}px`;
+
+            requestAnimationFrame(animateGlow);
+        }
+
+        animateGlow();
+
+        /* Reveal animations */
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: .12
+            }
+        );
+
+        revealElements.forEach((element, index) => {
+            element.style.transitionDelay = `${(index % 4) * 70}ms`;
+            revealObserver.observe(element);
+        });
+
+        /* Contact form */
+        contactForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const project = document.getElementById("project").value;
+            const message = document.getElementById("message").value.trim();
+
+            const subject = encodeURIComponent(
+                `${project} enquiry from ${name}`
+            );
+
+            const body = encodeURIComponent(
+                `Hello Azad,
+
+Name: ${name}
+Email: ${email}
+Project type: ${project}
+
+Message:
+${message}
+
+Sent from the NumyHub contact page.`
+            );
+
+            window.location.href =
+                `mailto:numypie1782@gmail.com?subject=${subject}&body=${body}`;
+        });
+    </script>
+
+</body>
+
+</html>

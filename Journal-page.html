@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <title>Journal — NUMYHUB</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap">
+
+  <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13LSHWLM3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-13LSHWLM3L');
+    </script>
+      
+  <style>
+    /* ═══════════════════════════════════════════════
+     JOURNAL — dark editorial, ink-on-paper feel
+     by NUMYHUB
+     ═══════════════════════════════════════════════ */
+    :root {
+      --bg: #0b0a08;
+      --bg2: #141310;
+      --bg3: #1e1c19;
+      --fg: #e8e2d9;
+      --fg2: #9a9187;
+      --fg3: #5a5349;
+      --gold: #c8a96e;
+      --gold2: #8a6f3f;
+      --border: #2a2721;
+      --mx: 50vw;
+      --my: 30vh;
+      color-scheme: dark;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    button,
+    a {
+      font: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      background: none;
+      border: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body.noscroll {
+      overflow: hidden;
+    }
+
+    /* ── LIVING BACKGROUND ── */
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .aurora i {
+      position: absolute;
+      width: 55vmax;
+      height: 55vmax;
+      border-radius: 50%;
+      filter: blur(110px);
+      opacity: .26;
+      animation: drift 26s ease-in-out infinite alternate;
+    }
+
+    .aurora i:nth-child(1) {
+      background: #8a6f3f;
+      top: -20vmax;
+      left: -10vmax;
+    }
+
+    .aurora i:nth-child(2) {
+      background: #3b2a6b;
+      bottom: -25vmax;
+      right: -15vmax;
+      animation-duration: 32s;
+      animation-delay: -8s;
+    }
+
+    .aurora i:nth-child(3) {
+      background: #0f5a4a;
+      top: 30vh;
+      left: 40vw;
+      width: 35vmax;
+      height: 35vmax;
+      opacity: .15;
+      animation-duration: 38s;
+      animation-delay: -14s;
+    }
+
+    @keyframes drift {
+      to {
+        transform: translate(12vmax, 8vmax) scale(1.25) rotate(40deg);
+      }
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .07;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+    }
+
+    .spot {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(520px circle at var(--mx) var(--my), rgba(200, 169, 110, .11), transparent 60%);
+    }
+
+    #fx {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 5%;
+      background: rgba(11, 10, 8, 0.8);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .site-header .wordmark {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--fg);
+    }
+
+    .site-header .wordmark span {
+      color: var(--gold);
+    }
+
+    .wordmark small {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--fg3);
+      margin-left: 12px;
+    }
+
+    .issue-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--fg3);
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: clamp(60px, 10vw, 110px) 5% clamp(40px, 7vw, 70px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "JOURNAL";
+      position: absolute;
+      right: -2%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(120px, 22vw, 260px);
+      font-weight: 300;
+      color: rgba(255, 255, 255, .03);
+      letter-spacing: -8px;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(42px, 8vw, 96px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -1px;
+      text-wrap: balance;
+      max-width: 14ch;
+      position: relative;
+    }
+
+    .hero h1 .w {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(14px);
+      transform: translateY(14px);
+      animation: ink 1s cubic-bezier(.2, .7, .2, 1) forwards;
+    }
+
+    @keyframes ink {
+      to {
+        opacity: 1;
+        filter: none;
+        transform: none;
+      }
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      background: linear-gradient(100deg, var(--gold2), #fff3cf 40%, var(--gold) 60%, var(--gold2));
+      background-size: 220% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: ink 1s forwards, sheen 6s linear infinite;
+    }
+
+    @keyframes sheen {
+      to {
+        background-position: -220% 0;
+      }
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--fg2);
+      max-width: 480px;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .hero-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin-top: 8px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+    }
+
+    .chip {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--fg2);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .chip b {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    /* ── GRID ── */
+    .grid-wrap {
+      padding: clamp(32px, 5vw, 60px) 5%;
+      padding-bottom: clamp(60px, 10vw, 100px);
+    }
+
+    .grid-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--fg3);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .grid-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .journals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+      gap: 18px;
+      perspective: 1200px;
+    }
+
+    /* ── JOURNAL CARD ── */
+    .jcard {
+      --rx: 0deg;
+      --ry: 0deg;
+      --gx: 50%;
+      --gy: 0%;
+      display: block;
+      text-decoration: none;
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: var(--bg2);
+      cursor: pointer;
+      outline-offset: 4px;
+      text-align: left;
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: 4px;
+      transform: rotateX(var(--rx)) rotateY(var(--ry));
+      transition: transform .25s ease-out, box-shadow .35s, border-color .35s;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .55);
+    }
+
+    .jcard:hover {
+      border-color: rgba(200, 169, 110, .5);
+      box-shadow: 0 34px 80px rgba(0, 0, 0, .8), 0 0 50px rgba(200, 169, 110, .18);
+    }
+
+    .jcard:focus-visible {
+      outline: 2px solid var(--gold);
+    }
+
+    .jcard::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      background: radial-gradient(circle at var(--gx) var(--gy), rgba(255, 255, 255, .16), transparent 45%);
+    }
+
+    .jcard-thumb {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .jcard:hover .jcard-thumb {
+      transform: scale(1.06);
+    }
+
+    .jcard-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8, 7, 5, .96) 0%, rgba(8, 7, 5, .55) 45%, rgba(8, 7, 5, .1) 100%);
+      transition: opacity .4s;
+    }
+
+    .jcard:hover .jcard-overlay {
+      opacity: .8;
+    }
+
+    .jcard-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, var(--bg3), var(--bg2));
+    }
+
+    .jcard-placeholder svg {
+      opacity: .18;
+      width: 48px;
+      height: 48px;
+      color: var(--gold);
+    }
+
+    .jcard-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 22px 20px 20px;
+      z-index: 2;
+    }
+
+    .jcard-num {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .jcard-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(22px, 4vw, 28px);
+      font-weight: 400;
+      line-height: 1.1;
+      text-wrap: balance;
+      margin-bottom: 8px;
+      background: linear-gradient(110deg, var(--fg) 30%, #fff3cf 48%, var(--gold) 66%);
+      background-size: 250% 100%;
+      background-position: 100% 0;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      transition: background-position .9s;
+    }
+
+    .jcard:hover .jcard-title {
+      background-position: 0 0;
+    }
+
+    .jcard-desc {
+      font-size: 12px;
+      color: var(--fg2);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .jcard-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: gap .2s;
+    }
+
+    .jcard:hover .jcard-cta {
+      gap: 10px;
+    }
+
+    .jcard-cta-line {
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      transition: width .2s;
+    }
+
+    .jcard:hover .jcard-cta-line {
+      width: 32px;
+    }
+
+    .jcard.locked {
+      cursor: default;
+    }
+
+    .jcard.locked .jcard-cta {
+      color: var(--fg3);
+    }
+
+    .jcard.locked .jcard-cta-line {
+      background: var(--fg3);
+    }
+
+    .jcard.locked .jcard-num {
+      color: var(--fg3);
+    }
+
+    /* ── EMBEDDED JOURNAL VIEWER ── */
+    #viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      visibility: hidden;
+      clip-path: circle(0 at var(--ox, 50%) var(--oy, 50%));
+      transition: clip-path .85s cubic-bezier(.7, 0, .2, 1), visibility 0s .85s;
+    }
+
+    #viewer.open {
+      visibility: visible;
+      clip-path: circle(150vmax at var(--ox, 50%) var(--oy, 50%));
+      transition: clip-path .85s cubic-bezier(.7, 0, .2, 1), visibility 0s;
+    }
+
+    .vbar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 12px 5%;
+      padding-top: calc(12px + env(safe-area-inset-top, 0px));
+      background: rgba(11, 10, 8, .95);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .vbar .back {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .vbar .vtitle {
+      flex: 1;
+      min-width: 100px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px;
+      font-weight: 300;
+    }
+
+    .vbar .newtab {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--fg2);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: .2s;
+    }
+
+    .vbar .newtab:hover {
+      color: var(--gold);
+      border-color: var(--gold2);
+    }
+
+    .vload {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      background-size: 40% 100%;
+      background-repeat: no-repeat;
+      animation: load 1.1s linear infinite;
+      opacity: 0;
+    }
+
+    #viewer.loading .vload {
+      opacity: 1;
+    }
+
+    @keyframes load {
+      from {
+        background-position: -40% 0;
+      }
+
+      to {
+        background-position: 140% 0;
+      }
+    }
+
+    #frame {
+      flex: 1;
+      width: 100%;
+      border: 0;
+      background: #fff0;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid var(--border);
+      padding: 24px 5%;
+      font-size: 12px;
+      color: var(--fg3);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .hero h1 .w {
+        opacity: 1;
+        filter: none;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="aurora"><i></i><i></i><i></i></div>
+  <div class="grain"></div>
+  <div class="spot"></div>
+  <canvas id="fx"></canvas>
+
+  <!-- ══════════════════════════════════════════════
+     HEADER
+     ══════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="wordmark">Journal<span>.</span><small>BY NUMYHUB</small></div>
+    <div class="issue-label">7 Volumes</div>
+  </header>
+
+  <main>
+    <!-- ══════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero-eyebrow">Selected Works</div>
+      <h1 id="h1">A collection of <em>thought.</em></h1>
+      <p class="hero-sub">Seven journals. Each one a different world. Click any to open it — your words are yours alone.
+        This page has no tracking, no analytics and no accounts.</p>
+      <div class="chips">
+        <span class="chip"><b>●</b> No tracking</span>
+        <span class="chip"><b>●</b> No accounts</span>
+        <span class="chip"><b>●</b> Private by design</span>
+      </div>
+      <div class="hero-rule"></div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+       JOURNAL GRID
+       ══════════════════════════════════════════════ -->
+    <section class="grid-wrap">
+      <div class="grid-label">All Journals</div>
+      <div class="journals-grid" id="grid"></div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════ -->
+    <footer class="site-footer">
+      <span>Journal Collection · NUMYHUB</span>
+      <span>7 Volumes</span>
+    </footer>
+  </main>
+
+  <!-- ══════════════════════════════════════════════
+     EMBEDDED VIEWER (journals open inside this page)
+     ══════════════════════════════════════════════ -->
+  <section id="viewer" aria-label="Journal">
+    <div class="vload"></div>
+    <div class="vbar">
+      <button class="back" id="btnBack">← Library</button>
+      <div class="vtitle" id="vtitle"></div>
+      <a class="newtab" id="vnew" href="#" target="_blank" rel="noopener noreferrer">Open in new tab ↗</a>
+    </div>
+    <iframe id="frame" title="Journal" referrerpolicy="no-referrer" allow="clipboard-write; fullscreen"></iframe>
+  </section>
+
+  <script>
+    /* ═══════════════════════════════════════════════════════════════
+       JOURNAL DATA — EDIT THIS SECTION
+       ═══════════════════════════════════════════════════════════════
+  
+       link  → The URL or file path to your HTML journal file.
+                Leave as "" if not ready yet — card shows as locked.
+  
+       thumb → A direct image URL used as the card thumbnail.
+                Leave as "" to show a blank placeholder.
+  
+       title → The name shown on the card.
+       desc  → Short description shown under the title.
+       ═══════════════════════════════════════════════════════════════ */
+
+    const JOURNALS = [
+
+      {
+        /* ── JOURNAL 1 ── */
+        link: "Jou-1.html",
+        thumb: "j-11.png",
+        title: "Volume I",
+        desc: "The first chapter. Add your description here."
+      },
+
+      {
+        /* ── JOURNAL 2 ── */
+        link: "Jou-2.html",
+        thumb: "j-2.png",
+        title: "Volume II",
+        desc: "The second chapter. Add your description here."
+      },
+
+      {
+        /* ── JOURNAL 3 ── */
+        link: "Jou-3.html",
+        thumb: "j-3.png",
+        title: "Volume III",
+        desc: "The third chapter. Add your description here."
+      },
+
+      {
+        /* ── JOURNAL 4 ── */
+        link: "jou-4.html",
+        thumb: "j-4.png",
+        title: "Volume IV",
+        desc: "The fourth chapter. Add your description here."
+      },
+
+      {
+        /* ── JOURNAL 5 ── */
+        link: "jou-5.html",
+        thumb: "j-5.png",
+        title: "Volume V",
+        desc: "The fifth chapter. Add your description here."
+      },
+
+      {
+        /* ── JOURNAL 6 ── */
+        link: "jou-6.html",
+        thumb: "j-1.png",
+        title: "Volume VI",
+        desc: "The sixth chapter. Add your description here."
+      },
+
+      {
+        /* ── JOURNAL 7 ── */
+        link: "jou-7.html",
+        thumb: "j-6.png",
+        title: "Volume VII",
+        desc: "The seventh chapter. Add your description here."
+      }
+
+    ];
+
+    /* ═══════════════════════════════════════════════════════════════
+       RENDER — no need to edit below this line
+       ═══════════════════════════════════════════════════════════════ */
+
+    const $ = id => document.getElementById(id);
+    const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const grid = $("grid");
+
+    JOURNALS.forEach((j, i) => {
+      const hasLink = j.link && j.link.trim() !== "";
+      const hasThumb = j.thumb && j.thumb.trim() !== "";
+
+      const tag = hasLink ? "a" : "div";
+      const card = document.createElement(tag);
+      card.className = "jcard" + (hasLink ? "" : " locked");
+      if (hasLink) {
+        card.href = j.link;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+        /* normal click opens it embedded; ctrl/cmd/middle-click still opens a new tab */
+        card.addEventListener("click", e => {
+          if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;
+          e.preventDefault();
+          openViewer(i, e.clientX, e.clientY);
+        });
+      }
+
+      card.innerHTML = `
+    ${hasThumb
+          ? `<div class="jcard-thumb" style="background-image:url('${j.thumb}')"></div>
+         <div class="jcard-overlay"></div>`
+          : `<div class="jcard-placeholder">
+           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <rect x="8" y="4" width="28" height="36" rx="2" stroke="currentColor" stroke-width="1.5"/>
+             <line x1="14" y1="14" x2="30" y2="14" stroke="currentColor" stroke-width="1"/>
+             <line x1="14" y1="20" x2="30" y2="20" stroke="currentColor" stroke-width="1"/>
+             <line x1="14" y1="26" x2="24" y2="26" stroke="currentColor" stroke-width="1"/>
+           </svg>
+         </div>`
+        }
+    <div class="jcard-content">
+      <div class="jcard-num">Vol. ${String(i + 1).padStart(2, "0")}</div>
+      <div class="jcard-title">${j.title}</div>
+      <div class="jcard-desc">${j.desc}</div>
+      <div class="jcard-cta">
+        ${hasLink ? "Open" : "Coming soon"}
+        <span class="jcard-cta-line"></span>
+      </div>
+    </div>
+  `;
+
+      /* 3D tilt + moving glare + embers */
+      card.addEventListener("pointermove", e => {
+        if (e.pointerType === "touch" || RM) return;
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        card.style.setProperty("--ry", ((x - .5) * 14) + "deg");
+        card.style.setProperty("--rx", ((.5 - y) * 14) + "deg");
+        card.style.setProperty("--gx", (x * 100) + "%");
+        card.style.setProperty("--gy", (y * 100) + "%");
+        if (hasLink && Math.random() < .35) spawn(e.clientX, e.clientY, 1);
+      });
+      card.addEventListener("pointerleave", () => {
+        card.style.setProperty("--rx", "0deg");
+        card.style.setProperty("--ry", "0deg");
+      });
+
+      grid.appendChild(card);
+    });
+
+    /* ───────── embedded viewer ───────── */
+    const viewer = $("viewer"), frame = $("frame");
+    let opened = false;
+
+    function openViewer(i, x, y) {
+      const j = JOURNALS[i];
+      viewer.style.setProperty("--ox", x + "px");
+      viewer.style.setProperty("--oy", y + "px");
+      $("vtitle").textContent = j.title;
+      $("vnew").href = j.link;
+      viewer.classList.add("loading");
+      frame.onload = () => viewer.classList.remove("loading");
+      frame.src = j.link;
+      viewer.classList.add("open");
+      document.body.classList.add("noscroll");
+      opened = true;
+      history.pushState({ v: i }, "");
+      spawn(x, y, 24);
+    }
+
+    function closeViewer(fromPop) {
+      if (!opened) return;
+      opened = false;
+      viewer.classList.remove("open", "loading");
+      document.body.classList.remove("noscroll");
+      setTimeout(() => { if (!opened) frame.src = "about:blank"; }, 900);
+      if (!fromPop && history.state && history.state.v !== undefined) history.back();
+    }
+
+    $("btnBack").onclick = () => closeViewer(false);
+    addEventListener("popstate", () => closeViewer(true));
+    addEventListener("keydown", e => { if (e.key === "Escape") closeViewer(false); });
+
+    /* ───────── spotlight follows cursor ───────── */
+    addEventListener("pointermove", e => {
+      document.documentElement.style.setProperty("--mx", e.clientX + "px");
+      document.documentElement.style.setProperty("--my", e.clientY + "px");
+    });
+
+    /* ───────── gold ember particles ───────── */
+    const cvs = $("fx"), g = cvs.getContext("2d");
+    let P = [], raf = 0;
+    function sizeFx() { const d = devicePixelRatio || 1; cvs.width = innerWidth * d; cvs.height = innerHeight * d; g.setTransform(d, 0, 0, d, 0, 0); }
+    addEventListener("resize", sizeFx); sizeFx();
+
+    function spawn(x, y, n) {
+      if (RM) return;
+      for (let i = 0; i < n; i++) P.push({
+        x, y, vx: (Math.random() - .5) * 2, vy: -(Math.random() * 2 + .4),
+        l: 1, d: Math.random() * .02 + .014, s: Math.random() * 2.4 + 1, h: Math.random() * 20 + 38
+      });
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
+    function tick() {
+      g.clearRect(0, 0, innerWidth, innerHeight);
+      g.globalCompositeOperation = "lighter";
+      P = P.filter(p => p.l > 0);
+      for (const p of P) {
+        p.x += p.vx + Math.sin(p.y / 18) * .3; p.y += p.vy; p.vy *= .995; p.l -= p.d;
+        g.fillStyle = `hsla(${p.h},100%,62%,${Math.max(p.l, 0)})`;
+        g.beginPath(); g.arc(p.x, p.y, Math.max(p.s * p.l, .3), 0, 6.3); g.fill();
+      }
+      raf = P.length ? requestAnimationFrame(tick) : (g.clearRect(0, 0, innerWidth, innerHeight), 0);
+    }
+
+    /* ───────── heading ink-reveal ───────── */
+    (function () {
+      let d = 0;
+      [...$("h1").childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const f = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(t => {
+            if (!t) return;
+            if (/^\s+$/.test(t)) { f.appendChild(document.createTextNode(" ")); return; }
+            const s = document.createElement("span");
+            s.className = "w"; s.textContent = t; s.style.animationDelay = (d += .12) + "s";
+            f.appendChild(s);
+          });
+          n.replaceWith(f);
+        } else if (n.nodeName === "EM") { n.style.animationDelay = (d += .12) + "s"; n.classList.add("w"); }
+      });
+    })();
+  </script>
+</body>
+
+</html>

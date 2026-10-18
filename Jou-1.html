@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Celestial Dreams — Journal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13LSHWLM3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-13LSHWLM3L');
+    </script>    
+    <style>
+        :root {
+            --bg1: #050015;
+            --bg2: #0b1025;
+            --glass: rgba(18, 12, 38, .58);
+            --glass2: rgba(255, 255, 255, .06);
+            --line: rgba(167, 139, 250, .22);
+            --line2: rgba(255, 255, 255, .08);
+            --text: #f3eeff;
+            --muted: #b9add8;
+            --accent: #a78bfa;
+            --accent2: #f0abfc;
+            --accent3: #60a5fa;
+            --danger: #ef4444;
+            --shadow: 0 20px 60px rgba(0, 0, 0, .45);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background:
+                radial-gradient(circle at top, rgba(124, 58, 237, .35), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(96, 165, 250, .18), transparent 30%),
+                linear-gradient(180deg, var(--bg2), var(--bg1));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px;
+            color: var(--text);
+            line-height: 1.55;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1462331940025-786dfb2d7bd8?w=1600') center/cover fixed;
+            opacity: .18;
+            pointer-events: none;
+            z-index: -2;
+            filter: saturate(120%) contrast(110%);
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(5, 0, 21, .35), rgba(5, 0, 21, .82));
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        #starfield {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 980px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 18px 0 8px;
+        }
+
+        .header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.6rem, 5vw, 4.5rem);
+            font-weight: 600;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff, #c4b5fd, #f0abfc, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(167, 139, 250, .25);
+            margin-bottom: 6px;
+        }
+
+        .header .date {
+            font-size: .92rem;
+            color: var(--muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .mood-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+        }
+
+        .mood-pill {
+            background: linear-gradient(180deg, rgba(167, 139, 250, .12), rgba(255, 255, 255, .05));
+            border: 1px solid var(--line);
+            color: #ddd0ff;
+            padding: 10px 16px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: .88rem;
+            transition: all .25s ease;
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06);
+        }
+
+        .mood-pill:hover {
+            transform: translateY(-2px);
+            border-color: rgba(167, 139, 250, .55);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, .22);
+        }
+
+        .mood-pill.active {
+            background: linear-gradient(135deg, rgba(124, 58, 237, .45), rgba(192, 38, 211, .35));
+            border-color: rgba(167, 139, 250, .8);
+            box-shadow: 0 0 22px rgba(167, 139, 250, .35);
+            color: #fff;
+        }
+
+        .entries {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-height: 420px;
+            overflow-y: auto;
+            padding-right: 8px;
+            scroll-behavior: smooth;
+        }
+
+        .entries::-webkit-scrollbar {
+            width: 5px
+        }
+
+        .entries::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #a78bfa, #60a5fa);
+            border-radius: 999px;
+        }
+
+        .entry {
+            position: relative;
+            background: linear-gradient(180deg, rgba(20, 10, 40, .72), rgba(12, 8, 28, .62));
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 18px 18px 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            animation: fadeIn .45s ease;
+        }
+
+        .entry::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .08), transparent 35%, transparent 65%, rgba(255, 255, 255, .05));
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(.99)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1)
+            }
+        }
+
+        .entry .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .entry .meta span {
+            color: #d8ccff;
+            font-size: .82rem;
+        }
+
+        .entry .mood-tag {
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .entry p {
+            color: #f4efff;
+            white-space: pre-line;
+            font-size: .97rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .del {
+            cursor: pointer;
+            opacity: .55;
+            transition: all .2s ease;
+            filter: drop-shadow(0 0 6px rgba(255, 255, 255, .15));
+        }
+
+        .del:hover {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        .composer {
+            background: linear-gradient(180deg, rgba(18, 12, 38, .72), rgba(10, 6, 22, .65));
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(167, 139, 250, .26);
+            border-radius: 24px;
+            padding: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        textarea {
+            width: 100%;
+            height: 130px;
+            background: rgba(8, 5, 18, .72);
+            border: 1px solid rgba(167, 139, 250, .2);
+            border-radius: 16px;
+            color: #fff;
+            padding: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .96rem;
+            resize: none;
+            transition: all .25s ease;
+            outline: none;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05);
+        }
+
+        textarea:focus {
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 4px rgba(167, 139, 250, .12), 0 0 24px rgba(167, 139, 250, .18);
+        }
+
+        textarea::placeholder {
+            color: #a899c8;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        button {
+            flex: 1;
+            background: linear-gradient(135deg, #7c3aed, #c026d3 55%, #60a5fa);
+            color: #fff;
+            border: none;
+            padding: 13px 16px;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: .95rem;
+            transition: all .25s ease;
+            font-family: inherit;
+            box-shadow: 0 12px 30px rgba(124, 58, 237, .28);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 34px rgba(124, 58, 237, .38);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .clear-btn {
+            background: linear-gradient(135deg, rgba(239, 68, 68, .34), rgba(185, 28, 28, .28));
+            border: 1px solid rgba(239, 68, 68, .38);
+        }
+
+        .clear-btn:hover {
+            box-shadow: 0 16px 34px rgba(239, 68, 68, .22);
+        }
+
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 9999;
+            box-shadow: 0 0 10px #fff, 0 0 18px rgba(255, 255, 255, .7);
+            pointer-events: none;
+        }
+
+        .stats {
+            text-align: center;
+            color: var(--muted);
+            font-size: .82rem;
+            padding: 6px 4px 2px;
+            letter-spacing: .4px;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #b9add8;
+            padding: 26px 16px;
+            border: 1px dashed rgba(167, 139, 250, .25);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, .03);
+        }
+
+        @media(max-width:600px) {
+            body {
+                padding: 16px
+            }
+
+            .container {
+                padding: 0 2px
+            }
+
+            .header h1 {
+                font-size: 2.35rem
+            }
+
+            .btn-row {
+                flex-direction: column
+            }
+
+            .entries {
+                max-height: 360px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="starfield"></canvas>
+
+    <div class="container">
+        <div class="header">
+            <h1>✦ Celestial Dreams ✦</h1>
+            <div class="date" id="date"></div>
+        </div>
+
+        <div class="mood-row" id="moodRow"></div>
+        <div class="entries" id="entries"></div>
+        <div class="stats" id="stats"></div>
+
+        <div class="composer">
+            <textarea id="input" placeholder="Write to the stars... (Enter to save, Shift+Enter for new line)"
+                onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();saveEntry()}"></textarea>
+            <div class="btn-row">
+                <button onclick="saveEntry()">✦ Save Entry</button>
+                <button class="clear-btn" onclick="clearAll()">Clear All</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const moods = [
+            { e: '🌟', n: 'Inspired' },
+            { e: '🌙', n: 'Dreamy' },
+            { e: '🔥', n: 'Passionate' },
+            { e: '💧', n: 'Reflective' },
+            { e: '⚡', n: 'Energetic' },
+            { e: '🌫️', n: 'Lost' }
+        ];
+
+        let selectedMood = '🌙';
+        const moodRow = document.getElementById('moodRow');
+
+        moods.forEach(m => {
+            const b = document.createElement('div');
+            b.className = 'mood-pill' + (m.e === selectedMood ? ' active' : '');
+            b.innerHTML = m.e + ' ' + m.n;
+            b.onclick = () => {
+                selectedMood = m.e;
+                document.querySelectorAll('.mood-pill').forEach(p => p.classList.remove('active'));
+                b.classList.add('active');
+            };
+            moodRow.appendChild(b);
+        });
+
+        function updateDate() {
+            document.getElementById('date').textContent = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+        }
+        setInterval(updateDate, 1000);
+        updateDate();
+
+        function shootStar() {
+            const s = document.createElement('div');
+            s.className = 'shooting-star';
+            s.style.left = Math.random() * window.innerWidth + 'px';
+            s.style.top = Math.random() * window.innerHeight + 'px';
+            document.body.appendChild(s);
+            s.animate(
+                [
+                    { transform: 'translate(0,0)', opacity: 1 },
+                    { transform: 'translate(300px,300px)', opacity: 0 }
+                ],
+                { duration: 1000, easing: 'ease-out' }
+            );
+            setTimeout(() => s.remove(), 1000);
+        }
+
+        function saveEntry() {
+            const input = document.getElementById('input');
+            if (!input.value.trim()) return;
+
+            const entries = JSON.parse(localStorage.getItem('celestial_entries') || '[]');
+            entries.push({
+                datetime: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                text: input.value,
+                mood: selectedMood
+            });
+
+            localStorage.setItem('celestial_entries', JSON.stringify(entries));
+            input.value = '';
+            loadEntries();
+            shootStar();
+        }
+
+        function loadEntries() {
+            const entries = JSON.parse(localStorage.getItem('celestial_entries') || '[]');
+            const entriesBox = document.getElementById('entries');
+
+            if (entries.length === 0) {
+                entriesBox.innerHTML = `<div class="empty-state">No entries yet. Write your first thought among the stars.</div>`;
+            } else {
+                entriesBox.innerHTML = entries.map((e, idx) => `
+      <div class="entry">
+        <div class="meta">
+          <span>📝 ${e.datetime}</span>
+          <span class="mood-tag">${e.mood || '🌙'} <span class="del" onclick="deleteEntry(${idx})" title="Delete">🗑️</span></span>
+        </div>
+        <p>${escapeHtml(e.text)}</p>
+      </div>
+    `).join('');
+            }
+
+            document.getElementById('stats').textContent =
+                `${entries.length} entr${entries.length === 1 ? 'y' : 'ies'} among the stars`;
+        }
+
+        function clearAll() {
+            if (confirm('Release all entries to the cosmos?')) {
+                localStorage.removeItem('celestial_entries');
+                loadEntries();
+            }
+        }
+
+        function deleteEntry(i) {
+            const e = JSON.parse(localStorage.getItem('celestial_entries') || '[]');
+            e.splice(i, 1);
+            localStorage.setItem('celestial_entries', JSON.stringify(e));
+            loadEntries();
+        }
+
+        function escapeHtml(s) {
+            return s
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        loadEntries();
+
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function resize() {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            stars = Array.from({ length: 220 }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 1.6,
+                vy: Math.random() * .28 + .04,
+                tw: Math.random() * Math.PI * 2
+            }));
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(s => {
+                s.tw += .02;
+                s.y += s.vy;
+                if (s.y > canvas.height) s.y = 0;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(220,200,255,${.25 + Math.sin(s.tw) * .45})`;
+                ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+</body>
+
+</html>

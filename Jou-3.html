@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="referrer" content="no-referrer">
+    <meta name="robots" content="noindex, nofollow">
+    <title>वन्दे मातरम् — Journal by NUMYHUB</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13LSHWLM3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-13LSHWLM3L');
+    </script>
+    <style>
+        :root {
+            --saf: #ff9933;
+            --grn: #138808;
+            --chk: #3a5bd9;
+            --bg: #060812;
+            --fg: #f3efe8;
+            --fg2: #a9a6b4;
+            --fg3: #615f70;
+            --bd: rgba(255, 153, 51, .22);
+            --mx: 50vw;
+            --my: 30vh;
+            color-scheme: dark;
+            --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Noto Serif Devanagari', 'Kohinoor Devanagari', Georgia, serif;
+            --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Devanagari', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        button,
+        textarea {
+            font: inherit;
+            color: inherit
+        }
+
+        button {
+            cursor: pointer;
+            background: none;
+            border: 0
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            overflow-x: hidden
+        }
+
+        /* ───────── LIVING BACKGROUND ───────── */
+        .aurora {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none
+        }
+
+        .aurora i {
+            position: absolute;
+            width: 60vmax;
+            height: 60vmax;
+            border-radius: 50%;
+            filter: blur(120px);
+            animation: drift 28s ease-in-out infinite alternate
+        }
+
+        .aurora i:nth-child(1) {
+            background: var(--saf);
+            opacity: .3;
+            top: -28vmax;
+            left: -14vmax
+        }
+
+        .aurora i:nth-child(2) {
+            background: var(--grn);
+            opacity: .28;
+            bottom: -30vmax;
+            right: -16vmax;
+            animation-duration: 34s;
+            animation-delay: -9s
+        }
+
+        .aurora i:nth-child(3) {
+            background: var(--chk);
+            opacity: .16;
+            top: 25vh;
+            left: 35vw;
+            width: 38vmax;
+            height: 38vmax;
+            animation-duration: 40s;
+            animation-delay: -16s
+        }
+
+        @keyframes drift {
+            to {
+                transform: translate(12vmax, 8vmax) scale(1.25) rotate(40deg)
+            }
+        }
+
+        .chakra {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            width: min(115vmin, 950px);
+            translate: -50% -50%;
+            z-index: 0;
+            color: var(--chk);
+            opacity: .15;
+            pointer-events: none;
+            animation: spin 140s linear infinite;
+            filter: drop-shadow(0 0 34px var(--chk))
+        }
+
+        @keyframes spin {
+            to {
+                rotate: 360deg
+            }
+        }
+
+        #mata {
+            position: fixed;
+            right: 1%;
+            bottom: 0;
+            height: 94vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: .34;
+            filter: drop-shadow(0 0 40px rgba(255, 153, 51, .45))
+        }
+
+        #mata svg,
+        #mata div {
+            height: 100%;
+            width: auto
+        }
+
+        #mata div {
+            aspect-ratio: 3/5;
+            background-size: cover;
+            background-position: center top;
+            -webkit-mask-image: linear-gradient(#000 70%, transparent);
+            mask-image: linear-gradient(#000 70%, transparent)
+        }
+
+        .flag {
+            transform-box: fill-box;
+            transform-origin: left center;
+            animation: wave 3.6s ease-in-out infinite
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: skewY(0) scaleX(1)
+            }
+
+            50% {
+                transform: skewY(-5deg) scaleX(.95)
+            }
+        }
+
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: .06;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")
+        }
+
+        .spot {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(520px circle at var(--mx) var(--my), rgba(255, 153, 51, .12), transparent 60%)
+        }
+
+        #fx {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none
+        }
+
+        /* ───────── TRICOLOUR BAR + HEADER ───────── */
+        .tri {
+            height: 4px;
+            background: linear-gradient(90deg, var(--saf) 33%, #fff 33% 66%, var(--grn) 66%);
+            position: relative;
+            z-index: 50;
+            overflow: hidden
+        }
+
+        .tri::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .85) 50%, transparent 70%);
+            background-size: 40% 100%;
+            background-repeat: no-repeat;
+            animation: shine 3.4s linear infinite
+        }
+
+        @keyframes shine {
+            from {
+                background-position: -50% 0
+            }
+
+            to {
+                background-position: 150% 0
+            }
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 5%;
+            padding-top: calc(14px + env(safe-area-inset-top, 0px));
+            background: rgba(6, 8, 18, .72);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, .07)
+        }
+
+        .wm {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 4px
+        }
+
+        .wm span {
+            color: var(--saf)
+        }
+
+        .wm small {
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: var(--fg3);
+            margin-left: 10px;
+            font-weight: 500
+        }
+
+        .lockpill {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: var(--fg2);
+            border: 1px solid rgba(255, 255, 255, .14);
+            padding: 8px 14px;
+            border-radius: 30px
+        }
+
+        main {
+            position: relative;
+            z-index: 2;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 5%
+        }
+
+        /* ───────── HERO ───────── */
+        .hero {
+            padding: clamp(54px, 9vw, 100px) 0 30px;
+            text-align: center
+        }
+
+        .eyebrow {
+            font-size: 11px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--saf);
+            margin-bottom: 18px
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-size: clamp(46px, 10vw, 104px);
+            font-weight: 600;
+            line-height: 1.05
+        }
+
+        h1 .w {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(14px);
+            transform: translateY(16px);
+            animation: ink 1s cubic-bezier(.2, .7, .2, 1) forwards;
+            background: linear-gradient(100deg, var(--saf), #fff 45%, #7cf26f 70%, var(--saf));
+            background-size: 240% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        @keyframes ink {
+            to {
+                opacity: 1;
+                filter: none;
+                transform: none
+            }
+        }
+
+        h1.go .w {
+            animation: ink 1s cubic-bezier(.2, .7, .2, 1) forwards, sheen 7s linear infinite
+        }
+
+        @keyframes sheen {
+            to {
+                background-position: -240% 0
+            }
+        }
+
+        .sub {
+            max-width: 560px;
+            margin: 20px auto 0;
+            color: var(--fg2);
+            line-height: 1.75;
+            font-size: 15px
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 22px
+        }
+
+        .chip {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--fg2);
+            border: 1px solid rgba(255, 255, 255, .12);
+            padding: 8px 14px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, .03)
+        }
+
+        .chip b {
+            color: var(--grn);
+            margin-right: 4px
+        }
+
+        /* ───────── GLASS CARDS ───────── */
+        .glass {
+            background: linear-gradient(145deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .025));
+            border: 1px solid var(--bd);
+            border-radius: 22px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, .5);
+            transition: border-color .3s, box-shadow .3s
+        }
+
+        .glass:hover {
+            border-color: rgba(255, 153, 51, .5);
+            box-shadow: 0 30px 90px rgba(0, 0, 0, .6), 0 0 50px rgba(255, 153, 51, .12)
+        }
+
+        /* QUOTE */
+        .quote {
+            margin: 30px 0;
+            padding: 34px clamp(22px, 5vw, 46px);
+            text-align: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .quote::before {
+            content: "“";
+            position: absolute;
+            left: 18px;
+            top: -18px;
+            font-family: var(--serif);
+            font-size: 150px;
+            color: rgba(255, 153, 51, .18);
+            line-height: 1
+        }
+
+        .qtext {
+            font-family: var(--serif);
+            font-size: clamp(22px, 3.6vw, 34px);
+            line-height: 1.4;
+            font-style: italic;
+            transition: opacity .45s, filter .45s, transform .45s
+        }
+
+        .qby {
+            margin-top: 16px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--saf);
+            transition: opacity .45s
+        }
+
+        .qtrans {
+            margin-top: 6px;
+            font-size: 13px;
+            color: var(--fg2);
+            transition: opacity .45s
+        }
+
+        .quote.swap .qtext {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(8px)
+        }
+
+        .quote.swap .qby,
+        .quote.swap .qtrans {
+            opacity: 0
+        }
+
+        .qbtn {
+            margin-top: 20px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--fg2);
+            border: 1px solid rgba(255, 255, 255, .14);
+            padding: 9px 16px;
+            border-radius: 30px;
+            transition: .2s
+        }
+
+        .qbtn:hover {
+            color: var(--saf);
+            border-color: var(--saf)
+        }
+
+        /* COMPOSER */
+        .composer {
+            padding: 24px;
+            margin-bottom: 26px
+        }
+
+        .composer label {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--saf);
+            margin-bottom: 12px
+        }
+
+        #box {
+            width: 100%;
+            min-height: 96px;
+            max-height: 340px;
+            resize: none;
+            background: rgba(0, 0, 0, .35);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 14px;
+            padding: 16px;
+            outline: 0;
+            font-family: var(--serif);
+            font-size: 19px;
+            line-height: 1.7;
+            color: #f7f2ea;
+            caret-color: var(--saf);
+            transition: border-color .25s, box-shadow .25s
+        }
+
+        #box:focus {
+            border-color: var(--saf);
+            box-shadow: 0 0 0 3px rgba(255, 153, 51, .15), 0 0 40px rgba(255, 153, 51, .1)
+        }
+
+        #box::placeholder {
+            color: var(--fg3);
+            font-style: italic
+        }
+
+        #box.shake {
+            animation: shake .4s
+        }
+
+        @keyframes shake {
+            25% {
+                transform: translateX(-6px)
+            }
+
+            75% {
+                transform: translateX(6px)
+            }
+        }
+
+        .crow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 14px;
+            flex-wrap: wrap
+        }
+
+        .hint {
+            font-size: 12px;
+            color: var(--fg3);
+            letter-spacing: .5px
+        }
+
+        .hint kbd {
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 5px;
+            padding: 1px 6px;
+            font-size: 11px;
+            color: var(--fg2)
+        }
+
+        .save {
+            padding: 13px 26px;
+            border-radius: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #1a0d00;
+            background: linear-gradient(100deg, #ffb35c, var(--saf), #e07700);
+            box-shadow: 0 10px 34px rgba(255, 153, 51, .3);
+            transition: .25s
+        }
+
+        .save:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 46px rgba(255, 153, 51, .5)
+        }
+
+        /* ENTRIES */
+        .ehead {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 34px 0 18px
+        }
+
+        .ehead h2 {
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--fg2);
+            font-weight: 600
+        }
+
+        .ehead h2 b {
+            color: var(--saf)
+        }
+
+        .delall {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ff8f8f;
+            border: 1px solid rgba(255, 143, 143, .35);
+            padding: 9px 16px;
+            border-radius: 30px;
+            transition: .2s
+        }
+
+        .delall:hover {
+            background: rgba(255, 80, 80, .12);
+            box-shadow: 0 0 24px rgba(255, 80, 80, .25)
+        }
+
+        .delall[hidden] {
+            display: none
+        }
+
+        .entry {
+            padding: 22px 24px;
+            margin-bottom: 14px;
+            position: relative;
+            overflow: hidden;
+            max-height: 900px;
+            transition: opacity .35s, transform .35s, max-height .45s .1s, margin .45s .1s, padding .45s .1s
+        }
+
+        .entry::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(var(--saf), #fff, var(--grn))
+        }
+
+        .entry.fresh {
+            animation: rise .7s cubic-bezier(.2, .8, .2, 1)
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(.97);
+                filter: blur(8px)
+            }
+        }
+
+        .entry.gone {
+            opacity: 0;
+            transform: translateX(50px) scale(.96);
+            max-height: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+            padding-bottom: 0
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px
+        }
+
+        .date {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--saf)
+        }
+
+        .del {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--fg3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: .2s
+        }
+
+        .del:hover {
+            color: #ff8f8f;
+            border-color: rgba(255, 143, 143, .4);
+            background: rgba(255, 80, 80, .08)
+        }
+
+        .txt {
+            font-family: var(--serif);
+            font-size: 19px;
+            line-height: 1.75;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #f1ece3
+        }
+
+        .empty {
+            text-align: center;
+            padding: 42px 20px;
+            color: var(--fg3);
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 18px;
+            line-height: 1.7
+        }
+
+        /* HEROES */
+        .sec {
+            margin: 64px 0 18px
+        }
+
+        .sec h2 {
+            font-family: var(--serif);
+            font-size: clamp(26px, 4vw, 38px);
+            font-weight: 600
+        }
+
+        .sec p {
+            color: var(--fg2);
+            font-size: 14px;
+            margin-top: 6px
+        }
+
+        .heroes {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding: 10px 4px 26px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--saf) transparent
+        }
+
+        .hcard {
+            flex: 0 0 170px;
+            scroll-snap-align: start;
+            text-align: center;
+            padding: 22px 14px
+        }
+
+        .hcard:hover {
+            transform: translateY(-8px)
+        }
+
+        .avatar {
+            width: 104px;
+            height: 104px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            padding: 3px;
+            background: conic-gradient(var(--saf), #fff, var(--grn), var(--saf));
+            animation: spin2 9s linear infinite
+        }
+
+        @keyframes spin2 {
+            to {
+                rotate: 360deg
+            }
+        }
+
+        .avatar>div,
+        .avatar>img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #0c0f1f;
+            display: grid;
+            place-items: center;
+            font-family: var(--serif);
+            font-size: 34px;
+            color: var(--saf);
+            animation: spin2r 9s linear infinite
+        }
+
+        @keyframes spin2r {
+            to {
+                rotate: -360deg
+            }
+        }
+
+        .hname {
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 1.3
+        }
+
+        .hrole {
+            margin-top: 6px;
+            font-size: 11px;
+            color: var(--fg2);
+            letter-spacing: .5px
+        }
+
+        footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 50px 5% 60px;
+            color: var(--fg3);
+            font-size: 12px;
+            line-height: 1.9;
+            letter-spacing: .5px
+        }
+
+        footer b {
+            color: var(--saf)
+        }
+
+        #toast {
+            position: fixed;
+            left: 50%;
+            bottom: 28px;
+            transform: translate(-50%, 20px);
+            background: #10131f;
+            border: 1px solid var(--saf);
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-size: 13px;
+            opacity: 0;
+            pointer-events: none;
+            transition: .35s;
+            z-index: 300
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0)
+        }
+
+        @media(max-width:700px) {
+            #mata {
+                right: 50%;
+                transform: translateX(50%);
+                opacity: .22;
+                height: 80vh
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important
+            }
+
+            h1 .w {
+                opacity: 1;
+                filter: none;
+                transform: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+    <div class="aurora"><i></i><i></i><i></i></div>
+    <svg class="chakra" id="chakra" viewBox="0 0 200 200" aria-hidden="true"></svg>
+    <div id="mata" aria-hidden="true"></div>
+    <div class="grain"></div>
+    <div class="spot"></div>
+    <canvas id="fx"></canvas>
+
+    <div class="tri"></div>
+    <header>
+        <div class="wm">NUMY<span>HUB</span><small>BHARAT JOURNAL</small></div>
+        <div class="lockpill">🔒 Saved only on this device</div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="eyebrow">A journal for the heart of the nation</div>
+            <h1 id="h1">वन्दे मातरम्</h1>
+            <p class="sub">Write what India means to you — your pride, your dreams, your promises to her. Every word
+                stays on your own device. No account. No one reading over your shoulder.</p>
+            <div class="chips">
+                <span class="chip"><b>●</b> Private</span>
+                <span class="chip"><b>●</b> No tracking</span>
+                <span class="chip"><b>●</b> Free forever</span>
+            </div>
+        </section>
+
+        <!-- QUOTE -->
+        <section class="glass quote" id="quote" style="text-align:center">
+            <div class="qtext" id="qtext"></div>
+            <div class="qby" id="qby"></div>
+            <div class="qtrans" id="qtrans"></div>
+            <button class="qbtn" id="qnext">Another quote ✦</button>
+        </section>
+
+        <!-- COMPOSER -->
+        <section class="glass composer">
+            <label for="box">Today's page</label>
+            <textarea id="box" rows="3" placeholder="What does your country mean to you today?" spellcheck="false"
+                autocomplete="off"></textarea>
+            <div class="crow">
+                <span class="hint">Press <kbd>Enter</kbd> to save &nbsp;·&nbsp; <kbd>Shift</kbd>+<kbd>Enter</kbd> for a
+                    new line</span>
+                <button class="save" id="btnSave">Save entry →</button>
+            </div>
+        </section>
+
+        <!-- ENTRIES -->
+        <div class="ehead">
+            <h2>Your journal · <b id="count">0</b> entries</h2>
+            <button class="delall" id="btnDelAll" hidden>Delete all</button>
+        </div>
+        <div id="list"></div>
+
+        <!-- HEROES -->
+        <section class="sec">
+            <h2>The ones who gave everything</h2>
+            <p>Swipe to meet the revolutionaries whose courage built the freedom we write in.</p>
+        </section>
+        <div class="heroes" id="heroes"></div>
+    </main>
+
+    <footer>
+        <div><b>वन्दे मातरम्</b> · Jai Hind 🇮🇳</div>
+        <div>Made with ❤️ by NUMYHUB · Your entries never leave this device.</div>
+        <div>Famous quotes are widely attributed to these figures; exact wording can vary between sources.</div>
+    </footer>
+    <div id="toast"></div>
+
+    <script>
+        const $ = id => document.getElementById(id);
+        const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        /* ═══════════════ EDIT HERE ═══════════════
+           BHARAT_MATA_IMG → paste a link/file name of your own Bharat Mata painting.
+                             Leave "" to use the built-in glowing artwork.
+           HEROES[].img    → paste a photo link for each hero (optional).
+           ══════════════════════════════════════════ */
+        const BHARAT_MATA_IMG = "";
+
+        const HEROES = [
+            { name: "Bhagat Singh", role: "Revolutionary & Martyr", img: "" },
+            { name: "Chandrashekhar Azad", role: "Fearless Revolutionary", img: "" },
+            { name: "Netaji Subhas Chandra Bose", role: "Leader of the Azad Hind Fauj", img: "" },
+            { name: "Rani Lakshmibai", role: "Queen of Jhansi", img: "" },
+            { name: "Sukhdev Thapar", role: "Revolutionary & Martyr", img: "" },
+            { name: "Shivaram Rajguru", role: "Revolutionary & Martyr", img: "" },
+            { name: "Ram Prasad Bismil", role: "Poet & Revolutionary", img: "" },
+            { name: "Ashfaqulla Khan", role: "Revolutionary & Martyr", img: "" },
+            { name: "Khudiram Bose", role: "Young Revolutionary", img: "" },
+            { name: "Mangal Pandey", role: "Spark of 1857", img: "" },
+            { name: "Lala Lajpat Rai", role: "Punjab Kesari", img: "" },
+            { name: "Bal Gangadhar Tilak", role: "Lokmanya", img: "" },
+            { name: "Matangini Hazra", role: "Freedom Fighter", img: "" },
+            { name: "Birsa Munda", role: "Tribal Freedom Leader", img: "" }
+        ];
+
+        const QUOTES = [
+            { q: "They may kill me, but they cannot kill my ideas.", a: "Bhagat Singh" },
+            { q: "Give me blood, and I shall give you freedom!", a: "Netaji Subhas Chandra Bose" },
+            { q: "Swaraj is my birthright, and I shall have it!", a: "Bal Gangadhar Tilak" },
+            { q: "Main apni Jhansi nahi dungi.", t: "“I will not give up my Jhansi.”", a: "Rani Lakshmibai" },
+            { q: "Dushmanon ki goliyon ka hum saamna karenge, Azad hi rahe hain, Azad hi rahenge.", t: "“We will face the enemy’s bullets — we have been free, and free we shall remain.”", a: "Chandrashekhar Azad" },
+            { q: "Sarfaroshi ki tamanna ab hamare dil mein hai.", t: "“The desire to sacrifice everything for the nation now lives in our hearts.”", a: "Ram Prasad Bismil" },
+            { q: "Arise, awake, and stop not till the goal is reached.", a: "Swami Vivekananda" },
+            { q: "Inquilab Zindabad!", t: "“Long live the revolution!”", a: "Rallying cry of the freedom struggle" },
+            { q: "Dream, dream, dream. Dreams transform into thoughts, and thoughts result in action.", a: "Dr. A.P.J. Abdul Kalam" },
+            { q: "The blows struck at me will be the last nails in the coffin of British rule in India.", a: "Lala Lajpat Rai" },
+            { q: "Where the mind is without fear and the head is held high.", a: "Rabindranath Tagore" },
+            { q: "Vande Mataram — I bow to thee, Mother.", a: "Bankim Chandra Chatterjee" },
+            { q: "A nation is built by the courage of its people, one honest day at a time.", a: "NUMYHUB" },
+            { q: "Love your country by becoming someone she is proud of.", a: "NUMYHUB" },
+            { q: "India does not need perfect people — she needs people who show up.", a: "NUMYHUB" },
+            { q: "Every honest day’s work is a brick in the nation you dream of.", a: "NUMYHUB" }
+        ];
+
+        /* ───────── background art ───────── */
+        (function () {
+            let s = '<circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="100" cy="100" r="84" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="100" cy="100" r="9" fill="currentColor"/>';
+            for (let i = 0; i < 24; i++) {
+                const a = i * 15;
+                s += `<line x1="100" y1="16" x2="100" y2="91" stroke="currentColor" stroke-width="2.4" transform="rotate(${a} 100 100)"/>`;
+                s += `<circle cx="100" cy="9" r="2.2" fill="currentColor" transform="rotate(${a} 100 100)"/>`;
+            }
+            $("chakra").innerHTML = s;
+
+            if (BHARAT_MATA_IMG) { $("mata").innerHTML = `<div style="background-image:url('${BHARAT_MATA_IMG}')"></div>`; return; }
+            $("mata").innerHTML = `
+  <svg viewBox="0 0 400 700" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="sa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb35c"/><stop offset=".55" stop-color="#ff9933"/><stop offset="1" stop-color="#b85c00"/></linearGradient>
+      <radialGradient id="gl"><stop offset="0" stop-color="#ffd9a0" stop-opacity=".9"/><stop offset="1" stop-color="#ff9933" stop-opacity="0"/></radialGradient>
+    </defs>
+    <circle cx="200" cy="150" r="130" fill="url(#gl)"/>
+    <g fill="#ffcf7a">
+      <path d="M160 128 l8 -34 l10 22 l12 -40 l10 40 l12 -22 l8 34z"/>
+    </g>
+    <circle cx="200" cy="150" r="30" fill="url(#sa)"/>
+    <path d="M200 182 C150 228 118 360 62 660 L338 660 C290 360 252 228 200 182Z" fill="url(#sa)"/>
+    <path d="M200 200 C190 330 170 480 150 660 M200 200 C214 330 236 480 258 660" stroke="#7a3d00" stroke-opacity=".35" stroke-width="3" fill="none"/>
+    <path d="M232 212 C262 196 288 170 300 140" stroke="url(#sa)" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <rect x="296" y="40" width="5" height="330" fill="#e8d9b0"/>
+    <g class="flag">
+      <rect x="301" y="46" width="130" height="24" fill="#ff9933"/>
+      <rect x="301" y="70" width="130" height="24" fill="#ffffff"/>
+      <rect x="301" y="94" width="130" height="24" fill="#138808"/>
+      <circle cx="366" cy="82" r="9" fill="none" stroke="#1a3a9a" stroke-width="2"/>
+    </g>
+    <g fill="#ffd9a0" opacity=".85">
+      <ellipse cx="200" cy="672" rx="150" ry="22"/>
+      <ellipse cx="110" cy="660" rx="20" ry="46" transform="rotate(-38 110 660)"/>
+      <ellipse cx="290" cy="660" rx="20" ry="46" transform="rotate(38 290 660)"/>
+      <ellipse cx="160" cy="650" rx="20" ry="52" transform="rotate(-18 160 650)"/>
+      <ellipse cx="240" cy="650" rx="20" ry="52" transform="rotate(18 240 650)"/>
+      <ellipse cx="200" cy="645" rx="20" ry="56"/>
+    </g>
+  </svg>`;
+        })();
+
+        /* ───────── toast / helpers ───────── */
+        function toast(m) { const t = $("toast"); t.textContent = m; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 2400) }
+
+        /* ───────── storage ───────── */
+        const KEY = "numyhub_bharat_journal_v1";
+        let entries = [];
+        try { entries = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { entries = []; }
+        function persist() {
+            try { localStorage.setItem(KEY, JSON.stringify(entries)); }
+            catch (e) { toast("Your browser is blocking storage — entries can't be saved."); }
+        }
+
+        /* ───────── journal ───────── */
+        const box = $("box"), list = $("list");
+
+        function fmt(ts) {
+            return new Date(ts).toLocaleString(undefined, { day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" });
+        }
+
+        function render(freshId) {
+            list.innerHTML = "";
+            $("count").textContent = entries.length;
+            $("btnDelAll").hidden = entries.length === 0;
+            if (!entries.length) {
+                list.innerHTML = '<div class="glass empty">Your first page is waiting.<br>Write one line about what India means to you.</div>';
+                return;
+            }
+            entries.forEach(en => {
+                const d = document.createElement("article");
+                d.className = "glass entry" + (en.id === freshId ? " fresh" : "");
+                d.innerHTML = '<div class="meta"><span class="date"></span><button class="del" aria-label="Delete this entry">Delete</button></div><div class="txt"></div>';
+                d.querySelector(".date").textContent = fmt(en.ts);
+                d.querySelector(".txt").textContent = en.t;
+                d.querySelector(".del").onclick = () => removeOne(en.id, d);
+                list.appendChild(d);
+            });
+        }
+
+        function addEntry() {
+            const t = box.value.trim();
+            if (!t) { box.classList.remove("shake"); void box.offsetWidth; box.classList.add("shake"); return; }
+            const id = Date.now() + "-" + Math.random().toString(36).slice(2, 6);
+            entries.unshift({ id, t, ts: Date.now() });
+            persist(); render(id);
+            box.value = ""; box.style.height = "";
+            const r = box.getBoundingClientRect();
+            burst(r.left + r.width / 2, r.top + 20, 46);
+            toast("Saved ✓  Jai Hind");
+        }
+
+        function removeOne(id, el) {
+            el.classList.add("gone");
+            setTimeout(() => { entries = entries.filter(e => e.id !== id); persist(); render(); }, 520);
+        }
+
+        $("btnDelAll").onclick = () => {
+            if (!entries.length) return;
+            if (!confirm("Delete ALL " + entries.length + " entries?\n\nThis cannot be undone.")) return;
+            document.querySelectorAll(".entry").forEach((el, i) => setTimeout(() => el.classList.add("gone"), i * 60));
+            setTimeout(() => { entries = []; persist(); render(); toast("All entries deleted."); }, 600 + entries.length * 60);
+        };
+
+        box.addEventListener("keydown", e => {
+            if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); addEntry(); }
+        });
+        $("btnSave").onclick = addEntry;
+        box.addEventListener("input", () => { box.style.height = "auto"; box.style.height = Math.min(box.scrollHeight, 340) + "px"; });
+
+        const PROMPTS = [
+            "What does your country mean to you today?",
+            "What is one thing you will do to make India proud?",
+            "Who inspires you from India's story, and why?",
+            "What do you dream India will be in 20 years?",
+            "What are you grateful for about your country?"
+        ];
+        box.placeholder = PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
+
+        /* ───────── quotes ───────── */
+        let qi = Math.floor(Math.random() * QUOTES.length), qHover = false;
+        function showQuote(i, instant) {
+            const Q = QUOTES[i], card = $("quote");
+            const set = () => {
+                $("qtext").textContent = "“" + Q.q + "”";
+                $("qby").textContent = "— " + Q.a;
+                $("qtrans").textContent = Q.t || "";
+                $("qtrans").style.display = Q.t ? "" : "none";
+            };
+            if (instant) return set();
+            card.classList.add("swap");
+            setTimeout(() => { set(); card.classList.remove("swap"); }, 460);
+        }
+        $("qnext").onclick = () => { qi = (qi + 1) % QUOTES.length; showQuote(qi); };
+        $("quote").addEventListener("pointerenter", () => qHover = true);
+        $("quote").addEventListener("pointerleave", () => qHover = false);
+        setInterval(() => { if (!qHover && !document.hidden) { qi = (qi + 1) % QUOTES.length; showQuote(qi); } }, 9000);
+        showQuote(qi, true);
+
+        /* ───────── heroes wall ───────── */
+        (function () {
+            const wrap = $("heroes");
+            HEROES.forEach(h => {
+                const c = document.createElement("div");
+                c.className = "glass hcard";
+                const initial = h.name.replace(/^(Netaji|Rani|Lala|Bal)\s+/i, "").trim().charAt(0);
+                c.innerHTML = `<div class="avatar">${h.img ? `<img alt="" src="${h.img}">` : `<div>${initial}</div>`}</div><div class="hname"></div><div class="hrole"></div>`;
+                c.querySelector(".hname").textContent = h.name;
+                c.querySelector(".hrole").textContent = h.role;
+                wrap.appendChild(c);
+            });
+        })();
+
+        /* ───────── cursor spotlight ───────── */
+        addEventListener("pointermove", e => {
+            document.documentElement.style.setProperty("--mx", e.clientX + "px");
+            document.documentElement.style.setProperty("--my", e.clientY + "px");
+        });
+
+        /* ───────── particles: embers + tricolour confetti ───────── */
+        const cvs = $("fx"), g = cvs.getContext("2d");
+        let P = [], raf = 0;
+        function sizeFx() { const d = devicePixelRatio || 1; cvs.width = innerWidth * d; cvs.height = innerHeight * d; g.setTransform(d, 0, 0, d, 0, 0) }
+        addEventListener("resize", sizeFx); sizeFx();
+        const COLS = ["255,153,51", "255,255,255", "19,190,8", "255,179,92"];
+
+        function burst(x, y, n) {
+            if (RM) return;
+            for (let i = 0; i < n; i++) {
+                const a = Math.random() * Math.PI * 2, s = Math.random() * 7 + 2;
+                P.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 3, l: 1, d: .012 + Math.random() * .012, r: Math.random() * 3.5 + 1.5, c: COLS[i % COLS.length], g: .12 });
+            }
+            kick();
+        }
+        function ember() {
+            if (RM || document.hidden || P.length > 140) return;
+            P.push({ x: Math.random() * innerWidth, y: innerHeight + 10, vx: (Math.random() - .5) * .6, vy: -(Math.random() * 1.2 + .5), l: 1, d: .003 + Math.random() * .004, r: Math.random() * 2.2 + .8, c: COLS[Math.random() < .7 ? 0 : Math.random() < .5 ? 1 : 2], g: 0 });
+            kick();
+        }
+        setInterval(ember, 380);
+        function kick() { if (!raf) raf = requestAnimationFrame(tick); }
+        function tick() {
+            g.clearRect(0, 0, innerWidth, innerHeight);
+            g.globalCompositeOperation = "lighter";
+            P = P.filter(p => p.l > 0 && p.y > -20 && p.y < innerHeight + 40);
+            for (const p of P) {
+                p.x += p.vx + Math.sin(p.y / 22) * .25; p.y += p.vy; p.vy += p.g; p.vx *= .99; p.l -= p.d;
+                g.fillStyle = `rgba(${p.c},${Math.max(p.l, 0) * .85})`;
+                g.beginPath(); g.arc(p.x, p.y, Math.max(p.r * p.l, .4), 0, 6.3); g.fill();
+            }
+            raf = P.length ? requestAnimationFrame(tick) : (g.clearRect(0, 0, innerWidth, innerHeight), 0);
+        }
+
+        /* ───────── heading ink-reveal ───────── */
+        (function () {
+            const h = $("h1"), words = h.textContent.trim().split(/\s+/);
+            h.innerHTML = "";
+            words.forEach((w, i) => {
+                const s = document.createElement("span");
+                s.className = "w"; s.textContent = w; s.style.animationDelay = (i * .18) + "s";
+                h.appendChild(s); if (i < words.length - 1) h.appendChild(document.createTextNode(" "));
+            });
+            setTimeout(() => h.classList.add("go"), 1600);
+        })();
+
+        render();
+    </script>
+</body>
+
+</html>

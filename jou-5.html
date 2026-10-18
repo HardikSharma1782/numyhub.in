@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verdant — Growth Journal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital@0;1&family=Outfit:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13LSHWLM3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-13LSHWLM3L');
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(rgba(10, 30, 15, .5), rgba(5, 20, 10, .7)), url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600') center/cover fixed;
+            min-height: 100vh;
+            color: #d4e9d7;
+            padding: 24px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        .header h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.4rem;
+            color: #a3d977;
+            letter-spacing: 1px
+        }
+
+        .header .date {
+            font-size: .8rem;
+            color: #7cb069
+        }
+
+        .stats-card {
+            background: rgba(15, 40, 20, .6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(163, 217, 119, .2);
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 16px
+        }
+
+        .stat {
+            text-align: center
+        }
+
+        .stat .num {
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            color: #a3d977
+        }
+
+        .stat .lbl {
+            font-size: .7rem;
+            color: #7cb069;
+            text-transform: uppercase;
+            letter-spacing: 1px
+        }
+
+        .tree-area {
+            background: rgba(15, 40, 20, .4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(163, 217, 119, .15);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center
+        }
+
+        #treeCanvas {
+            max-width: 200px
+        }
+
+        .tree-label {
+            font-size: .8rem;
+            color: #7cb069;
+            margin-top: 8px;
+            font-style: italic;
+            font-family: 'Fraunces', serif
+        }
+
+        .prompts {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px
+        }
+
+        .prompt-chip {
+            background: rgba(163, 217, 119, .15);
+            border: 1px solid rgba(163, 217, 119, .3);
+            color: #a3d977;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: .75rem;
+            cursor: pointer;
+            transition: all .3s;
+            font-family: inherit
+        }
+
+        .prompt-chip:hover {
+            background: rgba(163, 217, 119, .3)
+        }
+
+        .entries {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 6px
+        }
+
+        .entries::-webkit-scrollbar {
+            width: 4px
+        }
+
+        .entries::-webkit-scrollbar-thumb {
+            background: #7cb069;
+            border-radius: 4px
+        }
+
+        .entry {
+            background: rgba(15, 40, 20, .5);
+            backdrop-filter: blur(8px);
+            border-left: 3px solid #a3d977;
+            border-radius: 0 12px 12px 0;
+            padding: 14px 16px;
+            animation: grow .5s
+        }
+
+        @keyframes grow {
+            from {
+                opacity: 0;
+                transform: scale(.95)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        .entry .meta {
+            font-size: .75rem;
+            color: #7cb069;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .del {
+            cursor: pointer;
+            opacity: .5;
+            margin-left: 8px
+        }
+
+        .del:hover {
+            opacity: 1
+        }
+
+        .entry p {
+            white-space: pre-line;
+            font-size: .9rem
+        }
+
+        .composer {
+            background: rgba(15, 40, 20, .5);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(163, 217, 119, .25);
+            border-radius: 16px;
+            padding: 18px
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            background: rgba(5, 15, 8, .4);
+            border: 1px solid rgba(163, 217, 119, .2);
+            color: #d4e9d7;
+            padding: 12px;
+            border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: .9rem;
+            resize: none
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #a3d977;
+            box-shadow: 0 0 16px rgba(163, 217, 119, .2)
+        }
+
+        .goal-bar {
+            height: 6px;
+            background: rgba(163, 217, 119, .15);
+            border-radius: 3px;
+            margin: 8px 0;
+            overflow: hidden
+        }
+
+        .goal-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #7cb069, #a3d977);
+            border-radius: 3px;
+            transition: width .5s
+        }
+
+        .goal-text {
+            font-size: .7rem;
+            color: #7cb069;
+            text-align: right
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px
+        }
+
+        button {
+            flex: 1;
+            background: linear-gradient(135deg, #5a8a3c, #a3d977);
+            color: #0a1e0a;
+            border: none;
+            padding: 12px;
+            border-radius: 24px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: .85rem;
+            transition: all .3s;
+            font-family: inherit
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(163, 217, 119, .4)
+        }
+
+        .clear-btn {
+            background: rgba(180, 60, 40, .3);
+            color: #e9d7d4
+        }
+
+        .clear-btn:hover {
+            box-shadow: 0 6px 20px rgba(180, 60, 40, .3)
+        }
+
+        @media(max-width:600px) {
+            .header h1 {
+                font-size: 1.8rem
+            }
+
+            .stats-card {
+                gap: 10px
+            }
+
+            .stat .num {
+                font-size: 1.4rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌿 Verdant</h1>
+            <div class="date" id="date"></div>
+        </div>
+        <div class="stats-card">
+            <div class="stat">
+                <div class="num" id="entryCount">0</div>
+                <div class="lbl">Entries</div>
+            </div>
+            <div class="stat">
+                <div class="num" id="totalWords">0</div>
+                <div class="lbl">Words</div>
+            </div>
+            <div class="stat">
+                <div class="num" id="streak">0</div>
+                <div class="lbl">Day Streak</div>
+            </div>
+            <div class="stat">
+                <div class="num" id="treeLevel">🌱</div>
+                <div class="lbl">Growth</div>
+            </div>
+        </div>
+        <div class="tree-area"><canvas id="treeCanvas" width="160" height="100"></canvas>
+            <div class="tree-label" id="treeLabel">Your journal is a seedling...</div>
+        </div>
+        <div class="prompts" id="prompts"></div>
+        <div class="entries" id="entries"></div>
+        <div class="composer">
+            <textarea id="input" placeholder="What grew today? (Enter to save, Shift+Enter for new line)"
+                oninput="updateGoal()"
+                onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();saveEntry()}"></textarea>
+            <div class="goal-bar">
+                <div class="goal-fill" id="goalFill" style="width:0"></div>
+            </div>
+            <div class="goal-text"><span id="goalWords">0</span> / 50 words to grow</div>
+            <div class="btn-row"><button onclick="saveEntry()">🌱 Plant Entry</button><button class="clear-btn"
+                    onclick="clearAll()">Clear Forest</button></div>
+        </div>
+    </div>
+    <script>
+        const prompts = ['What am I grateful for?', 'What challenged me today?', 'What did I learn?', 'Who made me smile?', 'What do I want to let go of?', 'What\u2019s my intention for tomorrow?'];
+        const pc = document.getElementById('prompts');
+        prompts.forEach(p => { const c = document.createElement('div'); c.className = 'prompt-chip'; c.textContent = p; c.onclick = () => { document.getElementById('input').value = p + '\n\n'; document.getElementById('input').focus(); updateGoal() }; pc.appendChild(c) });
+        function updateDate() { document.getElementById('date').textContent = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) }
+        setInterval(updateDate, 1000); updateDate();
+        const treeStages = ['🌱', '🌿', '🌷', '🌳', '🌲', '🌴'];
+        function updateGoal() { const words = document.getElementById('input').value.trim().split(/\s+/).filter(Boolean).length; document.getElementById('goalWords').textContent = words; document.getElementById('goalFill').style.width = Math.min(words / 50 * 100, 100) + '%' }
+        function saveEntry() { const input = document.getElementById('input'); if (!input.value.trim()) return; const entries = JSON.parse(localStorage.getItem('verdant_entries') || '[]'); entries.push({ datetime: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }), text: input.value, date: new Date().toDateString() }); localStorage.setItem('verdant_entries', JSON.stringify(entries)); input.value = ''; updateGoal(); loadEntries(); drawTree() }
+        function loadEntries() {
+            const entries = JSON.parse(localStorage.getItem('verdant_entries') || '[]');
+            document.getElementById('entries').innerHTML = entries.slice().reverse().map((e, idx) =>
+                `<div class="entry"><div class="meta"><span>${e.datetime} · ${e.text.trim().split(/\s+/).length} words</span><span class="del" onclick="deleteEntry(${idx})" title="Delete">🗑️</span></div><p>${escapeHtml(e.text)}</p></div>`
+            ).join('');
+            const totalWords = entries.reduce((s, e) => s + e.text.trim().split(/\s+/).length, 0);
+            document.getElementById('entryCount').textContent = entries.length; document.getElementById('totalWords').textContent = totalWords;
+            document.getElementById('treeLevel').textContent = treeStages[Math.min(Math.floor(entries.length / 3), treeStages.length - 1)];
+            const uniqueDays = [...new Set(entries.map(e => e.date))].sort().reverse(); let streak = 0;
+            for (let i = 0; i < uniqueDays.length; i++) { const d = new Date(); d.setDate(d.getDate() - i); if (uniqueDays[i] === d.toDateString()) streak++; else break }
+            document.getElementById('streak').textContent = streak;
+        }
+        function drawTree() {
+            const entries = JSON.parse(localStorage.getItem('verdant_entries') || '[]'); const level = Math.min(entries.length, 15);
+            const canvas = document.getElementById('treeCanvas'), ctx = canvas.getContext('2d'); ctx.clearRect(0, 0, 160, 100);
+            ctx.fillStyle = 'rgba(163,217,119,.2)'; ctx.fillRect(0, 90, 160, 10); ctx.strokeStyle = '#7cb069'; ctx.lineWidth = 4 + level * .3; ctx.beginPath(); ctx.moveTo(80, 90); ctx.lineTo(80, 90 - Math.min(level * 4, 40)); ctx.stroke();
+            const topY = 90 - Math.min(level * 4, 40); if (level < 1) { document.getElementById('treeLabel').textContent = 'Your journal is a seedling...'; return }
+            const branches = Math.min(level, 8);
+            for (let i = 0; i < branches; i++) { const angle = -Math.PI / 2 + (i - (branches - 1) / 2) * 0.5; const len = 15 + level * 1.5; ctx.strokeStyle = '#5a8a3c'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(80, topY); ctx.lineTo(80 + Math.cos(angle) * len, topY + Math.sin(angle) * len); ctx.stroke(); ctx.fillStyle = '#a3d977'; ctx.beginPath(); ctx.arc(80 + Math.cos(angle) * len, topY + Math.sin(angle) * len, 5 + level * .3, 0, Math.PI * 2); ctx.fill() }
+            const labels = ['A tiny seed', 'A sprout emerges', 'First leaves', 'Growing taller', 'Branching out', 'A young tree', 'Strong and green', 'A mighty tree', 'A flourishing forest', 'An ancient oak'];
+            document.getElementById('treeLabel').textContent = labels[Math.min(level - 1, labels.length - 1)] + ' (' + entries.length + ' entries)';
+        }
+        function clearAll() { if (confirm('Clear the entire forest?')) { localStorage.removeItem('verdant_entries'); loadEntries(); drawTree() } }
+        function deleteEntry(i) { const e = JSON.parse(localStorage.getItem('verdant_entries') || '[]'); e.splice(e.length - 1 - i, 1); localStorage.setItem('verdant_entries', JSON.stringify(e)); loadEntries(); drawTree() }
+        function escapeHtml(s) { return s.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>') }
+        loadEntries(); drawTree();
+    </script>
+</body>
+
+</html>
