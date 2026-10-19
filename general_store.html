@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3HY3KB78R0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3HY3KB78R0');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Numy Hub – General Store Templates</title>
@@ -750,15 +759,12 @@
     <header class="top">
         <b>NUMY<i>HUB</i></b>
         <h1>Your kirana, built to be remembered.</h1>
-        <p>20 editable store websites. Change the name, font, colours, quotes and every photo in one panel, then
-            download the page. 10 free to start, 10 premium for ₹10 each with offers, ticker, testimonials and WhatsApp
-            ordering.</p>
+        <p>20 editable store websites, all free. Change the name, font, colours, quotes and every photo in one panel,
+            then download the page. Includes offers, ticker, testimonials and WhatsApp ordering.</p>
     </header>
 
     <div class="bar">
         <button class="f on" data-k="all">All 20</button>
-        <button class="f" data-k="free">Free</button>
-        <button class="f" data-k="prem">Premium ₹10</button>
         <button class="f" id="thm" style="margin-left:auto">Light / Dark</button>
     </div>
 
@@ -769,7 +775,7 @@
     </div>
 
     <script>
-        // name, premium, layout, bg, ink, accent, font, headline, quote, tagline
+        // name, premium-layout-extras, layout, bg, ink, accent, font, headline, quote, tagline
         const T = [
             ["FreshMart", 0, 0, "#eaf7ef", "#10281a", "#198754", "Fredoka", "Fresh picks, fair prices", "Freshness you can trust, every single day.", "Daily groceries"],
             ["Urban Kirana", 0, 1, "#0f172a", "#ffffff", "#2f6bff", "Righteous", "The city's corner shop, upgraded", "Small shop. Big service.", "Open 7am to 11pm"],
@@ -795,7 +801,6 @@
 
         const FONTS = ["Fredoka", "Righteous", "Lobster", "Playfair Display", "Bebas Neue", "Pacifico", "Abril Fatface", "Poppins"];
         const EM = ["🛒", "🍪", "🥤", "🏠"];
-        const RAZORPAY_LINK = "https://rzp.io/rzp/qtpVmxy";
 
         const $ = id => document.getElementById(id);
 
@@ -808,23 +813,12 @@
 
         let cur = 0, S = {}, imgs = {};
 
-        function unlocked(i) {
-            try {
-                return localStorage.getItem("nh_" + i) === "1";
-            } catch (e) {
-                return false;
-            }
-        }
-
         function grid(k = "all") {
             $("grid").innerHTML = T.map((t, i) => {
-                if (k === "free" && t[1]) return "";
-                if (k === "prem" && !t[1]) return "";
-
                 return `
                     <div class="c" data-i="${i}">
                         <div class="th" style="background:${t[3]};color:${t[4]}">
-                            <small>${t[1] ? "Premium ₹10" : "Free"}</small>
+                            <small>Free</small>
                             <strong style="font-family:'${t[6]}'">${t[0]}</strong>
                             <span>${t[7]}</span>
                         </div>
@@ -862,56 +856,6 @@
 
             $("ov").classList.add("on");
             document.body.style.overflow = "hidden";
-
-            if (t[1] && !unlocked(i)) {
-                $("ed").style.display = "flex";
-
-                $("ed").innerHTML = `
-                    <div class="pay">
-                        <h2>Unlock ${esc(t[0])}</h2>
-                        <p>
-                            Premium includes offers strip, ticker, stats, testimonial,
-                            WhatsApp order button and more. One-time ₹10.
-                        </p>
-
-                        <button class="btn" style="width:100%" id="pb">
-                            Pay ₹10 with Razorpay
-                        </button>
-
-                        <p style="font-size:12px;margin-top:12px">
-                            After successful payment, Razorpay will redirect you back to this page.
-                            If it does not unlock automatically, tap <b>I have paid</b>.
-                        </p>
-
-                        <button class="btn g" style="width:100%" id="manual">
-                            I have paid — unlock template
-                        </button>
-
-                        <button class="btn g" style="width:100%;margin-top:8px" id="cx">
-                            Cancel
-                        </button>
-                    </div>`;
-
-                $("pb").onclick = () => {
-                    try {
-                        localStorage.setItem("nh_pending", String(i));
-                    } catch (e) { }
-
-                    window.open(RAZORPAY_LINK, "_blank", "noopener");
-                };
-
-                $("manual").onclick = () => {
-                    try {
-                        localStorage.setItem("nh_" + i, "1");
-                        localStorage.removeItem("nh_pending");
-                    } catch (e) { }
-
-                    open_(i);
-                };
-
-                $("cx").onclick = close_;
-                return;
-            }
 
             $("ed").style.display = "";
 
@@ -973,7 +917,7 @@
 
                 <div class="stage">
                     <div class="tb">
-                        <b>${t[0]} ${t[1] ? "· Premium" : "· Free"}</b>
+                        <b>${t[0]} · Free</b>
                         <button class="btn g" id="sh">Share</button>
                         <button class="btn" id="dl">Download</button>
                     </div>
@@ -1325,38 +1269,6 @@
 
             return h;
         }
-
-        function checkRazorpayReturn() {
-            const params = new URLSearchParams(location.search);
-
-            if (params.get("paid") !== "1") return;
-
-            let pending = null;
-
-            try {
-                pending = localStorage.getItem("nh_pending");
-            } catch (e) { }
-
-            if (pending === null) return;
-
-            const i = +pending;
-
-            if (!T[i] || T[i][1] !== 1) return;
-
-            try {
-                localStorage.setItem("nh_" + i, "1");
-                localStorage.removeItem("nh_pending");
-            } catch (e) { }
-
-            history.replaceState({}, "", location.pathname);
-
-            setTimeout(() => {
-                open_(i);
-                toast("Payment successful! " + T[i][0] + " is unlocked.");
-            }, 300);
-        }
-
-        checkRazorpayReturn();
     </script>
 </body>
 
