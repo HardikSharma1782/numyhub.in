@@ -737,7 +737,7 @@
 
     <div class="mobile-menu" id="mobileMenu">
         <a href="#services">Services</a>
-        <a href="#templates.html">Templates</a>
+        <a href="templates.html">Templates</a>
         <a href="#process">Process</a>
         <a href="#faq">FAQ</a>
         <a href="about.html">About</a>
@@ -1248,7 +1248,10 @@
 
             /* smooth scroll helper (works reliably on mobile) */
             function goTo(hash) {
-                var t = (hash === '#top' || hash === '#') ? null : document.querySelector(hash);
+                var t = null;
+                if (hash !== '#top' && hash !== '#') {
+                    try { t = document.querySelector(hash) } catch (err) { t = null }
+                }
                 var y = t ? t.getBoundingClientRect().top + window.pageYOffset - 110 : 0;
                 window.scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
                 try { history.replaceState(null, '', hash === '#' ? location.pathname : hash) } catch (err) { }
@@ -1269,6 +1272,7 @@
                 a.addEventListener('click', function (e) {
                     var href = a.getAttribute('href');
                     closeMenu();
+                    /* only in-page anchors are handled here; real pages (templates.html, about.html...) navigate normally */
                     if (href && href.charAt(0) === '#') {
                         e.preventDefault();
                         setTimeout(function () { goTo(href) }, 80);
